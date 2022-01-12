@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".feature.reset.two.ResetStep2">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/white_button"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:padding="@dimen/medium_padding">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/small_margin"
+            android:text="@string/confirm_code"
+            android:textAllCaps="true"
+            android:textSize="@dimen/large_text"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:gravity="center"
+            android:text="@string/verify_string"
+            android:textSize="@dimen/small_text" />
+
+        <TextView
+            android:id="@+id/tv_phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/small_margin"
+            android:gravity="center"
+            android:textSize="@dimen/small_text" />
+
+        <com.poovam.pinedittextfield.CirclePinField
+            android:id="@+id/lf_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:inputType="number"
+            android:textColor="@color/colorPrimary"
+            android:textSelectHandle="@drawable/text_handle"
+            android:textSize="12sp"
+            app:distanceInBetween="10dp"
+            app:fieldColor="@color/gray"
+            app:highlightColor="@color/colorPrimary"
+            app:highlightEnabled="true"
+            app:highlightSingleFieldMode="true"
+            app:isCursorEnabled="true"
+            app:isCustomBackground="true"
+            app:lineThickness="@dimen/small_rat"
+            app:circleRadius="@dimen/large_padding"
+            app:fillerRadius="@dimen/medium_padding"
+            app:fillerColor="@color/colorAccent"
+            app:noOfFields="6" />
+
+            <TextView
+                android:id="@+id/btn_resend"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/small_margin"
+                android:text="@string/resend_code"
+                android:padding="@dimen/small_padding"
+                android:textColor="@color/black"
+                android:textSize="@dimen/medium_text" />
+
+        </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/fragment_container"
+        android:layout_marginTop="@dimen/medium_margin"
+        android:background="@drawable/blue_button"
+        android:text="@string/confirm_code"
+        android:layout_gravity="bottom"
+        android:textColor="@color/white"
+        android:textSize="@dimen/medium_text" />
+
+</FrameLayout>

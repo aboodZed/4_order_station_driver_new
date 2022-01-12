@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.order.orderStation.chat.ChatFragment">
+
+   <!-- <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/top"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/medium_padding"
+        android:paddingBottom="@dimen/small_padding">
+
+
+        <ImageView
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/medium_padding"
+            android:src="@drawable/ic_left_arrow" />
+
+        <ImageView
+            android:layout_width="@dimen/margin"
+            android:layout_height="@dimen/large_margin"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/logo" />
+
+    </RelativeLayout>-->
+
+    <!-- android:layout_below="@id/rl_top" -->
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_chat"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/ll_bottom"
+        android:padding="@dimen/medium_padding" />
+
+    <LinearLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/medium_padding">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/small_margin"
+            android:layout_weight="9"
+            android:background="@drawable/focus_edit_text"
+            android:padding="@dimen/small_padding">
+
+            <EditText
+                android:id="@+id/et_message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/small_margin"
+                android:layout_weight="9"
+                android:background="@color/white"
+                android:hint="@string/type"
+                android:padding="@dimen/small_padding"
+                tools:ignore="NestedWeights" />
+
+            <ImageView
+                android:id="@+id/iv_upload_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/small_margin"
+                android:padding="@dimen/small_padding"
+                android:src="@drawable/ic_camera" />
+
+        </LinearLayout>
+
+
+        <ImageView
+            android:id="@+id/iv_upload_message"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/ic_send" />
+
+    </LinearLayout>
+
+</RelativeLayout>

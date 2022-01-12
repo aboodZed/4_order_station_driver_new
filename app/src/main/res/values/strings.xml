@@ -1,0 +1,230 @@
+<resources>
+    <string name="app_name">driver</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <!--register step 1-->
+    <string name="upload_image">Upload your photo</string>
+    <string name="user_name">User name</string>
+    <string name="type_full_name">Type your full Name</string>
+    <string name="email">Email address</string>
+    <string name="type_email">Type your Email</string>
+    <string name="phone">Phone number</string>
+    <string name="type_phone">××× ××× ××××</string>
+    <string name="address">Address</string>
+    <string name="type_address">Type your Address</string>
+    <string name="password">Password</string>
+    <string name="type_password">Please enter your new password</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="type_confirm_password">confirm password</string>
+    <string name="agree_terms">I agree to the following</string>
+    <!--login-->
+    <string name="forget">Forget Password?</string>
+    <string name="login">Login</string>
+    <string name="sign_up">Sign up</string>
+    <!--register main-->
+    <string name="create_account">New Account</string>
+    <string name="next">Next</string>
+    <!--register step 2-->
+    <string name="your_vehicle">Your Vehicle</string>
+    <string name="vehicle_license">Vehicle License</string>
+    <string name="vehicle_Inc">Vehicle Insurance</string>
+    <string name="your_id">Your Identity</string>
+    <string name="vehicle_type">Vehicle Type</string>
+    <string name="enter_vehicle_type">Vehicle type</string>
+    <string name="vehicle_plate">Vehicle Plate</string>
+    <string name="enter_vehicle_plate">Vehicle plate number</string>
+    <string name="forget_password">Forgot password</string>
+    <string name="forget_string">Please enter your Phone number. To receive a code to create a new password</string>
+    <string name="send">Send</string>
+    <string name="phone_verification">Phone verification</string>
+    <string name="verify_string">Please enter the code sent to you via sms
+on the number</string>
+    <string name="resend">Resend a new code in </string>
+    <string name="password_reset">Reset password</string>
+    <string name="confirm">Confirm</string>
+    <string name="home">Home</string>
+    <string name="wallet">Wallet</string>
+    <string name="orders">Orders</string>
+    <string name="profile">Profile</string>
+    <string name="rating">Rating</string>
+    <string name="pickup_location">Pickup Location</string>
+    <string name="new_order">New Order</string>
+    <string name="destination_location">Destination Location</string>
+    <string name="view">View</string>
+    <string name="cancel">Cancel</string>
+    <string name="notification">Notifications</string>
+    <string name="reviews">Reviews</string>
+    <string name="payment">Payment</string>
+    <string name="accept">Accept</string>
+    <string name="reject">Reject</string>
+    <string name="sub_total">Sub total</string>
+    <string name="discount">Discount</string>
+    <string name="taxes">Taxes</string>
+    <string name="delivery">Delivery</string>
+    <string name="total">Total</string>
+    <string name="receive">Receive</string>
+    <string name="done">Done</string>
+    <string name="privacy_policy">Privacy &amp; Policy</string>
+    <string name="balance">Balance</string>
+    <string name="ongoing">Ongoing</string>
+    <string name="edit_profile">Edit Profile</string>
+    <string name="contact_us">Contact us</string>
+    <string name="language">Language</string>
+    <string name="logout">Log Out</string>
+    <string name="follow">Follow us</string>
+    <string name="your_massage">Your message</string>
+    <string name="arabic">اللغة العربية</string>
+    <string name="english">English</string>
+    <string name="empty_error">This field is Required</string>
+    <string name="length_password_error">password length must be 6 char at least</string>
+    <string name="wrong_error">phone number or password is wrong</string>
+    <string name="error">Something wrong</string>
+    <string name="waiting">please, Waiting</string>
+    <string name="un_match_pattern">This is not valid Email</string>
+    <string name="match_error">password not match confirm password</string>
+    <string name="no_connection">Check your Internet connection</string>
+    <string name="chose_image">Choose Image resource:-</string>
+    <string name="select_camera">From camera</string>
+    <string name="select_album">From Album</string>
+    <string name="permission_garnted">Permission Granted</string>
+    <string name="permission_denial">Permission Denial</string>
+    <string name="big_image">Con\'t Load this image it\'s too big</string>
+    <string name="length_plate_error">plate length must be 10 char</string>
+    <string name="check_box">must agree the terms</string>
+    <string name="fill_photos">You must insert all picture</string>
+    <string name="channel_name" translatable="false">reset code</string>
+    <string name="channel_description" translatable="false">code to reset the password</string>
+    <string name="user_avatar">Avatar</string>
+    <string name="ok">OK</string>
+    <string name="select">Select</string>
+    <string name="items">" items"</string>
+    <string name="save">Save</string>
+    <string name="send_message">Send a message</string>
+    <string name="subject">Subject</string>
+    <string name="type_subject">Type subject</string>
+    <string name="message">Message</string>
+    <string name="type_message">Type Message</string>
+    <string name="send_email">Send Email</string>
+    <string name="closeApp">Don\'t close app until done the order</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="order_station">Order Station</string>
+    <string name="public_order">Public Store</string>
+    <string name="total_orders_price">Total orders price</string>
+    <string name="total_order_price">Total order price</string>
+    <string name="delegate_dues_from_requests">Driver dues from requests</string>
+    <string name="app_dues_from_requests">Application dues from requests</string>
+    <string name="price_delivery_tax">price of delivery and tax</string>
+    <string name="price_bill">bill price</string>
+    <string name="app_dues">Application dues</string>
+    <string name="delegate_dues">Driver dues</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="order_details">Order details</string>
+    <string name="delivery_price">Delivery price</string>
+    <string name="tax_price">Tax price</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="order">Order</string>
+    <string name="show_on_map">Show in map</string>
+    <string name="store_location">Store location</string>
+    <string name="customer_location">Customer location</string>
+    <string name="bill_option">Bill option</string>
+    <string name="add_bill">Add bill price</string>
+    <string name="delivery_for_customer">Delivered order for customer</string>
+    <string name="on_way_to_store">On way to store</string>
+    <string name="enter_bill_price">Enter bill price</string>
+    <string name="on_way_to_customer">on way to customer</string>
+    <string name="select_photo">Select your avatar</string>
+    <string name="driver_revenue">driver revenue from request</string>
+    <string name="app_revenue">Application revenue from request</string>
+    <string name="re_enter_bill_price">Re enter the bill price</string>
+    <string name="not_match">value of first bill not equal the confirm bill</string>
+    <string name="show_bill">Show bill</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="can_not_open">Can\'t open this</string>
+    <string name="total_driver_bills">Total driver bills</string>
+    <string name="basket_total">Basket total</string>
+    <string name="your_license">Driving license</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="cancel_massage">Are you sure you want to cancel this order</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="sa">Saudi Arabia</string>
+    <string name="egypt">The Egyptian Arabic Republic</string>
+    <string name="morocco">The Kingdom of Morocco</string>
+    <string name="turkish">The Turkish Republic</string>
+    <string name="country">Country</string>
+    <string name="choose_country">Choose your country</string>
+    <string name="admin_message">Administrative message</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="re_write_code">The code is wrong, plesae, rewrite the code</string>
+    <string name="title_activity_order">OrderActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="unable_location">Unable to get location.</string>
+    <string name="refresh">Refresh</string>
+    <string name="error_in_process_the_photo">Error happened in the processing the photo</string>
+    <string name="error_in_input">Error in the input, try again</string>
+    <string name="neighborhood">Neighborhood</string>
+    <string name="sign_in">Sign In</string>
+    <string name="welcome">Welcome to 4 Order Station</string>
+    <string name="create">Create</string>
+    <string name="register">Register</string>
+    <string name="personal_information">Personal Information</string>
+    <string name="car_information">"Car Information "</string>
+    <string name="have_account">Do You Have An Account?</string>
+    <string name="terms_and_conditions"><u>Terms and Conditions</u></string>
+    <string name="confirm_code">confirmation code</string>
+    <string name="resend_code">Resend code</string>
+    <string name="total_rate">Total Rate</string>
+    <string name="contact_form">Contact Form</string>
+    <string name="title">Message title</string>
+    <string name="type">type...</string>
+    <string name="unread">Unread</string>
+    <string name="read">Read</string>
+    <string name="time">Time</string>
+    <string name="vat">Vat</string>
+    <string name="delivery_fees">Delivery Fees</string>
+    <string name="more_details"><u>More details -></u></string>
+    <string name="more_detail">More Details</string>
+    <string name="store_address">Store Address</string>
+    <string name="client_address">Client Address</string>
+    <string name="insert_the_invoice">Insert The Invoice</string>
+    <string name="order_delivery">Order Delivery</string>
+    <string name="enter_invoice">Please Enter The Invoice Value</string>
+    <string name="send_code">Send Code</string>
+    <string name="zero">0.00</string>
+    <string name="attachments">Attachments</string>
+    <string name="sub_price">Sub Price</string>
+    <string name="change_password_text">When change password, you must enter your old password and then continue</string>
+    <string name="new_password">New Password</string>
+    <string name="old_password">Old Password</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+
+    <string name="status">Status</string>
+    <string name="your_balance">Your Balance</string>
+    <string name="history">History</string>
+    <string name="order_type">Type:</string>
+    <string name="order_payment">Payment by:</string>
+    <string name="in_progress">In Progress</string>
+    <string name="others">Others</string>
+    <string name="change_password">Change Password</string>
+    <string name="area">Area</string>
+    <string name="offline">Offline</string>
+    <string name="online">Online</string>
+    <string name="phone_must">"phone number must be "</string>
+    <string name="digits">digits</string>
+    <string name="accept_terms"><![CDATA[You must accept terms & conditions]]></string>
+    <string name="order_items">Ordered items</string>
+    <string name="quantity">Qnt.</string>
+    <string name="amount">Amount</string>
+</resources>
