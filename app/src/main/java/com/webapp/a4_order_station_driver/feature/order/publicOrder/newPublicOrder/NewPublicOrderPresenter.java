@@ -1,17 +1,15 @@
 package com.webapp.a4_order_station_driver.feature.order.publicOrder.newPublicOrder;
 
-import com.webapp.a4_order_station_driver.R;
 import com.webapp.a4_order_station_driver.feature.main.orders.OrdersFragment;
 import com.webapp.a4_order_station_driver.models.Message;
 import com.webapp.a4_order_station_driver.models.PublicOrder;
-import com.webapp.a4_order_station_driver.utils.util.APIUtil;
-import com.webapp.a4_order_station_driver.utils.AppContent;
 import com.webapp.a4_order_station_driver.utils.AppController;
-import com.webapp.a4_order_station_driver.utils.util.ToolUtil;
 import com.webapp.a4_order_station_driver.utils.language.BaseActivity;
 import com.webapp.a4_order_station_driver.utils.listeners.DialogView;
 import com.webapp.a4_order_station_driver.utils.listeners.RequestListener;
 import com.webapp.a4_order_station_driver.utils.location.tracking.OrderGPSTracking;
+import com.webapp.a4_order_station_driver.utils.util.APIUtil;
+import com.webapp.a4_order_station_driver.utils.util.ToolUtil;
 
 class NewPublicOrderPresenter {
 
