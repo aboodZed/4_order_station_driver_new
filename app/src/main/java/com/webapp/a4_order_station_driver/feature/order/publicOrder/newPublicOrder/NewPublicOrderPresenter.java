@@ -37,7 +37,7 @@ class NewPublicOrderPresenter {
                 //OrdersFragment.viewPagerPage = OrderPublicFragment.viewPagerPage;
                 //WalletFragment.viewPagerPage = PublicWalletFragment.viewPagerPage;
 
-                ToolUtil.showLongToast(baseActivity.getString(R.string.closeApp), baseActivity);
+                //ToolUtil.showLongToast(baseActivity.getString(R.string.closeApp), baseActivity);
                 baseActivity.navigate(OrdersFragment.page);
             }
 
