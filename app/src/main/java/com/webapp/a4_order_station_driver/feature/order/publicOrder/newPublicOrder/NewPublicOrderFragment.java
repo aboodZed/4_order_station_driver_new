@@ -32,8 +32,7 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 
     private FragmentNewPublicOrderBinding binding;
 
-    private boolean active = false;
-    private boolean denialLock;
+    //private boolean denialLock;
     private BaseActivity baseActivity;
     private PublicOrder publicOrder;
     private PolylineOptions lineOptions;
@@ -67,14 +66,9 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
     }
 
     private void click() {
-        binding.btnAccept.setOnClickListener(view -> accept());
-        binding.btnReject.setOnClickListener(view -> baseActivity.onBackPressed());
-    }
+        binding.btnAccept.setOnClickListener(view -> presenter.accept(publicOrder));
 
-    public void accept() {
-        if (active) {
-            presenter.accept(publicOrder);
-        }
+        binding.btnReject.setOnClickListener(view -> baseActivity.onBackPressed());
     }
 
     @Override
@@ -121,7 +115,8 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 
     @Override
     public void onServicesOrPermissionChoice() {
-        denialLock = false;
+
+        //denialLock = false;
     }
 
     @Override
@@ -183,7 +178,6 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 //        }
         //setLine();
         setAttachment();
-        active = true;
     }
 
     public void setLine() {
@@ -199,7 +193,7 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
         AttachmentAdapter adapter = new AttachmentAdapter(getActivity()
                 , publicOrder.getAttachmentArrays(), getChildFragmentManager());
         binding.rvAttachments.setLayoutManager(new LinearLayoutManager(getActivity()
-                ,LinearLayoutManager.HORIZONTAL, false));
+                , LinearLayoutManager.HORIZONTAL, false));
         binding.rvAttachments.setItemAnimator(new DefaultItemAnimator());
         binding.rvAttachments.setAdapter(adapter);
     }
