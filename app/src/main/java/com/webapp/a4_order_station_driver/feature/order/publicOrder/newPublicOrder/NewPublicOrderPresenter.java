@@ -31,11 +31,6 @@ class NewPublicOrderPresenter {
                 AppController.getInstance().getAppSettingsPreferences()
                         .setTrackingPublicOrder(publicOrder);
                 OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
-
-                //OrdersFragment.viewPagerPage = OrderPublicFragment.viewPagerPage;
-                //WalletFragment.viewPagerPage = PublicWalletFragment.viewPagerPage;
-
-                //ToolUtil.showLongToast(baseActivity.getString(R.string.closeApp), baseActivity);
                 baseActivity.navigate(OrdersFragment.page);
             }
 
