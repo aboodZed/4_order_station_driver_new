@@ -145,6 +145,13 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
         @SuppressLint("SetTextI18n")
         public void setData(Order order) {
             this.order = order;
+            if (order.getCustomer() != null) {
+                binding.tvReceiverName.setText(order.getCustomer().getName());
+                binding.tvReceiverAddress.setText(order.getCustomer().getAddress());
+            } else if (order.getStore_address() != null) {
+                binding.tvReceiverName.setText(order.getCustomer_address().getName());
+                binding.tvReceiverAddress.setText(order.getCustomer_address().getAddress());
+            }
             if (order.getStore() == null) {
                 order.setType(AppContent.TYPE_ORDER_PUBLIC);
                 //String[] s = publicOrder.getCreated_timestamp().split(" ");
@@ -159,8 +166,7 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
                 } else if (order.getStatus().equals(AppContent.CANCEL_STATUS)) {
                     binding.tvOrderState.setBackgroundResource(R.drawable.red_button);
                 }
-                binding.tvReceiverName.setText(order.getCustomer().getName());
-                binding.tvReceiverAddress.setText(order.getCustomer().getAddress());
+
                 binding.tvPrice.setText((DecimalFormatterManager.getFormatterInstance()
                         .format(Double.parseDouble(order.getTotal())) + " " + AppController.
                         getInstance().getAppSettingsPreferences().getUser().getCountry().getCurrency_code()));
@@ -184,8 +190,6 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
                 binding.tvPrice.setText(order.getTotal());
                 binding.tvCurrency.setText(AppController.getInstance().getAppSettingsPreferences()
                         .getUser().getCountry().getCurrency_code());
-                binding.tvReceiverName.setText(order.getCustomer().getName());
-                binding.tvReceiverAddress.setText(order.getCustomer().getAddress());
 
                 binding.tvCoName.setText(order.getStore().getName());
                 binding.tvCoAddress.setText(order.getStore().getAddress());

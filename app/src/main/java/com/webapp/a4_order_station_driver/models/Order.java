@@ -44,9 +44,13 @@ public class Order implements Serializable {
     @Expose
     private long created_timestamp;
 
-    @SerializedName("customer_address")
+    @SerializedName("customer")
     @Expose
     private Customer customer;
+
+    @SerializedName("customer_address")
+    @Expose
+    private Customer customer_address;
 
     @SerializedName("total")
     @Expose
@@ -68,7 +72,6 @@ public class Order implements Serializable {
     @SerializedName("store")
     @Expose
     private Customer store;
-
 
     private String type;
 
@@ -122,6 +125,10 @@ public class Order implements Serializable {
 
     public Customer getCustomer() {
         return customer;
+    }
+
+    public Customer getCustomer_address() {
+        return customer_address;
     }
 
     public String getTotal() {

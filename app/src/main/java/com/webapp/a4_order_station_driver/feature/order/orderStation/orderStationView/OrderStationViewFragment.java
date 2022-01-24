@@ -79,8 +79,8 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
                         , orderStation.getStore().getLng())));
 
         binding.ivReceiveLocation.setOnClickListener(view -> new NavigateUtil()
-                .setLocation(requireActivity(), new LatLng(orderStation.getCustomer().getLat()
-                        , orderStation.getCustomer().getLng())));
+                .setLocation(requireActivity(), new LatLng(orderStation.getCustomer_address().getLat()
+                        , orderStation.getCustomer_address().getLng())));
     }
 
     public void coCall() {
@@ -93,7 +93,7 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
 
     public void receiverCall() {
         if (PermissionUtil.isPermissionGranted(Manifest.permission.CALL_PHONE, getActivity())) {
-            new NavigateUtil().makeCall(requireActivity(), orderStation.getCustomer().getMobile());
+            new NavigateUtil().makeCall(requireActivity(), orderStation.getCustomer_address().getMobile());
         } else {
             PermissionUtil.requestPermission(getActivity(), Manifest.permission.CALL_PHONE, PHONE_CALL_CODE);
         }
@@ -105,13 +105,13 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
                 .getCountry().getCurrency_code();
         //this.orderStation = orderStation;
         APIImageUtil.loadImage(getContext(), binding.pbWaitReceiverImage, AppContent.IMAGE_STORAGE_URL
-                + this.orderStation.getCustomer().getAvatar(), binding.ivReceiverImage);
+                + this.orderStation.getCustomer_address().getAvatar(), binding.ivReceiverImage);
 
         APIImageUtil.loadImage(getContext(), binding.pbWaitCoImage, AppContent.IMAGE_STORAGE_URL
                 + this.orderStation.getStore().getLogo_url(), binding.ivCoImage);
 
 
-        binding.tvReceiverName.setText(this.orderStation.getCustomer().getName());
+        binding.tvReceiverName.setText(this.orderStation.getCustomer_address().getName());
         binding.tvCoName.setText(this.orderStation.getStore().getName());
         binding.tvOrderCoName.setText(this.orderStation.getStore().getName());
         binding.tvOrderCoAddress.setText(this.orderStation.getStore().getAddress());

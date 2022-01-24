@@ -7,10 +7,6 @@ import java.util.ArrayList;
 
 public class Orders {
 
-    @SerializedName("has_more_page")
-    @Expose
-    private boolean more_page;
-
     @SerializedName("in_progress_order")
     @Expose
     private ArrayList<Order> in_progress_order;
@@ -23,11 +19,7 @@ public class Orders {
     @Expose
     private ArrayList<PublicOrder> delivered_public_orders;
 
-    public boolean isMore_page() {
-        return more_page;
-    }
-
-    public ArrayList<Order> getIn_progress_order() {
+  public ArrayList<Order> getIn_progress_order() {
         return in_progress_order;
     }
 
@@ -42,7 +34,6 @@ public class Orders {
     @Override
     public String toString() {
         return "Orders{" +
-                "more_page=" + more_page +
                 ", in_progress_order=" + in_progress_order +
                 ", delivered_orders=" + delivered_orders +
                 ", delivered_public_orders=" + delivered_public_orders +

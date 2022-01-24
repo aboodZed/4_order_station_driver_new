@@ -111,8 +111,8 @@ public class NewOrderStationFragment extends Fragment implements DialogView<Mess
         //if (AppController.getInstance().getAppSettingsPreferences().getAppLanguage().equals(AppLanguageUtil.English)) {
         binding.tvFrom.setText(orderStation.getStore().getName());
         binding.tvPickupLocation.setText(orderStation.getStore().getAddress());
-        binding.tvTo.setText(orderStation.getCustomer().getName());
-        binding.tvDestLocation.setText(orderStation.getCustomer().getAddress());
+        binding.tvTo.setText(orderStation.getCustomer_address().getName());
+        binding.tvDestLocation.setText(orderStation.getCustomer_address().getAddress());
         binding.tvOrderCoName.setText(orderStation.getStore().getName());
         binding.tvOrderCoAddress.setText(orderStation.getStore().getAddress());
         /*} else {

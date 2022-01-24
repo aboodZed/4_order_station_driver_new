@@ -136,8 +136,8 @@ public class NewOrderStationDialog extends DialogFragment {
         binding.tvPickupLocation.setText(orderStation.getStore().getAddress());
         binding.tvFrom.setText(orderStation.getStore().getName());
 
-        binding.tvDestLocation.setText(orderStation.getCustomer().getAddress());
-        binding.tvTo.setText(orderStation.getCustomer().getName());
+        binding.tvDestLocation.setText(orderStation.getCustomer_address().getAddress());
+        binding.tvTo.setText(orderStation.getCustomer_address().getName());
     }
 
     public interface NewOrderListener {

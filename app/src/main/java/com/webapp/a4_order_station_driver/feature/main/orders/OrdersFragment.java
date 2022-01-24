@@ -101,12 +101,12 @@ public class OrdersFragment extends Fragment implements DialogView<Orders> {
     }
 
     @Override
-    public void setData(Orders list) {
+    public void setData(Orders orders) {
         initRecycleView();
-        processOrderAdapter.addAll(list.getIn_progress_order());
-        ordersAdapter.addAll(list.getDelivered_orders());
-        publicOrderAdapter.addAll(list.getDelivered_public_orders());
-        if (!list.getIn_progress_order().isEmpty()) {
+        processOrderAdapter.addAll(orders.getIn_progress_order());
+         ordersAdapter.addAll(orders.getDelivered_orders());
+        publicOrderAdapter.addAll(orders.getDelivered_public_orders());
+       if (!orders.getIn_progress_order().isEmpty()) {
             binding.tvInProgress.setVisibility(View.VISIBLE);
             binding.tvOther.setVisibility(View.VISIBLE);
         }

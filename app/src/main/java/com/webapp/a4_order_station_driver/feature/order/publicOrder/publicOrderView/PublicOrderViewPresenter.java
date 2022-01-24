@@ -130,7 +130,7 @@ public class PublicOrderViewPresenter {
                 String key = db.push().getKey();
                 db.child(publicOrder.getId() + "").child(key).setValue(publicStoreMessage);
                 NotificationUtil.sendMessageNotification(baseActivity, publicOrder.getInvoice_number()
-                        , publicOrder.getId() + "", publicOrder.getUser().getId() + ""
+                        , publicOrder.getId() + "", publicOrder.getCustomer().getId() + ""
                         , AppContent.TYPE_ORDER_PUBLIC);
             }
             ToolUtil.hideSoftKeyboard(baseActivity, binding.etMessage);

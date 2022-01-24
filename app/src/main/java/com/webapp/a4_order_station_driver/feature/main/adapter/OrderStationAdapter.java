@@ -93,8 +93,8 @@ public class OrderStationAdapter extends RecyclerView.Adapter<OrderStationAdapte
             binding.tvPrice.setText(order.getTotal());
             binding.tvCurrency.setText(AppController.getInstance().getAppSettingsPreferences()
                     .getUser().getCountry().getCurrency_code());
-            binding.tvReceiverName.setText(order.getCustomer().getName());
-            binding.tvReceiverAddress.setText(order.getCustomer().getAddress());
+            binding.tvReceiverName.setText(order.getCustomer_address().getName());
+            binding.tvReceiverAddress.setText(order.getCustomer_address().getAddress());
 
             /*if (AppController.getInstance().getAppSettingsPreferences()
                     .getAppLanguage().equals(AppLanguageUtil.English)) {*/

@@ -100,9 +100,9 @@ public class PublicOrder extends Order implements Serializable {
 //    @Expose
 //    private String status_translation;
 
-    @SerializedName("customer")
-    @Expose
-    private User user;
+//    @SerializedName("customer")
+//    @Expose
+//    private User user;
 //
 //    @SerializedName("customer_address")
 //    @Expose
@@ -237,9 +237,9 @@ public class PublicOrder extends Order implements Serializable {
 //        return driver_revenue;
 //    }
 
-    public User getUser() {
-        return user;
-    }
+//    public User getUser() {
+//        return user;
+//    }
 
 //    public Customer getCustomer() {
 //        return customer;
@@ -281,7 +281,7 @@ public class PublicOrder extends Order implements Serializable {
 //                ", app_revenue='" + app_revenue + '\'' +
 //                ", driver_revenue='" + driver_revenue + '\'' +
 //                ", client_paid_invoice='" + client_paid_invoice + '\'' +
-                ", client=" + user +
+                //", client=" + user +
                 ", attachmentArrays=" + attachmentArrays +
                 '}';
     }

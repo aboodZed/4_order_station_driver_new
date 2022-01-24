@@ -1,10 +1,14 @@
 package com.webapp.a4_order_station_driver.feature.order.orderStation.chat;
 
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -19,16 +23,26 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.webapp.a4_order_station_driver.R;
 import com.webapp.a4_order_station_driver.databinding.FragmentChatBinding;
 import com.webapp.a4_order_station_driver.models.ChatMessage;
+import com.webapp.a4_order_station_driver.models.Order;
 import com.webapp.a4_order_station_driver.models.OrderStation;
+import com.webapp.a4_order_station_driver.models.PublicOrder;
+import com.webapp.a4_order_station_driver.models.Result;
 import com.webapp.a4_order_station_driver.utils.AppContent;
 import com.webapp.a4_order_station_driver.utils.AppController;
+import com.webapp.a4_order_station_driver.utils.Photo.PhotoTakerManager;
+import com.webapp.a4_order_station_driver.utils.dialogs.ItemSelectImageDialogFragment;
+import com.webapp.a4_order_station_driver.utils.dialogs.WaitDialogFragment;
+import com.webapp.a4_order_station_driver.utils.language.BaseActivity;
+import com.webapp.a4_order_station_driver.utils.listeners.DialogView;
+import com.webapp.a4_order_station_driver.utils.listeners.RequestListener;
 import com.webapp.a4_order_station_driver.utils.util.NotificationUtil;
 import com.webapp.a4_order_station_driver.utils.util.ToolUtil;
 import com.webapp.a4_order_station_driver.feature.order.adapter.ChatAdapter;
 
 import java.util.ArrayList;
 
-public class ChatFragment extends Fragment {
+public class ChatFragment extends Fragment implements
+        RequestListener<Bitmap>, DialogView<Result<OrderStation>> {
 
     public final static int page = 505;
 
@@ -36,18 +50,32 @@ public class ChatFragment extends Fragment {
 
     private FragmentChatBinding binding;
 
-    private DatabaseReference db;
-    private ArrayList<ChatMessage> messageArrayList;
+    BaseActivity baseActivity;
+
+    //private DatabaseReference db;
+    //private ArrayList<ChatMessage> messageArrayList;
     private OrderStation orderStation;
     private ChatAdapter chatAdapter;
 
-    public static ChatFragment newInstance() {
-        return new ChatFragment();
+    //Image
+    private final ItemSelectImageDialogFragment itemSelectImageDialogFragment
+            = ItemSelectImageDialogFragment.newInstance();
+    private ActivityResultLauncher<Intent> launcher;
+    private PhotoTakerManager photoTakerManager;
+    private ChatPresenter presenter;
+
+    public ChatFragment(BaseActivity baseActivity) {
+        this.baseActivity = baseActivity;
+    }
+
+    public static ChatFragment newInstance(BaseActivity baseActivity) {
+        return new ChatFragment(baseActivity);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        photoTakerManager = new PhotoTakerManager(this);
     }
 
     @Override
@@ -56,10 +84,17 @@ public class ChatFragment extends Fragment {
         binding = FragmentChatBinding.inflate(getLayoutInflater());
         //getOrderData();
         orderStation = AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation();
-        getMessages();
+        presenter = new ChatPresenter(this, photoTakerManager, baseActivity, binding, orderStation);
         initRecycleView();
         click();
+        presenter.getMessages(chatAdapter, String.valueOf(orderStation.getId()));
+        onActivityResulting();
         return binding.getRoot();
+    }
+
+    private void onActivityResulting() {
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> presenter.onActivityResult(result.getResultCode(), result.getData()));
     }
 
     @Override
@@ -77,9 +112,28 @@ public class ChatFragment extends Fragment {
     //functions
 
     private void click() {
-        binding.ivUploadMessage.setOnClickListener(view -> sendMessage());
+        binding.ivUploadMessage.setOnClickListener(view -> presenter.sendMessage(""));
+        binding.ivUploadPhoto.setOnClickListener(view -> uploadPhoto());
     }
-/*
+
+    public void uploadPhoto() {
+        itemSelectImageDialogFragment.setListener(new ItemSelectImageDialogFragment.Listener() {
+            @Override
+            public void onGalleryClicked() {
+                presenter.setRequestCode(AppContent.REQUEST_STUDIO);
+                photoTakerManager.galleryRequestLauncher(requireActivity(), launcher);
+            }
+
+            @Override
+            public void onCameraClicked() {
+                presenter.setRequestCode(AppContent.REQUEST_STUDIO);
+                photoTakerManager.cameraRequestLauncher(requireActivity(), launcher);
+            }
+        });
+        itemSelectImageDialogFragment.show(getChildFragmentManager(), "");
+    }
+
+    /*
     private void getOrderData() {
         if (getArguments() != null) {
             WaitDialogFragment.newInstance().show(getChildFragmentManager(), "");
@@ -113,66 +167,42 @@ public class ChatFragment extends Fragment {
     }
 */
     private void initRecycleView() {
-        messageArrayList = new ArrayList<>();
-        chatAdapter = new ChatAdapter(getActivity(), messageArrayList);
+        chatAdapter = new ChatAdapter(getActivity(), new ArrayList<>());
         binding.rvChat.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.rvChat.setItemAnimator(new DefaultItemAnimator());
         binding.rvChat.setAdapter(chatAdapter);
     }
 
     //get message
-    private void getMessages() {
-        db = FirebaseDatabase.getInstance().getReference(AppContent.FIREBASE_CHAT_INSTANCE);
-        db.child(orderStation.getId() + "").addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                messageArrayList.add(dataSnapshot.getValue(ChatMessage.class));
-                chatAdapter.notifyDataSetChanged();
-                binding.rvChat.scrollToPosition(messageArrayList.size() - 1);
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
+    @Override
+    public void onSuccess(Bitmap bitmap, String msg) {
+        presenter.uploadImage(photoTakerManager.getCurrentPhotoUri());
     }
 
-    //send message
-    private void sendMessage() {
-        if (ToolUtil.checkTheInternet()) {
-            if (!binding.etMessage.getText().toString().equals("")) {
-                ChatMessage chatMessage = new ChatMessage();
-                chatMessage.setText(binding.etMessage.getText().toString());
-                chatMessage.setSender_id(AppController.getInstance().getAppSettingsPreferences().getUser().getId());
-                chatMessage.setSender_name(AppController.getInstance().getAppSettingsPreferences().getUser().getName());
-                chatMessage.setSender_avatar_url(AppController.getInstance().getAppSettingsPreferences().getUser().getAvatar_url());
-                chatMessage.setTime(System.currentTimeMillis() / 1000);
-                String key = db.push().getKey();
-                db.child(orderStation.getId() + "").child(key).setValue(chatMessage);
-                ToolUtil.hideSoftKeyboard(getActivity(), binding.etMessage);
-                binding.etMessage.setText("");
-                NotificationUtil.sendMessageNotification(getActivity(), orderStation.getInvoice_number()
-                        , orderStation.getId() + "", orderStation.getCustomer().getId() + ""
-                        , AppContent.TYPE_ORDER_4STATION);
-            }
-        } else {
-            ToolUtil.showLongToast(getString(R.string.no_connection), getActivity());
-        }
+    @Override
+    public void onError(String msg) {
+        ToolUtil.showLongToast(msg, requireActivity());
+    }
+
+    @Override
+    public void onFail(String msg) {
+        ToolUtil.showLongToast(msg, requireActivity());
+    }
+
+    @Override
+    public void setData(Result<OrderStation> result) {
+
+    }
+
+    @Override
+    public void showDialog(String s) {
+        WaitDialogFragment.newInstance().show(getChildFragmentManager(), "");
+    }
+
+    @Override
+    public void hideDialog() {
+        WaitDialogFragment.newInstance().dismiss();
     }
 }

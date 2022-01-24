@@ -3,7 +3,9 @@ package com.webapp.a4_order_station_driver.models;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Result<T> extends Message {
+import java.io.Serializable;
+
+public class Result<T> extends Message implements Serializable {
 
     @SerializedName(value = "data", alternate = {"app_settings", "wallets", "rate", "cities", "public_order"})
     @Expose

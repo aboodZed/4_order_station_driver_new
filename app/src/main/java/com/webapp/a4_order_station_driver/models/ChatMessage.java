@@ -6,7 +6,7 @@ public class ChatMessage {
     private String sender_name;
     private String sender_avatar_url;
     private long time;
-
+    private String imageUrl;
 
     public ChatMessage() {
     }
@@ -43,6 +43,14 @@ public class ChatMessage {
         this.sender_avatar_url = sender_avatar_url;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
     public long getTime() {
         return time;
     }
@@ -59,6 +67,7 @@ public class ChatMessage {
                 ", sender_name='" + sender_name + '\'' +
                 ", sender_avatar_url='" + sender_avatar_url + '\'' +
                 ", time=" + time +
+                ", imageUrl='" + imageUrl + '\'' +
                 '}';
     }
 }

@@ -218,7 +218,8 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
         View actionView = language.getActionView();
         SwitchCompat aSwitch = actionView.findViewById(R.id.s_language);
 
-        aSwitch.setChecked(AppController.getInstance().getAppSettingsPreferences().getAppLanguage().equals(AppLanguageUtil.ARABIC));
+        aSwitch.setChecked(AppController.getInstance().getAppSettingsPreferences()
+                .getAppLanguage().equals(AppLanguageUtil.ARABIC));
 
         aSwitch.setOnClickListener(view -> {
             if (aSwitch.isChecked()) {

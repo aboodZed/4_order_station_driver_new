@@ -75,7 +75,7 @@ public class OrderActivity extends BaseActivity {
                 break;
 
             case ChatFragment.page: //order station chat
-                ChatFragment chatFragment = ChatFragment.newInstance();
+                ChatFragment chatFragment = ChatFragment.newInstance(this);
 
                 new NavigateUtil().replaceFragment(getSupportFragmentManager()
                         , chatFragment, R.id.fragment_container);

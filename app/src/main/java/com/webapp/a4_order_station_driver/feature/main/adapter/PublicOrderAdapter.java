@@ -91,8 +91,8 @@ public class PublicOrderAdapter extends RecyclerView.Adapter<PublicOrderAdapter.
             } else if (publicOrder.getStatus().equals(AppContent.CANCEL_STATUS)) {
                 binding.tvOrderState.setBackgroundResource(R.drawable.red_button);
             }
-            binding.tvReceiverName.setText(publicOrder.getUser().getName());
-            binding.tvReceiverAddress.setText(publicOrder.getUser().getAddress());
+            binding.tvReceiverName.setText(publicOrder.getCustomer().getName());
+            binding.tvReceiverAddress.setText(publicOrder.getCustomer().getAddress());
             binding.tvPrice.setText((DecimalFormatterManager.getFormatterInstance()
                     .format(Double.parseDouble(publicOrder.getTotal())) + " " + AppController.
                     getInstance().getAppSettingsPreferences().getUser().getCountry().getCurrency_code()));

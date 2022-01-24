@@ -154,8 +154,8 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 
         //binding.tvOrderDetails.setText(testOrder.getd());
         //binding..setText((getString(R.string.order) + "#" + publicOrder.getInvoice_number()));
-        binding.tvFrom.setText(publicOrder.getUser().getName());
-        binding.tvPickupLocation.setText(publicOrder.getUser().getAddress());
+        binding.tvFrom.setText(publicOrder.getCustomer().getName());
+        binding.tvPickupLocation.setText(publicOrder.getCustomer().getAddress());
 
         binding.tvTo.setText(publicOrder.getStore_name());
         binding.tvDestLocation.setText(publicOrder.getStore_address());

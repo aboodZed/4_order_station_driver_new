@@ -4,9 +4,6 @@ public class PublicChatMessage extends ChatMessage {
 
     private String imageUrl;
 
-    public PublicChatMessage() {
-    }
-
     public String getImageUrl() {
         return imageUrl;
     }

@@ -98,7 +98,7 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
                 , new LatLng(publicOrder.getStore_lat(), publicOrder.getStore_lng())));
 
         binding.clCustomerLocation.setOnClickListener(v -> new NavigateUtil().setLocation(requireActivity()
-                , new LatLng(publicOrder.getUser().getCity().getLat(), publicOrder.getUser().getCity().getLng())));
+                , new LatLng(publicOrder.getCustomer().getLat(), publicOrder.getCustomer().getLng())));
 
         binding.tvAddBill.setOnClickListener(view -> {
             dismiss();
