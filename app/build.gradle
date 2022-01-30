@@ -1,11 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.gms.google-services'
 android {
-    compileSdkVersion 31
+    compileSdk 31
     defaultConfig {
-        applicationId "com.webapp.a4_order_station_driver"
-        minSdkVersion 23
-        targetSdkVersion 31
+        applicationId "com.AbdUlla.a4_order_station_driver"
+        minSdk 23
+        targetSdk 31
         versionCode 25
         versionName "3.6"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -24,6 +24,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    namespace 'com.AbdUlla.a4_order_station_driver'
 
 }
 

@@ -8,12 +8,64 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:686836501227:android:096a5587b10d846ce58cae",
+        "mobilesdk_app_id": "1:686836501227:android:b4ff20e6e5a3b62fe58cae",
         "android_client_info": {
-          "package_name": "com.webapp.a4_order_station_driver"
+          "package_name": "com.AbdUlla.a4_order_station_driver"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "686836501227-kbsgs35pvm0o3dsjgfu1vgm1r5gcq2ho.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AbdUlla.a4_order_station_driver",
+            "certificate_hash": "f378ecb99d177e52b44e4b2b42d05e7ce46548da"
+          }
+        },
+        {
+          "client_id": "686836501227-fdo2nnkc18f9rl7l5vp36m7b45avthcj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDRyt9UBmzwPl3dGROZ98jroixHya5XaRw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "686836501227-fdo2nnkc18f9rl7l5vp36m7b45avthcj.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "686836501227-381rjb58u7da2cho76ka9qug4dl703g1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "ios.com.4OrderStationDriver"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:686836501227:android:498d4dbef614907fe58cae",
+        "android_client_info": {
+          "package_name": "com.AbdUlla.a4_order_station_user"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "686836501227-kdhjjdh90hlqa8d3ju4c27r77qdl1435.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.AbdUlla.a4_order_station_user",
+            "certificate_hash": "f378ecb99d177e52b44e4b2b42d05e7ce46548da"
+          }
+        },
         {
           "client_id": "686836501227-fdo2nnkc18f9rl7l5vp36m7b45avthcj.apps.googleusercontent.com",
           "client_type": 3
