@@ -69,7 +69,8 @@ public class GPSTracking {
                     myLocation.setCountry_id(AppController.getInstance().getAppSettingsPreferences().getUser().getCountry().getId());
                     myLocation.setCity_id(AppController.getInstance().getAppSettingsPreferences().getUser().getCity().getId());
                     if (AppController.getInstance().getAppSettingsPreferences().getUser().isOnline()) {
-                        if (AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation() == null) {
+                        if (AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation() == null
+                                && AppController.getInstance().getAppSettingsPreferences().getTrackingPublicOrder() == null) {
                             myLocation.setStatus("online");
                         } else {
                             myLocation.setStatus("busy");

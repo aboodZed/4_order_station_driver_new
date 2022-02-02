@@ -192,7 +192,7 @@ on the number</string>
     <string name="time">Time</string>
     <string name="vat">Vat</string>
     <string name="delivery_fees">Delivery Fees</string>
-    <string name="more_details"><u>More details -></u></string>
+    <string name="more_details">Show more details</string>
     <string name="more_detail">More Details</string>
     <string name="store_address">Store Address</string>
     <string name="client_address">Client Address</string>
@@ -227,4 +227,6 @@ on the number</string>
     <string name="order_items">Ordered items</string>
     <string name="quantity">Qnt.</string>
     <string name="amount">Amount</string>
+    <string name="select_city">Select city</string>
+    <string name="register_successfully">You register in app successfully\nwaiting for you approval</string>
 </resources>

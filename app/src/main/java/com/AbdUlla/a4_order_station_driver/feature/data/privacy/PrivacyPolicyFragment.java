@@ -3,17 +3,21 @@ package com.AbdUlla.a4_order_station_driver.feature.data.privacy;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import com.AbdUlla.a4_order_station_driver.databinding.FragmentPrivacyPolicyBinding;
 import com.AbdUlla.a4_order_station_driver.models.AppSettings;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
 
-public class PrivacyPolicyFragment extends Fragment {
+public class PrivacyPolicyFragment extends DialogFragment {
 
     public static final int page = 603;
 
@@ -76,7 +80,7 @@ public class PrivacyPolicyFragment extends Fragment {
             }
         });*/
     }
-/*
+
     @Override
     public void onResume() {
         ViewGroup.LayoutParams params = getDialog().getWindow().getAttributes();
@@ -94,5 +98,5 @@ public class PrivacyPolicyFragment extends Fragment {
             } else return false;
         });
     }
-    */
+
 }

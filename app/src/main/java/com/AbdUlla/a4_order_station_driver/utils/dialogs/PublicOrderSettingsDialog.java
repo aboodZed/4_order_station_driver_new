@@ -11,6 +11,7 @@ import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 
+import com.AbdUlla.a4_order_station_driver.utils.location.tracking.OrderGPSTracking;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.AbdUlla.a4_order_station_driver.R;
@@ -60,8 +61,7 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
                 binding.tvOnTheWayToTheCustomer.setVisibility(View.GONE);
             } else {
                 binding.tvAddBill.setVisibility(View.GONE);
-                if (!TextUtils.isEmpty(AppController.getInstance()
-                        .getAppSettingsPreferences().getPayType())) {
+                if (AppController.getInstance().getAppSettingsPreferences().isPayTheBill()) {
                     binding.tvCancelOrder.setVisibility(View.GONE);
                 }
             }
@@ -97,7 +97,7 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
                 , new LatLng(publicOrder.getStore_lat(), publicOrder.getStore_lng())));
 
         binding.clCustomerLocation.setOnClickListener(v -> new NavigateUtil().setLocation(requireActivity()
-                , new LatLng(publicOrder.getCustomer().getLat(), publicOrder.getCustomer().getLng())));
+                , new LatLng(publicOrder.getCustomer_address().getLat(), publicOrder.getCustomer_address().getLng())));
 
         binding.tvAddBill.setOnClickListener(view -> {
             dismiss();
@@ -171,8 +171,12 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
                 //WalletFragment.viewPagerPage = OrderStationWalletFragment.viewPagerPage;
                 //ToolUtil.showLongToast(message.getMessage(), getActivity());
                 listener.updatePublicOrder(AppContent.DELIVERED_STATUS);
+                OrderGPSTracking.newInstance(requireActivity()).removeUpdates();
+
                 ToolUtil.showLongToast(message.getMessage(), requireActivity());
-                AppController.getInstance().getAppSettingsPreferences().setPayType(null);
+                AppController.getInstance().getAppSettingsPreferences().setIsPayTheBill("");
+                AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
+                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
             }
 
             @Override
@@ -205,8 +209,11 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
                                     //WalletFragment.viewPagerPage = OrderStationWalletFragment.viewPagerPage;
                                     //ToolUtil.showLongToast(message.getMessage(), getActivity());
                                     listener.updatePublicOrder(AppContent.CANCELLED_STATUS);
+                                    OrderGPSTracking.newInstance(requireActivity()).removeUpdates();
                                     ToolUtil.showLongToast(message.getMessage(), requireActivity());
-                                    AppController.getInstance().getAppSettingsPreferences().setPayType(null);
+                                    AppController.getInstance().getAppSettingsPreferences().setIsPayTheBill("");
+                                    AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
+                                    AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
                                 }
 
                                 @Override

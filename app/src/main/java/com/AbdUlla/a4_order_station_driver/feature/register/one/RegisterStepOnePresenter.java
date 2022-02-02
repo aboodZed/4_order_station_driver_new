@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.AbdUlla.a4_order_station_driver.R;
 import com.AbdUlla.a4_order_station_driver.feature.register.two.RegisterStepTwoFragment;
@@ -45,7 +46,7 @@ public class RegisterStepOnePresenter implements DialogView<String> {
     }
 
     public void validInput(EditText etEnterName, EditText etEnterEmail, EditText etEnterAddress
-            , EditText etEnterPhone, EditText etEnterPassword, EditText etEnterConfirmPassword, int city_id) {
+            , EditText etEnterPhone, EditText etEnterPassword, EditText etEnterConfirmPassword, Spinner spinner) {
 
         String name = etEnterName.getText().toString().trim();
         String email = etEnterEmail.getText().toString().trim();
@@ -55,7 +56,7 @@ public class RegisterStepOnePresenter implements DialogView<String> {
         String address = etEnterAddress.getText().toString().trim();
         int phone_length = AppController.getInstance().getAppSettingsPreferences()
                 .getSettings().getData().getPhone_length();
-
+        int city_id = ((City) spinner.getSelectedItem()).getId();
         if (TextUtils.isEmpty(fileName)) {
             ToolUtil.showLongToast(baseActivity.getString(R.string.fill_photos), baseActivity);
             return;
@@ -82,6 +83,10 @@ public class RegisterStepOnePresenter implements DialogView<String> {
         }
         if (TextUtils.isEmpty(address)) {
             etEnterAddress.setError(baseActivity.getString(R.string.empty_error));
+            return;
+        }
+        if (city_id == 0) {
+            ToolUtil.showLongToast(baseActivity.getString(R.string.select_city), baseActivity);
             return;
         }
         if (TextUtils.isEmpty(password)) {
@@ -117,16 +122,19 @@ public class RegisterStepOnePresenter implements DialogView<String> {
                 , new RequestListener<Result<User>>() {
                     @Override
                     public void onSuccess(Result<User> result, String msg) {
-                        if (result.isSuccess()){
+                        dialogView.hideDialog();
+                        if (result.isSuccess()) {
                             Log.e(getClass().getName() + "user", result.getData().toString());
                             AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
                             AppController.getInstance().getAppSettingsPreferences().setToken(result.getData().getToken());
-                        }else {
-                            ToolUtil.showLongToast(msg, baseActivity);
+                            baseActivity.navigate(RegisterStepTwoFragment.page);
+                        } else {
+                            StringBuilder errors = new StringBuilder();
+                            for (String s : result.getErrors()) {
+                                errors.append(s).append("\n");
+                            }
+                            ToolUtil.showLongToast(errors.toString(), baseActivity);
                         }
-                        dialogView.hideDialog();
-
-                        baseActivity.navigate(RegisterStepTwoFragment.page);
                     }
 
                     @Override
@@ -143,31 +151,6 @@ public class RegisterStepOnePresenter implements DialogView<String> {
                 });
     }
 
-    public void getCities() {
-        dialogView.showDialog("");
-        new APIUtil<Result<ArrayList<City>>>(baseActivity).getData(AppController.getInstance().getApi()
-                        .getCities(AppController.getInstance().getAppSettingsPreferences().getSettings()
-                                .getData().getCountry_id())
-                , new RequestListener<Result<ArrayList<City>>>() {
-                    @Override
-                    public void onSuccess(Result<ArrayList<City>> result, String msg) {
-                        dialogView.hideDialog();
-                        dialogView.setData(result.getData());
-                    }
-
-                    @Override
-                    public void onError(String msg) {
-                        dialogView.hideDialog();
-                        ToolUtil.showLongToast(msg, baseActivity);
-                    }
-
-                    @Override
-                    public void onFail(String msg) {
-                        dialogView.hideDialog();
-                        ToolUtil.showLongToast(msg, baseActivity);
-                    }
-                });
-    }
 
     public void setRequestCode(int requestCode) {
         this.requestCode = requestCode;
@@ -205,5 +188,9 @@ public class RegisterStepOnePresenter implements DialogView<String> {
     @Override
     public void hideDialog() {
         dialogView.hideDialog();
+    }
+
+    public void getCities() {
+        dialogView.setData(AppController.getInstance().getAppSettingsPreferences().getCities().getCities());
     }
 }

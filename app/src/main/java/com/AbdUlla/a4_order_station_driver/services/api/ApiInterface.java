@@ -120,7 +120,7 @@ public interface ApiInterface {
     @POST("driver/public/orders/cancel-order")
     Call<Message> cancelOrder(@Query("order_id") int id);
 
-    @POST("driver/chat-notify")
+    @POST("driver/sendChatNotify")
     Call<Message> sendMessageNotification(@QueryMap HashMap<String, String> params);
 
     //test

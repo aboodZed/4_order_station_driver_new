@@ -3,6 +3,7 @@ package com.AbdUlla.a4_order_station_driver.feature.register.one;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.AbdUlla.a4_order_station_driver.databinding.FragmentRegisterStep1Binding;
 import com.AbdUlla.a4_order_station_driver.feature.register.adapter.SpinnerAdapter;
+import com.AbdUlla.a4_order_station_driver.models.AppSettings;
 import com.AbdUlla.a4_order_station_driver.models.City;
 import com.AbdUlla.a4_order_station_driver.utils.AppContent;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
@@ -71,8 +73,11 @@ public class RegisterStepOneFragment extends Fragment implements RequestListener
     }
 
     private void data() {
-        binding.tvCode.setText(AppController.getInstance().getAppSettingsPreferences()
-                .getSettings().getData().getPhone_code());
+        AppSettings settings = AppController.getInstance().getAppSettingsPreferences().getSettings();
+        binding.tvCode.setText(settings.getData().getPhone_code());
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(settings.getData().getPhone_length());
+        binding.etEnterPhone.setFilters(filters);
         presenter.getCities();
     }
 
@@ -84,7 +89,7 @@ public class RegisterStepOneFragment extends Fragment implements RequestListener
     private void signUp() {
         presenter.validInput(binding.etEnterName, binding.etEnterEmail, binding.etEnterAddress
                 , binding.etEnterPhone, binding.etEnterPassword, binding.etEnterConfirmPassword
-                ,((City) binding.spNeighborhood.getSelectedItem()).getId());
+                , binding.spNeighborhood);
     }
 
     public void enterImage() {
@@ -107,6 +112,7 @@ public class RegisterStepOneFragment extends Fragment implements RequestListener
 
     @Override
     public void setData(ArrayList<City> result) {
+        result.add(0, new City(0, ""));
         spinnerAdapter = new SpinnerAdapter(requireContext(), result);
         binding.spNeighborhood.setAdapter(spinnerAdapter);
     }

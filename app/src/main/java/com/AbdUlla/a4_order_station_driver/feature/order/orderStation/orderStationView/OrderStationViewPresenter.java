@@ -53,8 +53,10 @@ public class OrderStationViewPresenter {
                 .getApi().deliveryOrder(orderStation.getId()), new RequestListener<Message>() {
             @Override
             public void onSuccess(Message message, String msg) {
-                //OrderGPSTracking.newInstance(baseActivity).removeUpdates();
+                OrderGPSTracking.newInstance(baseActivity).removeUpdates();
                 dialogView.hideDialog();
+                AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
+                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
                 baseActivity.navigate(OrdersFragment.page);
             }
 

@@ -1,6 +1,7 @@
 package com.AbdUlla.a4_order_station_driver.feature.login;
 
 import android.os.Bundle;
+import android.text.InputFilter;
 import android.view.View;
 
 import com.AbdUlla.a4_order_station_driver.databinding.ActivityLoginBinding;
@@ -8,6 +9,7 @@ import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
 import com.AbdUlla.a4_order_station_driver.feature.register.RegisterActivity;
 import com.AbdUlla.a4_order_station_driver.feature.register.two.RegisterStepTwoFragment;
 import com.AbdUlla.a4_order_station_driver.feature.reset.ResetPasswordActivity;
+import com.AbdUlla.a4_order_station_driver.models.AppSettings;
 import com.AbdUlla.a4_order_station_driver.models.Result;
 import com.AbdUlla.a4_order_station_driver.models.User;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
@@ -39,8 +41,11 @@ public class LoginActivity extends BaseActivity implements DialogView<Result<Use
     }
 
     private void data() {
-        binding.tvCode.setText(AppController.getInstance()
-                .getAppSettingsPreferences().getSettings().getData().getPhone_code());
+        AppSettings settings = AppController.getInstance().getAppSettingsPreferences().getSettings();
+        binding.tvCode.setText(settings.getData().getPhone_code());
+        InputFilter[] filters = new InputFilter[1];
+        filters[0] = new InputFilter.LengthFilter(settings.getData().getPhone_length());
+        binding.etEnterPhone.setFilters(filters);
     }
 
     private void click() {

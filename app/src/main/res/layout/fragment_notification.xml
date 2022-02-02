@@ -18,6 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/small_margin"
             android:text="@string/unread"
+            android:visibility="gone"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
@@ -33,10 +34,12 @@
             android:layout_marginTop="@dimen/medium_margin"
             android:layout_marginBottom="@dimen/small_margin"
             android:text="@string/read"
+            android:visibility="gone"
             android:textColor="@color/black"
             android:textStyle="bold" />
 
         <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
             android:id="@+id/rv_notification"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

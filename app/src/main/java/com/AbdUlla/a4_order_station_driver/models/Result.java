@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Result<T> extends Message implements Serializable {
 
@@ -11,20 +12,23 @@ public class Result<T> extends Message implements Serializable {
     @Expose
     private T data;
 
+    @SerializedName("errors")
+    @Expose
+    private ArrayList<String> errors;
+
     public T getData() {
         return data;
     }
 
-    public void setData(T data) {
-        this.data = data;
+    public ArrayList<String> getErrors() {
+        return errors;
     }
 
     @Override
     public String toString() {
-        return "Result {" +
-                "success=" + isSuccess() +
-                ", message='" + getMessage() + '\'' +
-                ", data=" + data +
+        return "Result{" +
+                "data=" + data +
+                ", errors=" + errors +
                 '}';
     }
 }

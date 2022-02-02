@@ -1,8 +1,11 @@
 package com.AbdUlla.a4_order_station_driver.feature.order.adapter;
 
+import static com.AbdUlla.a4_order_station_driver.utils.AppContent.IMAGE_STORAGE_URL;
+
 import android.app.Activity;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -82,9 +85,20 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void setData(ChatMessage data) {
-            binding.tvMessageText.setText(data.getText());
+            if (data.getImageUrl() != null) {
+                if (!data.getImageUrl().isEmpty()) {
+                    APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getImageUrl(), binding.image);
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    binding.image.setVisibility(View.VISIBLE);
+                }
+            } else {
+                binding.progressBar.setVisibility(View.GONE);
+                binding.image.setVisibility(View.GONE);
+                binding.tvMessageText.setVisibility(View.VISIBLE);
+                binding.tvMessageText.setText(data.getText());
+            }
             try {
-                binding.tvMessageTime.setText(ToolUtil.getDate(data.getTime()));
+                binding.tvMessageTime.setText(ToolUtil.getTime((long) data.getTime()));
             } catch (Exception e) {
                 Log.e("error", "" + e.getMessage());
             }
@@ -101,7 +115,16 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void setData(ChatMessage data) {
-            binding.tvMessageText.setText(data.getText());
+            if (!data.getImageUrl().isEmpty()) {
+                APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getImageUrl(), binding.image);
+                binding.progressBar.setVisibility(View.VISIBLE);
+                binding.image.setVisibility(View.VISIBLE);
+            } else {
+                binding.progressBar.setVisibility(View.GONE);
+                binding.image.setVisibility(View.GONE);
+                binding.tvMessageText.setVisibility(View.VISIBLE);
+                binding.tvMessageText.setText(data.getText());
+            }
             try {
                 binding.tvMessageTime.setText(dateFormat.format(data.getTime()));
             } catch (Exception e) {

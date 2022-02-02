@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.AbdUlla.a4_order_station_driver.databinding.ItemLeftPublicChatBinding;
 import com.AbdUlla.a4_order_station_driver.databinding.ItemRightPublicChatBinding;
-import com.AbdUlla.a4_order_station_driver.models.PublicChatMessage;
+import com.AbdUlla.a4_order_station_driver.models.ChatMessage;
 import com.AbdUlla.a4_order_station_driver.utils.util.APIImageUtil;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
 import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
@@ -23,7 +23,7 @@ import java.util.ArrayList;
 
 public class PublicChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private ArrayList<PublicChatMessage> publicChatMessages;
+    private ArrayList<ChatMessage> publicChatMessages;
     private Activity activity;
     private FragmentManager fragmentManager;
 
@@ -69,7 +69,7 @@ public class PublicChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return publicChatMessages.size();
     }
 
-    public void addItem(PublicChatMessage publicChatMessage) {
+    public void addItem(ChatMessage publicChatMessage) {
         publicChatMessages.add(publicChatMessage);
         notifyItemInserted(getItemCount() - 1);
     }
@@ -88,20 +88,27 @@ public class PublicChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             binding.image.setOnClickListener(view -> open());
         }
 
-        private void setData(PublicChatMessage data) {
+        private void setData(ChatMessage data) {
             binding.message.setText(data.getText());
-            APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getSender_avatar_url(), binding.senderImage);
-            if (!data.getImageUrl().isEmpty()) {
-                binding.progressBar.setVisibility(View.VISIBLE);
-                binding.image.setVisibility(View.VISIBLE);
-                APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getImageUrl(), binding.image);
+            //APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getSender_avatar_url(), binding.senderImage);
+            if (data.getImageUrl() != null) {
+                if (!data.getImageUrl().isEmpty()) {
+                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.image);
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    binding.image.setVisibility(View.VISIBLE);
+                }else {
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.image.setVisibility(View.GONE);
+                    binding.message.setVisibility(View.VISIBLE);
+                    binding.message.setText(binding.message.getText());
+                }
             } else {
                 binding.progressBar.setVisibility(View.GONE);
                 binding.image.setVisibility(View.GONE);
                 binding.message.setVisibility(View.VISIBLE);
                 binding.message.setText(binding.message.getText());
             }
-            binding.time.setText(ToolUtil.getDate(data.getTime()));
+            binding.time.setText(ToolUtil.getTime((long) data.getTime()));
         }
 
         public void open() {
@@ -113,7 +120,7 @@ public class PublicChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         private ItemLeftPublicChatBinding binding;
 
-        private PublicChatMessage publicChatMessage;
+        private ChatMessage publicChatMessage;
 
         public ReceiverHolder(ItemLeftPublicChatBinding binding) {
             super(binding.getRoot());
@@ -125,21 +132,28 @@ public class PublicChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             binding.image.setOnClickListener(view -> open());
         }
 
-        private void setData(PublicChatMessage data) {
+        private void setData(ChatMessage data) {
             publicChatMessage = data;
             binding.message.setText(data.getText());
-            APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getSender_avatar_url(), binding.senderImage);
-            if (!data.getImageUrl().isEmpty()) {
-                APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getImageUrl(), binding.image);
-                binding.progressBar.setVisibility(View.VISIBLE);
-                binding.image.setVisibility(View.VISIBLE);
+            APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getSender_avatar_url(), binding.ivUserImage);
+            if (data.getImageUrl() != null) {
+                if (!data.getImageUrl().isEmpty()) {
+                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.image);
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    binding.image.setVisibility(View.VISIBLE);
+                }else {
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.image.setVisibility(View.GONE);
+                    binding.message.setVisibility(View.VISIBLE);
+                    binding.message.setText(binding.message.getText());
+                }
             } else {
                 binding.progressBar.setVisibility(View.GONE);
                 binding.image.setVisibility(View.GONE);
                 binding.message.setVisibility(View.VISIBLE);
                 binding.message.setText(binding.message.getText());
             }
-            binding.time.setText(ToolUtil.getDate(data.getTime()));
+            binding.time.setText(ToolUtil.getTime((long) data.getTime()));
         }
 
         public void open() {

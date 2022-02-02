@@ -72,36 +72,38 @@ public class ProfilePresenter {
     }
 
     public void getCities(FragmentProfileBinding binding) {
-        dialogView.showDialog("");
-        new APIUtil<Result<ArrayList<City>>>(baseActivity).getData(AppController.getInstance()
-                        .getApi().getCities(AppController.getInstance().getAppSettingsPreferences().
-                                getSettings().getData().getCountry_id())
-                , new RequestListener<Result<ArrayList<City>>>() {
-                    @Override
-                    public void onSuccess(Result<ArrayList<City>> result, String msg) {
-                        dialogView.hideDialog();
-                        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(baseActivity, result.getData());
+//        dialogView.showDialog("");
+//        new APIUtil<Result<ArrayList<City>>>(baseActivity).getData(AppController.getInstance()
+//                        .getApi().getCities(AppController.getInstance().getAppSettingsPreferences().
+//                                getSettings().getData().getCountry_id())
+//                , new RequestListener<Result<ArrayList<City>>>() {
+//                    @Override
+//                    public void onSuccess(Result<ArrayList<City>> result, String msg) {
+//                       dialogView.hideDialog();
+                        ArrayList<City> cities = AppController
+                                .getInstance().getAppSettingsPreferences().getCities().getCities();
+                        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(baseActivity, cities);
                         binding.spNeighborhood.setAdapter(spinnerAdapter);
-                        for (int i = 0; i < result.getData().size(); i++) {
-                            if (result.getData().get(i).getId() == AppController.getInstance()
+                        for (int i = 0; i < cities.size(); i++) {
+                            if (cities.get(i).getId() == AppController.getInstance()
                                     .getAppSettingsPreferences().getUser().getCity().getId()) {
                                 binding.spNeighborhood.setSelection(i);
                             }
                         }
-                    }
-
-                    @Override
-                    public void onError(String msg) {
-                        dialogView.hideDialog();
-                        ToolUtil.showLongToast(msg, baseActivity);
-                    }
-
-                    @Override
-                    public void onFail(String msg) {
-                        dialogView.hideDialog();
-                        ToolUtil.showLongToast(msg, baseActivity);
-                    }
-                });
+//                    }
+//
+//                    @Override
+//                    public void onError(String msg) {
+//                        dialogView.hideDialog();
+//                        ToolUtil.showLongToast(msg, baseActivity);
+//                    }
+//
+//                    @Override
+//                    public void onFail(String msg) {
+//                        dialogView.hideDialog();
+//                        ToolUtil.showLongToast(msg, baseActivity);
+//                    }
+//                });
     }
 
     private void updateProfile(HashMap<String, String> params) {
@@ -112,6 +114,7 @@ public class ProfilePresenter {
             public void onSuccess(Result<User> result, String msg) {
                 AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
                 dialogView.hideDialog();
+                baseActivity.recreate();
                 baseActivity.navigate(ProfileFragment.page);
             }
 

@@ -189,7 +189,7 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 
     private void setAttachment() {
         AttachmentAdapter adapter = new AttachmentAdapter(getActivity()
-                , publicOrder.getAttachmentArrays(), getChildFragmentManager());
+                , publicOrder.getAttachments(), getChildFragmentManager());
         binding.rvAttachments.setLayoutManager(new LinearLayoutManager(getActivity()
                 , LinearLayoutManager.HORIZONTAL, false));
         binding.rvAttachments.setItemAnimator(new DefaultItemAnimator());

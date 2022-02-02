@@ -28,7 +28,7 @@ public class NotificationUtil {
     public static void sendMessageNotification(Activity activity, String invoice_no
             , String order_id, String user_id, String type) {
         HashMap<String, String> map = new HashMap<>();
-        map.put("user_id", user_id);
+        map.put("customer_id", user_id);
         map.put("order_id", order_id);
         map.put("invoice_no", invoice_no);
         map.put("type", type);

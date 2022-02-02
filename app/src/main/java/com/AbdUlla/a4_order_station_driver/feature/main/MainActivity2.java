@@ -85,15 +85,13 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 JSONObject body = new JSONObject(message).getJSONObject(AppContent.FIREBASE_DATA);
 
                 int id;
-                String msg = body.getString(AppContent.FIREBASE_MSG);
+                //String msg = body.getString(AppContent.FIREBASE_MSG);
                 String type = body.getString(AppContent.FIREBASE_TYPE);
 
                 switch (type) {
                     case AppContent.TYPE_ORDER_4STATION:
-                        id = body.getInt(AppContent.ORDER_Id);
-                        break;
                     case AppContent.TYPE_ORDER_PUBLIC:
-                        id = body.getInt(AppContent.PUBLIC_ORDER_Id);
+                        id = body.getInt(AppContent.ORDER_Id);
                         break;
                     default:
                         id = -1;
@@ -101,7 +99,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
 
                 checkNavigate(bundle);
 
-                if (msg.contains(AppContent.NEW_ORDER)) {
+                if (body.getString(AppContent.FIREBASE_STATUS).contains(AppContent.NEW_ORDER)) {
                     if (!isLoadingNewOrder) {
                         createNewOrder(id, type);
                     }

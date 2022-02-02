@@ -3,12 +3,17 @@ package com.AbdUlla.a4_order_station_driver.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.AbdUlla.a4_order_station_driver.models.Cities;
+import com.AbdUlla.a4_order_station_driver.models.City;
+import com.AbdUlla.a4_order_station_driver.models.Result;
 import com.google.gson.Gson;
 import com.AbdUlla.a4_order_station_driver.models.AppSettings;
 import com.AbdUlla.a4_order_station_driver.models.OrderStation;
 import com.AbdUlla.a4_order_station_driver.models.PublicOrder;
 import com.AbdUlla.a4_order_station_driver.models.User;
 import com.AbdUlla.a4_order_station_driver.utils.language.AppLanguageUtil;
+
+import java.util.ArrayList;
 
 public class AppSettingsPreferences {
 
@@ -20,8 +25,8 @@ public class AppSettingsPreferences {
     private static final String USER_TOKEN = "UserToken";
     private static final String TRACKING_ORDER_STATION = "trackingOrderStation";
     private static final String TRACKING_PUBLIC_ORDER = "trackingPublicOrder";
-    private static final String COUNTRY = "country";
-    private static final String PAY_TYPE = "pay_type";
+    private static final String CITIES = "cities";
+    private static final String PAY_BILL = "pay_bill";
 
 
     private static final String PREF_NAME = "AppSettingsPreferences";
@@ -147,17 +152,30 @@ public class AppSettingsPreferences {
         return gson.fromJson(json, Country.class);
     }*/
 
-    public void setPayType(String s) {
-        editor.putString(PAY_TYPE, s);
+    public void setIsPayTheBill(String s) {
+        editor.putString(PAY_BILL, s);
         editor.apply();
     }
 
-    public String getPayType() {
-        return pref.getString(PAY_TYPE, "");
+    public boolean isPayTheBill() {
+        return pref.getString(PAY_BILL, "").equals(AppContent.PAYMENT_CONFIRM);
     }
 
     public void clean() {
         editor.clear();
         editor.apply();
+    }
+
+    public void setCities(Cities cities) {
+        Gson gson = new Gson();
+        String json = gson.toJson(cities);
+        editor.putString(CITIES, json);
+        editor.apply();
+    }
+
+    public Cities getCities() {
+        Gson gson = new Gson();
+        String json = pref.getString(CITIES, null);
+        return gson.fromJson(json, Cities.class);
     }
 }

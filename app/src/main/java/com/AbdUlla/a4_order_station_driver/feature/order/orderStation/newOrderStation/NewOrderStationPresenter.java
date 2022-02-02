@@ -32,7 +32,7 @@ public class NewOrderStationPresenter {
 
                 AppController.getInstance().getAppSettingsPreferences()
                         .setTrackingOrderStation(orderStation);
-                //OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
+                OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
 
                 ToolUtil.showLongToast(baseActivity.getString(R.string.closeApp), baseActivity);
                 //OrdersFragment.viewPagerPage = OrderStationFragment.viewPagerPage;

@@ -15,7 +15,6 @@ public interface AppContent {
     //navigation
     String PAGE = "page";
     String ORDER_Id = "order_id";
-    String PUBLIC_ORDER_Id = "public_order_id";
 
     String ORDER_OBJECT = "order_object";
 
@@ -38,6 +37,7 @@ public interface AppContent {
     int REQUEST_IMAGE_YOUR_LICENSE_CAMERA = 1015;
 
     //public order status
+    String CUSTOMER_WAITING = "customer_waiting";
     String TO_STORE_STATUS = "in_the_way_to_store";
     String TO_CLIENT_STATUS = "in_the_way_to_client";
     String ON_DELIVERY_STATUS = "on_delivery";
@@ -51,12 +51,12 @@ public interface AppContent {
     String RESET_MOBILE = "mobile";
     String RESET_CODE = "code";
     String RESET_TOKEN = "token";
-    String FILE_PROVIDER_AUTHORITY = "com.webapp.a4_order_station_driver.provider";
-    String FILE_PROVIDER_PATH = "/Android/data/com.webapp.a4_order_station_driver/files/Pictures";
+    String FILE_PROVIDER_AUTHORITY = "com.AbdUlla.a4_order_station_driver.provider";
+    String FILE_PROVIDER_PATH = "/Android/data/com.AbdUlla.a4_order_station_driver/files/Pictures";
     //API
     //order type
     String TYPE_ORDER_PUBLIC = "public";
-    String TYPE_ORDER_4STATION = "4station";
+    String TYPE_ORDER_4STATION = "4orderstation";
     String WALLET = "wallet";
 
     //FIREBASE
@@ -71,16 +71,16 @@ public interface AppContent {
     String FIREBASE_PUBLIC_INSTANCE = "delivery_app";
     //FIREBASE DATA
     String DRIVER_APPROVED = "driver_approved";
+    String PAYMENT_CONFIRM = "payment_confirm";
     String REJECT = "reject";
     String NEW_MESSAGE = "new_message";
     String IN_WAY_TO_STORE = "in_the_way_to_store";
-    String NEW_ORDER = "new order";
+    String NEW_ORDER = "neworder";
     String RATE = "rate";
 
     //TRACKING
     String PUBLIC_TRACKING_INSTANCE = "PublicTracking";
     String TRACKING_INSTANCE = "Tracking";
 
-    String one = "1";
 }
 

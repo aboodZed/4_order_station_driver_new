@@ -2,6 +2,8 @@ package com.AbdUlla.a4_order_station_driver.feature.splash;
 
 import android.util.Log;
 
+import com.AbdUlla.a4_order_station_driver.models.Cities;
+import com.AbdUlla.a4_order_station_driver.models.City;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.AbdUlla.a4_order_station_driver.feature.login.LoginActivity;
 import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
@@ -19,6 +21,8 @@ import com.AbdUlla.a4_order_station_driver.utils.listeners.RequestListener;
 import com.AbdUlla.a4_order_station_driver.utils.location.tracking.OrderGPSTracking;
 import com.AbdUlla.a4_order_station_driver.utils.util.APIUtil;
 import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
+
+import java.util.ArrayList;
 
 class SplashPresenter {
 
@@ -39,25 +43,11 @@ class SplashPresenter {
             @Override
             public void onSuccess(AppSettings appSettings, String msg) {
                 AppController.getInstance().getAppSettingsPreferences().setAppSettings(appSettings);
-                FirebaseFirestore.getInstance().collection(AppContent.FIREBASE_PUBLIC_TRACKING_INSTANCE)
-                        .document(AppContent.FIREBASE_DATA).addSnapshotListener((value, error) -> {
-                        });
+//                FirebaseFirestore.getInstance().collection(AppContent.FIREBASE_PUBLIC_TRACKING_INSTANCE)
+//                        .document(AppContent.FIREBASE_DATA).addSnapshotListener((value, error) -> {
+//                        });
+                getCities();
 
-                if (!AppController.getInstance().getAppSettingsPreferences().getToken().trim().equals("Bearer")) {
-                    if (AppController.getInstance().getAppSettingsPreferences().getUser() != null) {
-                        if (AppController.getInstance().getAppSettingsPreferences().getUser().isComplete()) {
-                            baseActivity.navigate(MainActivity2.page);
-                        } else {
-                            baseActivity.navigate(LoginActivity.page);
-                        }
-                    } else {
-                        baseActivity.navigate(LoginActivity.page);
-                    }
-                    Log.e(getClass().getName() + ": userToken", AppController.getInstance()
-                            .getAppSettingsPreferences().getToken());
-                } else {
-                    baseActivity.navigate(LoginActivity.page);
-                }
             }
 
             @Override
@@ -72,6 +62,44 @@ class SplashPresenter {
                 baseActivity.navigate(LoginActivity.page);
             }
         });
+    }
+
+    public void getCities() {
+        new APIUtil<Result<ArrayList<City>>>(baseActivity).getData(AppController.getInstance().getApi()
+                        .getCities(AppController.getInstance().getAppSettingsPreferences().getSettings()
+                                .getData().getCountry_id())
+                , new RequestListener<Result<ArrayList<City>>>() {
+                    @Override
+                    public void onSuccess(Result<ArrayList<City>> result, String msg) {
+                        AppController.getInstance().getAppSettingsPreferences().setCities(new Cities(result.getData()));
+                        if (!AppController.getInstance().getAppSettingsPreferences().getToken().trim().equals("Bearer")) {
+                            if (AppController.getInstance().getAppSettingsPreferences().getUser() != null) {
+                                if (AppController.getInstance().getAppSettingsPreferences().getUser().isComplete()) {
+                                    OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
+                                    baseActivity.navigate(MainActivity2.page);
+                                } else {
+                                    baseActivity.navigate(LoginActivity.page);
+                                }
+                            } else {
+                                baseActivity.navigate(LoginActivity.page);
+                            }
+                            Log.e(getClass().getName() + ": userToken", AppController.getInstance()
+                                    .getAppSettingsPreferences().getToken());
+                        } else {
+                            baseActivity.navigate(LoginActivity.page);
+                        }
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        ToolUtil.showLongToast(msg, baseActivity);
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+                        ToolUtil.showLongToast(msg, baseActivity);
+                    }
+                });
     }
 
     private void setLanguage() {

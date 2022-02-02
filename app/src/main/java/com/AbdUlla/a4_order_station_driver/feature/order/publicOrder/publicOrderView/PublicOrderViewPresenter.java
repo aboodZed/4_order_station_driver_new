@@ -6,6 +6,7 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.AbdUlla.a4_order_station_driver.models.ChatMessage;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -17,7 +18,6 @@ import com.AbdUlla.a4_order_station_driver.R;
 import com.AbdUlla.a4_order_station_driver.databinding.FragmentPublicChatBinding;
 import com.AbdUlla.a4_order_station_driver.feature.order.adapter.PublicChatAdapter;
 import com.AbdUlla.a4_order_station_driver.models.Order;
-import com.AbdUlla.a4_order_station_driver.models.PublicChatMessage;
 import com.AbdUlla.a4_order_station_driver.models.PublicOrder;
 import com.AbdUlla.a4_order_station_driver.models.Result;
 import com.AbdUlla.a4_order_station_driver.utils.util.APIUtil;
@@ -40,7 +40,6 @@ public class PublicOrderViewPresenter {
     private DialogView<Result<PublicOrder>> dialogView;
     private PhotoTakerManager photoTakerManager;
     private StorageReference storageReference;
-    private FirebaseStorage storage;
     private DatabaseReference db;
     private PublicOrder publicOrder;
     private FragmentPublicChatBinding binding;
@@ -55,9 +54,7 @@ public class PublicOrderViewPresenter {
         this.photoTakerManager = photoTakerManager;
         publicOrder = AppController.getInstance().getAppSettingsPreferences().getTrackingPublicOrder();
         db = FirebaseDatabase.getInstance().getReference(AppContent.FIREBASE_PUBLIC_STORE_CHAT_INSTANCE);
-        storage = FirebaseStorage.getInstance();
-        storageReference = storage.getReference();
-
+        storageReference = FirebaseStorage.getInstance().getReference();
     }
 
     public void getData(Order order) {
@@ -90,7 +87,7 @@ public class PublicOrderViewPresenter {
         db.child(id).addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                publicChatAdapter.addItem(dataSnapshot.getValue(PublicChatMessage.class));
+                publicChatAdapter.addItem(dataSnapshot.getValue(ChatMessage.class));
                 binding.rvChat.scrollToPosition(publicChatAdapter.getItemCount() - 1);
             }
 
@@ -120,7 +117,7 @@ public class PublicOrderViewPresenter {
     public void sendMessage(String image) {
         if (ToolUtil.checkTheInternet()) {
             if (!binding.etMessage.getText().toString().equals("") || !image.isEmpty()) {
-                PublicChatMessage publicStoreMessage = new PublicChatMessage();
+                ChatMessage publicStoreMessage = new ChatMessage();
                 publicStoreMessage.setText(binding.etMessage.getText().toString());
                 publicStoreMessage.setSender_name(AppController.getInstance().getAppSettingsPreferences().getUser().getName());
                 publicStoreMessage.setImageUrl(image);
@@ -157,6 +154,7 @@ public class PublicOrderViewPresenter {
                         });
                     })
                     .addOnFailureListener(e -> {
+                        ToolUtil.showLongToast(e.getLocalizedMessage(), baseActivity);
                         dialogView.hideDialog();
                     })
                     .addOnProgressListener(taskSnapshot -> {

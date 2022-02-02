@@ -122,10 +122,10 @@ public class PublicOrder extends Order implements Serializable {
 
     @SerializedName("attachments")
     @Expose
-    private ArrayList<Attachment> attachmentArrays;
+    private ArrayList<Attachment> attachments;
 
-    public ArrayList<Attachment> getAttachmentArrays() {
-        return attachmentArrays;
+    public ArrayList<Attachment> getAttachments() {
+        return attachments;
     }
 
 //    public String getClient_paid_invoice() {
@@ -282,7 +282,7 @@ public class PublicOrder extends Order implements Serializable {
 //                ", driver_revenue='" + driver_revenue + '\'' +
 //                ", client_paid_invoice='" + client_paid_invoice + '\'' +
                 //", client=" + user +
-                ", attachmentArrays=" + attachmentArrays +
+                ", attachmentArrays=" + attachments +
                 '}';
     }
 }

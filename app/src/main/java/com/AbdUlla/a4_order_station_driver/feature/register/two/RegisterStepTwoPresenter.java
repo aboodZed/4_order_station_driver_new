@@ -65,7 +65,7 @@ public class RegisterStepTwoPresenter {
             binding.cbAgreeTerms.setError(baseActivity.getString(R.string.accept_terms));
             return;
         }
-        map.put("vehicle_plate",plate);
+        map.put("vehicle_plate", plate);
         map.put("vehicle_type", type);
         generateFCMToken(baseActivity, map);
     }
@@ -91,13 +91,22 @@ public class RegisterStepTwoPresenter {
                 new RequestListener<Result<User>>() {
                     @Override
                     public void onSuccess(Result<User> result, String msg) {
-                        dialogView.hideDialog();
-                        AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
-                        //service
-                        Intent service = new Intent(baseActivity, GenerateFCMService.class);
-                        baseActivity.startService(service);
-                        //main
-                        baseActivity.navigate(MainActivity2.page);
+                        if (result.isSuccess()) {
+                            dialogView.hideDialog();
+                            AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
+                            //service
+                            Intent service = new Intent(baseActivity, GenerateFCMService.class);
+                            baseActivity.startService(service);
+                            //main
+                            ToolUtil.showLongToast(baseActivity.getString(R.string.register_successfully), baseActivity);
+                            baseActivity.navigate(LoginActivity.page);
+                        } else {
+                            StringBuilder errors = new StringBuilder();
+                            for (String s : result.getErrors()) {
+                                errors.append(s).append("\n");
+                            }
+                            ToolUtil.showLongToast(errors.toString(), baseActivity);
+                        }
                     }
 
                     @Override

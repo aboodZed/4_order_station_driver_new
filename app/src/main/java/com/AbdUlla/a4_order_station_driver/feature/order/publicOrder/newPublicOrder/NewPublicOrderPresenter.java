@@ -30,7 +30,7 @@ class NewPublicOrderPresenter {
                 dialogView.hideDialog();
                 AppController.getInstance().getAppSettingsPreferences()
                         .setTrackingPublicOrder(publicOrder);
-                //OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
+                OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
                 baseActivity.navigate(OrdersFragment.page);
             }
 

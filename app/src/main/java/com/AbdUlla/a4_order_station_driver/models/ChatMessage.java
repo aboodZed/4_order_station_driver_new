@@ -5,7 +5,7 @@ public class ChatMessage {
     private int sender_id;
     private String sender_name;
     private String sender_avatar_url;
-    private long time;
+    private double time;
     private String imageUrl;
 
     public ChatMessage() {
@@ -51,7 +51,7 @@ public class ChatMessage {
         this.imageUrl = imageUrl;
     }
 
-    public long getTime() {
+    public double getTime() {
         return time;
     }
 

@@ -84,9 +84,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/small_margin"
         android:layout_marginTop="@dimen/small_margin"
+        android:background="@drawable/blue_button"
         android:layout_marginEnd="@dimen/small_margin"
         android:layout_marginBottom="@dimen/small_margin"
-        android:background="@drawable/dark_button"
         android:padding="@dimen/medium_padding">
 
         <TextView
@@ -94,6 +94,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/order_details"
+            android:layout_margin="@dimen/small_margin"
             android:textColor="@color/white"
             android:textSize="@dimen/medium_text"
             android:textStyle="bold"
@@ -112,12 +113,17 @@
 
         <TextView
             android:id="@+id/tv_more"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/more_details"
+            android:layout_marginHorizontal="@dimen/medium_margin"
             android:layout_marginTop="@dimen/small_margin"
-            android:textColor="@color/colorAccent"
+            android:background="@drawable/blue_sky_button"
+            android:padding="@dimen/medium_padding"
+            android:text="@string/more_details"
+            android:textColor="@color/white"
+            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_order_details" />
 
         <!-- <LinearLayout

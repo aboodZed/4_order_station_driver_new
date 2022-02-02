@@ -166,7 +166,7 @@
     <string name="time">الوقت</string>
     <string name="vat">الضريبة</string>
     <string name="delivery_fees">فاتورة التوصيل</string>
-    <string name="more_details">تفاصيل أكثر</string>
+    <string name="more_details">عرض تفاصيل أكثر</string>
     <string name="more_detail">تفاصيل أكثر</string>
     <string name="store_address">عنوان المتجر</string>
     <string name="client_address">عنوان العميل</string>
@@ -191,10 +191,12 @@
     <string name="area">منطقة</string>
     <string name="offline">غير متاح</string>
     <string name="online">متاح</string>
-    <string name="phone_must">phone number must be</string>
-    <string name="digits">digits</string>
-    <string name="accept_terms"><![CDATA[You must accept terms & conditions]]></string>
-    <string name="order_items">Ordered items</string>
-    <string name="quantity">Qnt.</string>
-    <string name="amount">Amount</string>
+    <string name="phone_must">رقم الهاتف يجب ان يكون</string>
+    <string name="digits">رقم</string>
+    <string name="accept_terms"><![CDATA[يجب الموافقة على الشروط ة الاحكان]]></string>
+    <string name="order_items">عناصر الطلب</string>
+    <string name="quantity">الكمية.</string>
+    <string name="amount">السعر</string>
+    <string name="select_city">أختر المدينة</string>
+    <string name="register_successfully">تم تسجيل في التطبيق بنجاح\n أنتظر عملية التوثيق</string>
 </resources>

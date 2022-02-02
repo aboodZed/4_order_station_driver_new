@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.AbdUlla.a4_order_station_driver.feature.main.orders.OrdersFragment;
 import com.google.firebase.database.annotations.NotNull;
 import com.AbdUlla.a4_order_station_driver.databinding.FragmentPublicChatBinding;
 import com.AbdUlla.a4_order_station_driver.feature.order.adapter.PublicChatAdapter;
@@ -52,7 +53,6 @@ public class PublicOrderViewFragment extends Fragment implements
     private BaseActivity baseActivity;
     public static double billPrice = 0;
     public static boolean isOpenPublicChat = false;
-    private boolean openBillDialog;
 
     private ActivityResultLauncher<Intent> launcher;
 
@@ -145,6 +145,7 @@ public class PublicOrderViewFragment extends Fragment implements
                     .setTrackingPublicOrder(publicOrder);
             billDialog.dismiss();
             data();
+            baseActivity.navigate(OrdersFragment.page);
             //presenter.getData(publicOrder);
         });
     }
@@ -162,6 +163,8 @@ public class PublicOrderViewFragment extends Fragment implements
             binding.llBottom.setVisibility(View.GONE);
             binding.tvMore.setVisibility(View.GONE);
             //OrderGPSTracking.newInstance(baseActivity).removeUpdates();
+        } else if (publicOrder.getStatus().equals(AppContent.CUSTOMER_WAITING)) {
+            binding.tvMore.setVisibility(View.GONE);
         }
         /*String currency = AppController.getInstance().getAppSettingsPreferences().getUser()
                 .getCountry().getCurrency_code();

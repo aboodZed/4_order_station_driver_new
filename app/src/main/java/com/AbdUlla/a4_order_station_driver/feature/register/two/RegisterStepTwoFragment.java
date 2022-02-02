@@ -12,6 +12,7 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
 import com.AbdUlla.a4_order_station_driver.databinding.FragmentRegisterStep2Binding;
+import com.AbdUlla.a4_order_station_driver.feature.data.privacy.PrivacyPolicyFragment;
 import com.AbdUlla.a4_order_station_driver.utils.AppContent;
 import com.AbdUlla.a4_order_station_driver.utils.Photo.PhotoTakerManager;
 import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
@@ -98,6 +99,10 @@ public class RegisterStepTwoFragment extends Fragment implements DialogView<Stri
 
         binding.btnRegister.setOnClickListener(view -> presenter.validInput(binding, map));
         binding.btnSignIn.setOnClickListener(view -> presenter.goLoginPage());
+        binding.tvTermsConditions.setOnClickListener(v -> {
+            PrivacyPolicyFragment privacyPolicyFragment = new PrivacyPolicyFragment();
+            privacyPolicyFragment.show(getChildFragmentManager(), "privacy");
+        });
     }
 
     private void request(int request_upload, int request_camera) {
