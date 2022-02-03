@@ -24,7 +24,7 @@ public class NotificationFragment extends Fragment implements DialogView<ArrayLi
 
     private FragmentNotificationBinding binding;
 
-    private NotificationsAdapter readIt;
+    //private NotificationsAdapter readIt;
     private NotificationsAdapter notReadIt;
     private BaseActivity baseActivity;
 
@@ -53,19 +53,19 @@ public class NotificationFragment extends Fragment implements DialogView<ArrayLi
     @Override
     public void setData(ArrayList<Notification> notifications) {
         notReadIt = new NotificationsAdapter(baseActivity, this);
-        readIt = new NotificationsAdapter(baseActivity, this);
+       // readIt = new NotificationsAdapter(baseActivity, this);
         binding.rvNotificationUnread.setLayoutManager(new LinearLayoutManager(getActivity()));
-        binding.rvNotification.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //binding.rvNotification.setLayoutManager(new LinearLayoutManager(getActivity()));
         binding.rvNotificationUnread.setItemAnimator(new DefaultItemAnimator());
-        binding.rvNotification.setItemAnimator(new DefaultItemAnimator());
+        //binding.rvNotification.setItemAnimator(new DefaultItemAnimator());
         binding.rvNotificationUnread.setAdapter(notReadIt);
-        binding.rvNotification.setAdapter(readIt);
+        //binding.rvNotification.setAdapter(readIt);
         for (Notification notification : notifications){
-            if (notification.getRead_at() == null){
+          //  if (notification.getRead_at() == null){
                 notReadIt.addItem(notification);
-            }else {
-                readIt.addItem(notification);
-            }
+//            }else {
+//                readIt.addItem(notification);
+//            }
         }
     }
 

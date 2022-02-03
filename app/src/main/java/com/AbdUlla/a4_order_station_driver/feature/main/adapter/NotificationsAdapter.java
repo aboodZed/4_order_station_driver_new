@@ -93,8 +93,11 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
             if (notification.getData().getType() != null) {
                 this.type = notification.getData().getType();
                 if (this.type.equals(AppContent.TYPE_ORDER_PUBLIC)) {
-                    this.id = notification.getData().getPublic_order_id();
-                } else {
+                    this.id = notification.getData().getOrder_id();
+                    if (id == 0) {
+                        this.id = notification.getData().getPublic_order_id();
+                    }
+                } else if (this.type.equals(AppContent.TYPE_ORDER_4STATION)) {
                     this.id = notification.getData().getOrder_id();
                 }
             }

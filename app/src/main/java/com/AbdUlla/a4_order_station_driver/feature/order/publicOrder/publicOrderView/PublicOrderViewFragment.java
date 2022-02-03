@@ -97,7 +97,6 @@ public class PublicOrderViewFragment extends Fragment implements
         binding.ivUploadMessage.setOnClickListener(view -> presenter.sendMessage(""));
         binding.ivUploadPhoto.setOnClickListener(view -> uploadPhoto());
         binding.tvMore.setOnClickListener(v -> openBillDialog());
-
         /*binding.ivTracking.setOnClickListener(view -> showLocation());
         binding.ivMore.setOnClickListener(view -> {
             presenter.getData(publicOrder);

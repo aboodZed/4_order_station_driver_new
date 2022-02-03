@@ -32,7 +32,7 @@ public class PublicOrderActivity extends BaseActivity {
     }
 
     private void click() {
-        binding.ivBack.setOnClickListener(view -> onBackPressed());
+        binding.ivBack.setOnClickListener(view -> navigate(OrdersFragment.page));
     }
 
     private void setData() {
