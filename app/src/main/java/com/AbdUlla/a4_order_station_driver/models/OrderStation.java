@@ -41,11 +41,15 @@ public class OrderStation extends Order implements Serializable {
     @Expose
     private String delivery;
 
+    @SerializedName("customer_id")
+    @Expose
+    private String customer_id;
+
 //    @SerializedName("total")
 //    @Expose
 //    private String total;
 
-    @SerializedName("items")
+    @SerializedName(value = "items", alternate = {"orderItems"})
     @Expose
     private ArrayList<OrderStationItem> orderItems;
 //
@@ -104,7 +108,12 @@ public class OrderStation extends Order implements Serializable {
     public ArrayList<OrderStationItem> getOrderItems() {
         return orderItems;
     }
-//
+
+    public String getCustomer_id() {
+        return customer_id;
+    }
+
+    //
 //    public Customer getStore() {
 //        return store;
 //    }

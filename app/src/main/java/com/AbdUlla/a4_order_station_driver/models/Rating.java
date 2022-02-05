@@ -5,11 +5,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class Rating extends Message {
-
-    @SerializedName("data")
-    @Expose
-    private ArrayList<RatingData> data;
+public class Rating extends Result<ArrayList<Rating.RatingData>> {
 
     @SerializedName("rate")
     @Expose
@@ -17,10 +13,6 @@ public class Rating extends Message {
 
     public String getRate() {
         return rate;
-    }
-
-    public ArrayList<RatingData> getData() {
-        return data;
     }
 
     @Override
@@ -32,5 +24,37 @@ public class Rating extends Message {
 
     public class RatingData {
 
+        @SerializedName("rate")
+        @Expose
+        private String rate;
+
+        @SerializedName("review")
+        @Expose
+        private String review;
+
+        @SerializedName("customer")
+        @Expose
+        private Customer customer;
+
+        public String getRate() {
+            return rate;
+        }
+
+        public String getReview() {
+            return review;
+        }
+
+        public Customer getCustomer() {
+            return customer;
+        }
+
+        @Override
+        public String toString() {
+            return "RatingData{" +
+                    "rate='" + rate + '\'' +
+                    ", review='" + review + '\'' +
+                    ", customer=" + customer +
+                    '}';
+        }
     }
 }

@@ -106,7 +106,8 @@ public class AppSettingsPreferences {
     }*/
 
     public void setTrackingOrderStation(OrderStation order) {
-        order.setType(AppContent.TYPE_ORDER_4STATION);
+        if (order != null)
+            order.setType(AppContent.TYPE_ORDER_4STATION);
         Gson gson = new Gson();
         String json = gson.toJson(order);
         editor.putString(TRACKING_ORDER_STATION, json);
@@ -120,7 +121,8 @@ public class AppSettingsPreferences {
     }
 
     public void setTrackingPublicOrder(PublicOrder order) {
-        order.setType(AppContent.TYPE_ORDER_PUBLIC);
+        if (order != null)
+            order.setType(AppContent.TYPE_ORDER_PUBLIC);
         Gson gson = new Gson();
         String json = gson.toJson(order);
         editor.putString(TRACKING_PUBLIC_ORDER, json);

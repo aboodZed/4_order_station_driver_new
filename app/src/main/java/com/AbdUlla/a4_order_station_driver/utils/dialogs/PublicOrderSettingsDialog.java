@@ -171,7 +171,6 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
                 //WalletFragment.viewPagerPage = OrderStationWalletFragment.viewPagerPage;
                 //ToolUtil.showLongToast(message.getMessage(), getActivity());
                 listener.updatePublicOrder(AppContent.DELIVERED_STATUS);
-                OrderGPSTracking.newInstance(requireActivity()).removeUpdates();
 
                 ToolUtil.showLongToast(message.getMessage(), requireActivity());
                 AppController.getInstance().getAppSettingsPreferences().setIsPayTheBill("");

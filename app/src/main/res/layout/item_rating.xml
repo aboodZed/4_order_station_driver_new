@@ -52,7 +52,8 @@
                     android:id="@+id/rb_review"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="?android:attr/ratingBarStyleSmall"/>
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:isIndicator="true"/>
 
             </LinearLayout>
         </LinearLayout>
@@ -70,7 +71,5 @@
         android:id="@+id/tv_review_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/small_padding"
-        android:text="here weare write a story for this user"
-        android:textSize="@dimen/small_text" />
+        android:layout_marginTop="@dimen/small_padding" />
 </LinearLayout>

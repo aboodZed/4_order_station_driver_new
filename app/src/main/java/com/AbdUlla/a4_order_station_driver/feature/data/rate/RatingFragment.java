@@ -81,12 +81,12 @@ public class RatingFragment extends Fragment implements DialogView<Rating> {
         setRecyclerViewScrollListener();
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     @Override
-    public void setData(Rating ratingObject) {
+    public void setData(Rating rating) {
         //next_page_url = ratingObject.getRatings().getNext_page_url();
-        reviewsAdapter.addAll(ratingObject.getData());
-        if (ratingObject.getData().isEmpty()) {
+        binding.rbReview.setRating(Float.parseFloat(rating.getRate()));
+        reviewsAdapter.addAll(rating.getData());
+        if (rating.getData().isEmpty()) {
             binding.ivEmptyRate.setVisibility(View.VISIBLE);
         }
     }

@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -26,12 +28,14 @@ import com.AbdUlla.a4_order_station_driver.utils.location.tracking.GPSTracking;
 public class HomeFragment extends Fragment implements OnMapReadyCallback, LocationManager.Listener {
 
     public static final int page = 201;
-
+    public static boolean isOpen;
     private FragmentHomeBinding binding;
 
     private GoogleMap googleMap;
     private LocationManager locationManager;
     private boolean denialLock;
+
+    private ActivityResultLauncher<Intent> launcher;
 
     public static HomeFragment newInstance() {
         HomeFragment fragment = new HomeFragment();
@@ -46,7 +50,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(getLayoutInflater());
-
+        setOnActivityResult();
         binding.mapView.onCreate(savedInstanceState);
         binding.mapView.getMapAsync(this);
 
@@ -55,11 +59,23 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         return binding.getRoot();
     }
 
+    private void setOnActivityResult() {
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK) {
+                        locationManager.fetchAutomaticLocation();
+                    } else {
+                        denialLock = true;
+                        locationManager.showLocationDenialDialog();
+                    }
+                });
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
 
-        googleMap.getUiSettings().setZoomControlsEnabled(true);
+        googleMap.getUiSettings().setZoomControlsEnabled(false);
         googleMap.getUiSettings().setAllGesturesEnabled(true);
 
         //checkSelectedNeighborhood();
@@ -84,35 +100,27 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(
-            int requestCode,
-            @NonNull String[] permissions,
-            @NonNull int[] grantResults) {
-        if (requestCode != LocationManager.LOCATION_PERMISSION_REQUEST_CODE) {
-            return;
-        }
-
-        // No need to check if the location permission has been granted because of the onResume() block
-        if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
-            denialLock = true;
-            locationManager.showLocationPermissionDialog();
-        }
-    }
-
+//    @Override
+//    public void onRequestPermissionsResult(
+//            int requestCode,
+//            @NonNull String[] permissions,
+//            @NonNull int[] grantResults) {
+//        if (requestCode != LocationManager.LOCATION_PERMISSION_REQUEST_CODE) {
+//            return;
+//        }
+//
+//        // No need to check if the location permission has been granted because of the onResume() block
+//        if (!(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+//            denialLock = true;
+//            locationManager.showLocationPermissionDialog();
+//        }
+//    }
 
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == LocationManager.LOCATION_SERVICES_CODE) {
-            if (resultCode == RESULT_OK) {
-                locationManager.fetchAutomaticLocation();
-            } else {
-                denialLock = true;
-                locationManager.showLocationDenialDialog();
-            }
-        }
+
     }
 
     public void zoomToLocation(LatLng location) {
@@ -141,7 +149,8 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     @Override
     public void onStart() {
         super.onStart();
-       binding.mapView.onStart();
+        binding.mapView.onStart();
+        isOpen = true;
     }
 
     @Override
@@ -154,6 +163,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onStop() {
         super.onStop();
         binding.mapView.onStop();
+        isOpen = false;
     }
 
     @Override

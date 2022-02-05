@@ -47,6 +47,7 @@ public class ProfileFragment extends Fragment implements DialogView<String>, Req
     private ProfilePresenter presenter;
     private HashMap<String, String> map = new HashMap<>();
     private int process_image;
+    private Listener listener;
 
     private final int VEHICLE = 0;
     private final int VEHICLE_LICENSE = 1;
@@ -56,6 +57,14 @@ public class ProfileFragment extends Fragment implements DialogView<String>, Req
     private final int AVATAR = 5;
 
     private ActivityResultLauncher<Intent> launcher;
+
+    public interface Listener {
+        void onProfileUpdate();
+    }
+
+    public void setListener(Listener listener) {
+        this.listener = listener;
+    }
 
     public static ProfileFragment newInstance(BaseActivity baseActivity) {
         ProfileFragment.baseActivity = baseActivity;
@@ -71,7 +80,7 @@ public class ProfileFragment extends Fragment implements DialogView<String>, Req
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(getLayoutInflater());
         photoTakerManager = new PhotoTakerManager(this);
-        presenter = new ProfilePresenter(baseActivity, this, photoTakerManager);
+        presenter = new ProfilePresenter(baseActivity, this, photoTakerManager, listener);
         data();
         click();
         onActivityResulting();

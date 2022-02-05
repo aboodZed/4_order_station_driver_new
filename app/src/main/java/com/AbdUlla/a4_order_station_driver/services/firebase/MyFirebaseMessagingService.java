@@ -2,6 +2,7 @@ package com.AbdUlla.a4_order_station_driver.services.firebase;
 
 import android.util.Log;
 
+import com.AbdUlla.a4_order_station_driver.utils.location.tracking.OrderGPSTracking;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
@@ -49,6 +50,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 new NotificationUtil().sendNotification(this, msg, message);
                 AppController.getInstance().getAppSettingsPreferences().setIsPayTheBill(status);
 
+            } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))){
+                OrderGPSTracking.newInstance(this).removeUpdates();
             } else if (status.equals(AppContent.NEW_ORDER) && !MainActivity2.isLoadingNewOrder) {
 
                 new NotificationUtil().sendNotification(this, msg, message);

@@ -11,13 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.AbdUlla.a4_order_station_driver.databinding.ItemLeftPublicChatBinding;
-import com.AbdUlla.a4_order_station_driver.databinding.ItemRightPublicChatBinding;
+import com.AbdUlla.a4_order_station_driver.databinding.ItemChatLeftBinding;
+import com.AbdUlla.a4_order_station_driver.databinding.ItemChatRightBinding;
 import com.AbdUlla.a4_order_station_driver.models.ChatMessage;
-import com.AbdUlla.a4_order_station_driver.utils.util.APIImageUtil;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
-import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
 import com.AbdUlla.a4_order_station_driver.utils.dialogs.ImageFragment;
+import com.AbdUlla.a4_order_station_driver.utils.util.APIImageUtil;
+import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
 
 import java.util.ArrayList;
 
@@ -47,10 +47,10 @@ public class PublicChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         if (viewType == 1) {
-            return new DriverHolder(ItemRightPublicChatBinding.inflate(LayoutInflater
+            return new DriverHolder(ItemChatRightBinding.inflate(LayoutInflater
                     .from(parent.getContext()), parent, false));
         } else {
-            return new ReceiverHolder(ItemLeftPublicChatBinding.inflate(LayoutInflater
+            return new ReceiverHolder(ItemChatLeftBinding.inflate(LayoutInflater
                     .from(parent.getContext()), parent, false));
         }
     }
@@ -76,88 +76,84 @@ public class PublicChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public class DriverHolder extends RecyclerView.ViewHolder {
 
-        private ItemRightPublicChatBinding binding;
+        private ItemChatRightBinding binding;
 
-        public DriverHolder(ItemRightPublicChatBinding binding) {
+        public DriverHolder(ItemChatRightBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
             click();
         }
 
         private void click() {
-            binding.image.setOnClickListener(view -> open());
+            binding.ivImage.setOnClickListener(view -> open());
         }
 
         private void setData(ChatMessage data) {
-            binding.message.setText(data.getText());
+            binding.tvMessageText.setText(data.getText());
             //APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getSender_avatar_url(), binding.senderImage);
             if (data.getImageUrl() != null) {
                 if (!data.getImageUrl().isEmpty()) {
-                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.image);
+                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.ivImage);
                     binding.progressBar.setVisibility(View.VISIBLE);
-                    binding.image.setVisibility(View.VISIBLE);
-                }else {
+                    binding.ivImage.setVisibility(View.VISIBLE);
+                } else {
                     binding.progressBar.setVisibility(View.GONE);
-                    binding.image.setVisibility(View.GONE);
-                    binding.message.setVisibility(View.VISIBLE);
-                    binding.message.setText(binding.message.getText());
+                    binding.ivImage.setVisibility(View.GONE);
+                    binding.tvMessageText.setVisibility(View.VISIBLE);
                 }
             } else {
                 binding.progressBar.setVisibility(View.GONE);
-                binding.image.setVisibility(View.GONE);
-                binding.message.setVisibility(View.VISIBLE);
-                binding.message.setText(binding.message.getText());
+                binding.ivImage.setVisibility(View.GONE);
+                binding.tvMessageText.setVisibility(View.VISIBLE);
             }
-            binding.time.setText(ToolUtil.getTime((long) data.getTime()));
+            binding.tvMessageTime.setText(ToolUtil.getTime((long) data.getTime()));
         }
 
         public void open() {
-            ImageFragment.newInstance(APIImageUtil.getBitmapFromImageView(binding.image)).show(fragmentManager, "");
+            ImageFragment.newInstance(APIImageUtil.getBitmapFromImageView(binding.ivImage)).show(fragmentManager, "");
         }
     }
 
     public class ReceiverHolder extends RecyclerView.ViewHolder {
 
-        private ItemLeftPublicChatBinding binding;
+        private ItemChatLeftBinding binding;
 
         private ChatMessage publicChatMessage;
 
-        public ReceiverHolder(ItemLeftPublicChatBinding binding) {
+        public ReceiverHolder(ItemChatLeftBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
             click();
         }
 
         private void click() {
-            binding.image.setOnClickListener(view -> open());
+            binding.ivImage.setOnClickListener(view -> open());
         }
 
         private void setData(ChatMessage data) {
             publicChatMessage = data;
-            binding.message.setText(data.getText());
+            binding.tvMessageText.setText(data.getText());
             APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getSender_avatar_url(), binding.ivUserImage);
             if (data.getImageUrl() != null) {
                 if (!data.getImageUrl().isEmpty()) {
-                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.image);
+                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.ivImage);
                     binding.progressBar.setVisibility(View.VISIBLE);
-                    binding.image.setVisibility(View.VISIBLE);
-                }else {
+                    binding.ivImage.setVisibility(View.VISIBLE);
+                } else {
                     binding.progressBar.setVisibility(View.GONE);
-                    binding.image.setVisibility(View.GONE);
-                    binding.message.setVisibility(View.VISIBLE);
-                    binding.message.setText(binding.message.getText());
+                    binding.ivImage.setVisibility(View.GONE);
+                    binding.tvMessageText.setVisibility(View.VISIBLE);
                 }
             } else {
                 binding.progressBar.setVisibility(View.GONE);
-                binding.image.setVisibility(View.GONE);
-                binding.message.setVisibility(View.VISIBLE);
-                binding.message.setText(binding.message.getText());
+                binding.ivImage.setVisibility(View.GONE);
+                binding.tvMessageText.setVisibility(View.VISIBLE);
             }
-            binding.time.setText(ToolUtil.getTime((long) data.getTime()));
+            binding.tvMessageTime.setText(ToolUtil.getTime((long) data.getTime()));
         }
 
         public void open() {
-            ImageFragment.newInstance(APIImageUtil.getBitmapFromImageView(binding.image)).show(fragmentManager, "");
+            ImageFragment.newInstance(APIImageUtil.getBitmapFromImageView(binding.ivImage)).show(fragmentManager, "");
         }
     }
 }

@@ -57,8 +57,8 @@ public class NewOrderStationDialog extends DialogFragment {
                 .getDrawable(R.drawable.back_new_4order_station));
         binding.btnView.setOnClickListener(view -> {
             dismiss();
-            new NavigateUtil().openOrderStation(getContext(), orderStation
-                    , NewOrderStationFragment.page, true);
+                new NavigateUtil().openOrderStation(getContext(), orderStation
+                        , NewOrderStationFragment.page, true);
             listener.allowLoadNewOrder();
         });
 

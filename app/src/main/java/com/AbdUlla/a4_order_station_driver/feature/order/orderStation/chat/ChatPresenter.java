@@ -144,7 +144,7 @@ public class ChatPresenter {
                 ToolUtil.hideSoftKeyboard(baseActivity, binding.etMessage);
                 binding.etMessage.setText("");
                 NotificationUtil.sendMessageNotification(baseActivity, orderStation.getInvoice_number()
-                        , orderStation.getId() + "", orderStation.getCustomer_address().getId() + ""
+                        , orderStation.getId() + "", orderStation.getCustomer_id()
                         , AppContent.TYPE_ORDER_4STATION);
             }
         } else {

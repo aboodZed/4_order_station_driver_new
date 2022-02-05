@@ -160,7 +160,7 @@
     <string name="total_rate">التقيم الكلي</string>
     <string name="contact_form">نموذج التواصل</string>
     <string name="title">عنوان الرسالة</string>
-    <string name="type">الرسالة...</string>
+    <string name="type">النوع:</string>
     <string name="unread">غير مقروء</string>
     <string name="read">مقروء</string>
     <string name="time">الوقت</string>
@@ -199,4 +199,7 @@
     <string name="amount">السعر</string>
     <string name="select_city">أختر المدينة</string>
     <string name="register_successfully">تم تسجيل في التطبيق بنجاح\n أنتظر عملية التوثيق</string>
+    <string name="this_order_taken">هذا طلب تم أخذه</string>
+    <string name="write">أكتب...</string>
+    <string name="check_sign_out">Are you sure, you want to sign out</string>
 </resources>

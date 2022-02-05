@@ -115,7 +115,7 @@ public class ChatFragment extends Fragment implements
 
             @Override
             public void onCameraClicked() {
-                presenter.setRequestCode(AppContent.REQUEST_STUDIO);
+                presenter.setRequestCode(AppContent.REQUEST_CAMERA);
                 photoTakerManager.cameraRequestLauncher(requireActivity(), launcher);
             }
         });

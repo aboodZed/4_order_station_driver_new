@@ -17,7 +17,7 @@ import com.AbdUlla.a4_order_station_driver.databinding.FragmentPrivacyPolicyBind
 import com.AbdUlla.a4_order_station_driver.models.AppSettings;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
 
-public class PrivacyPolicyFragment extends DialogFragment {
+public class PrivacyPolicyFragment extends Fragment {
 
     public static final int page = 603;
 
@@ -78,7 +78,7 @@ public class PrivacyPolicyFragment extends DialogFragment {
                 ToolUtil.showLongToast(msg, getActivity());
                 binding.pbWait.setVisibility(View.GONE);
             }
-        });*/
+        });
     }
 
     @Override
@@ -96,7 +96,7 @@ public class PrivacyPolicyFragment extends DialogFragment {
                 PrivacyPolicyFragment.this.dismiss();
                 return true;
             } else return false;
-        });
+        });*/
     }
 
 }

@@ -18,11 +18,13 @@ import com.AbdUlla.a4_order_station_driver.feature.data.contact.ContactFragment;
 import com.AbdUlla.a4_order_station_driver.feature.data.natification.NotificationFragment;
 import com.AbdUlla.a4_order_station_driver.feature.data.privacy.PrivacyPolicyFragment;
 import com.AbdUlla.a4_order_station_driver.feature.data.rate.RatingFragment;
+import com.AbdUlla.a4_order_station_driver.feature.login.LoginActivity;
 import com.AbdUlla.a4_order_station_driver.feature.main.home.HomeFragment;
 import com.AbdUlla.a4_order_station_driver.feature.main.orders.OrdersFragment;
 import com.AbdUlla.a4_order_station_driver.feature.main.profile.ProfileFragment;
 import com.AbdUlla.a4_order_station_driver.feature.main.wallets.WalletFragment;
 import com.AbdUlla.a4_order_station_driver.models.User;
+import com.AbdUlla.a4_order_station_driver.utils.dialogs.SignOutDialog;
 import com.AbdUlla.a4_order_station_driver.utils.util.APIImageUtil;
 import com.AbdUlla.a4_order_station_driver.utils.AppContent;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
@@ -85,9 +87,18 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 JSONObject body = new JSONObject(message).getJSONObject(AppContent.FIREBASE_DATA);
 
                 int id;
+                /*
+                2022-02-04 21:20:46.618 31794-4639/com.AbdUlla.a4_order_station_driver E/remoteMessage: remote{moredata=dd, message={"data":{"msg":"Wow! you account has been accepted","title":"4orderstation","type":"admin","country_id":"5","status":"driver_approved"},"sound":"mySound","icon":"myIcon","title":"4orderstation","body":"Wow! you account has been accepted","click_action":"com.webapp.a4_order_station_driver.feture.home.MainActivity"}}
+2022-02-04 21:20:46.787 31794-4639/com.AbdUlla.a4_order_station_driver E/remoteMessage: remote{moredata=dd, message={"data":{"msg":"You must contact with management to get order balance ","title":"4orderstation","type":"admin","country_id":"5","status":"driver_approved"},"sound":"mySound","icon":"myIcon","title":"4orderstation","body":"You must contact with management to get order balance ","click_action":"com.webapp.a4_order_station_driver.feture.home.MainActivity"}}
+
+                 */
                 //String msg = body.getString(AppContent.FIREBASE_MSG);
                 String type = body.getString(AppContent.FIREBASE_TYPE);
-
+                String status = body.getString(AppContent.FIREBASE_STATUS);
+                if (status.equals(AppContent.DRIVER_APPROVED)) {
+                    new NavigateUtil().activityIntent(this, LoginActivity.class, false);
+                    return;
+                }
                 switch (type) {
                     case AppContent.TYPE_ORDER_4STATION:
                     case AppContent.TYPE_ORDER_PUBLIC:
@@ -99,22 +110,21 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
 
                 checkNavigate(bundle);
 
-                if (body.getString(AppContent.FIREBASE_STATUS).contains(AppContent.NEW_ORDER)) {
+                if (status.contains(AppContent.NEW_ORDER)) {
                     if (!isLoadingNewOrder) {
                         createNewOrder(id, type);
                     }
                 } else if (type.equals(AppContent.TYPE_ORDER_PUBLIC)
                         || type.equals(AppContent.TYPE_ORDER_4STATION)) {
                     navigate(OrdersFragment.page);
-                    if (!body.isNull(AppContent.FIREBASE_STATUS)) {
-                        if (body.getString(AppContent.FIREBASE_STATUS).equals(AppContent.NEW_MESSAGE)) {
+                        if (status.equals(AppContent.NEW_MESSAGE)) {
                             if (type.equals(AppContent.TYPE_ORDER_PUBLIC)) {
                                 presenter.getPublicOrder(id, type);
                             } else {
-                               presenter.getOrderStation(id,type);
+                                presenter.getOrderStation(id, type);
                             }
                         }
-                    }
+
                 } else if (type.contains(AppContent.WALLET)) {
                     navigate(WalletFragment.page);
                 } else if (type.equals(AppContent.RATE)) {
@@ -228,7 +238,9 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
 
         //logout
         logout.setOnMenuItemClickListener(menuItem -> {
-            presenter.logout();
+            SignOutDialog signOutDialog = new SignOutDialog(this, getSupportFragmentManager()
+                    , signOutDialog1 -> presenter.logout(signOutDialog1));
+            signOutDialog.show();
             return false;
         });
 
@@ -274,6 +286,8 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
     }
 
     public void navigate(int page) {
+        binding.drawerLayout.closeDrawer(GravityCompat.START);
+
         binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_inactive);
         binding.appBarMain.ivIcWallet.setBackgroundResource(R.drawable.ic_wallet_inactive);
         binding.appBarMain.ivIcOrders.setBackgroundResource(R.drawable.ic_order_inactive);
@@ -285,14 +299,14 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
 
         switch (page) {
             case HomeFragment.page://1
-                //createNewOrder(28, AppContent.TYPE_ORDER_4STATION);
-                HomeFragment homeFragment = HomeFragment.newInstance();
-                new NavigateUtil().replaceFragment(getSupportFragmentManager()
-                        , homeFragment, R.id.nav_host_fragment_content_main);
-                binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_active);
-                binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.colorPrimary));
-                binding.appBarMain.tvPageTitle.setText(R.string.home);
-                binding.drawerLayout.closeDrawer(GravityCompat.START);
+                if (!HomeFragment.isOpen) {
+                    HomeFragment homeFragment = HomeFragment.newInstance();
+                    new NavigateUtil().replaceFragment(getSupportFragmentManager()
+                            , homeFragment, R.id.nav_host_fragment_content_main);
+                    binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_active);
+                    binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.colorPrimary));
+                    binding.appBarMain.tvPageTitle.setText(R.string.home);
+                }
                 break;
 
             case WalletFragment.page://2
@@ -317,6 +331,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 ProfileFragment profileFragment = ProfileFragment.newInstance(this);
                 new NavigateUtil().replaceFragment(getSupportFragmentManager()
                         , profileFragment, R.id.nav_host_fragment_content_main);
+                profileFragment.setListener(this::dataOfNavigationHeader);
                 binding.appBarMain.ivIcProfile.setBackgroundResource(R.drawable.ic_profile_active);
                 binding.appBarMain.tvTextProfile.setTextColor(getColor(R.color.colorPrimary));
                 binding.appBarMain.tvPageTitle.setText(R.string.profile);

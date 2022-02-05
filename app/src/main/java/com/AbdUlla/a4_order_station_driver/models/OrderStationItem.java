@@ -8,72 +8,79 @@ import java.util.ArrayList;
 
 public class OrderStationItem implements Serializable {
 
-    @SerializedName("id")
-    @Expose
-    private int id;
+//    @SerializedName("TestOrderItem")
+//    private OrderStationITemData TestOrderItem;
+//
+//    public OrderStationITemData getTestOrderItem() {
+//        return TestOrderItem;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        return "OrderStationItem{" +
+//                "TestOrderItem=" + TestOrderItem +
+//                '}';
+//    }
+//
+//    public class OrderStationITemData implements Serializable {
+        @SerializedName("id")
+        @Expose
+        private int id;
 
-    @SerializedName("item_id")
-    @Expose
-    private String item_id;
-
-    @SerializedName("item_name")
-    @Expose
-    private String item_name;
+        @SerializedName("name")
+        @Expose
+        private String name;
 
 //    @SerializedName("price")
 //    @Expose
 //    private double price;
 
-    @SerializedName("qty")
-    @Expose
-    private String qty;
+        @SerializedName("qty")
+        @Expose
+        private String qty;
 
-    @SerializedName("total")
-    @Expose
-    private String total;
+        @SerializedName("price")
+        @Expose
+        private String price;
 
-    @SerializedName("extra_items")
-    @Expose
-    private ArrayList<OrderStationItemExtra> extra_items;
+        @SerializedName("extra_items")
+        @Expose
+        private ArrayList<OrderStationItemExtra> extra_items;
 
-    public int getId() {
-        return id;
-    }
+        public int getId() {
+            return id;
+        }
 
-    public String getItem_id() {
-        return item_id;
-    }
-
-    public String getItem_name() {
-        return item_name;
-    }
+        public String getName() {
+            return name;
+        }
 
 //    public double getPrice() {
 //        return price;
 //    }
 
-    public String getQty() {
-        return qty;
-    }
+        public String getQty() {
+            return qty;
+        }
 
-    public String getTotal() {
-        return total;
-    }
+        public String getPrice() {
+            return price;
+        }
 
-    public ArrayList<OrderStationItemExtra> getExtra_items() {
-        return extra_items;
-    }
+        public ArrayList<OrderStationItemExtra> getExtra_items() {
+            return extra_items;
+        }
 
-    @Override
-    public String toString() {
-        return "TestOrderItem{" +
-                "id=" + id +
-                ", item_id=" + item_id +
-                ", item_name='" + item_name + '\'' +
-                //", price=" + price +
-                ", qty=" + qty +
-                ", total=" + total +
-                ", extra_items=" + extra_items +
-                '}';
-    }
+        @Override
+        public String toString() {
+            return "TestOrderItem{" +
+                    "id=" + id +
+                    ", item_name='" + name + '\'' +
+                    //", price=" + price +
+                    ", qty=" + qty +
+                    ", total=" + price +
+                    ", extra_items=" + extra_items +
+                    '}';
+        }
+  //  }
 }

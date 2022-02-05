@@ -46,6 +46,7 @@ public interface AppContent {
     String CANCEL_STATUS = "cancel";
     String READY_STATUS = "ready";
     String PENDING_STATUS = "pending";
+    String CONFIRM_DELIVIERY = "confirm_deliverd";
 
     //map to reset password
     String RESET_MOBILE = "mobile";

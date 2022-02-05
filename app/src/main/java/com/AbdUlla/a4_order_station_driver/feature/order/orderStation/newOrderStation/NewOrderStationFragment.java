@@ -1,5 +1,6 @@
 package com.AbdUlla.a4_order_station_driver.feature.order.orderStation.newOrderStation;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -67,6 +68,7 @@ public class NewOrderStationFragment extends Fragment implements DialogView<Mess
     }
 
     //function
+    @SuppressLint("SetTextI18n")
     public void data() {
         String currency = AppController.getInstance().getAppSettingsPreferences()
                 .getUser().getCountry().getCurrency_code();
@@ -75,11 +77,9 @@ public class NewOrderStationFragment extends Fragment implements DialogView<Mess
                 .getAppSettingsPreferences().getTrackingOrderStation();
 
         //binding.tvOrderId.setText((getString(R.string.order) + "#" + testOrder.getInvoice_number()));
-        binding.tvDelivery.setText((DecimalFormatterManager.getFormatterInstance()
-                .format(orderStation.getDelivery()) + " " + currency));
+        binding.tvDelivery.setText(orderStation.getSub_total_1() + " " + currency);
 
-        binding.tvSubTotalAfter.setText((DecimalFormatterManager.getFormatterInstance()
-                .format(orderStation.getSub_total_2()) + " " + currency));
+        binding.tvSubTotalAfter.setText(orderStation.getSub_total_2() + " " + currency);
         /*if (!TextUtils.isEmpty(testOrder.getDiscount()))
             if (Integer.parseInt(testOrder.getDiscount()) <= 0) {
                 binding.tvDiscount.setText((DecimalFormatterManager.getFormatterInstance()
@@ -95,16 +95,14 @@ public class NewOrderStationFragment extends Fragment implements DialogView<Mess
                     .format(testOrder.getDelivery()) + " " + currency));
                     */
         //if (!TextUtils.isEmpty(testOrder.getTax()))
-        binding.tvVat.setText((DecimalFormatterManager.getFormatterInstance()
-                .format(orderStation.getTax()) + " " + currency));
+        binding.tvVat.setText(orderStation.getTax() + " " + currency);
         //if (!TextUtils.isEmpty(testOrder.getDelivery()))
 
         //if (!TextUtils.isEmpty(testOrder.getTotal()))
-        binding.tvTotal.setText((DecimalFormatterManager.getFormatterInstance()
-                .format(orderStation.getTotal()) + " " + currency));
+        binding.tvTotal.setText(orderStation.getTotal() + " " + currency);
         //if (!TextUtils.isEmpty(testOrder.getType_of_receive()))
         binding.tvReceive.setText(orderStation.getType_of_receive());
-
+        binding.tvDeliveryFees.setText(orderStation.getDelivery() + " " + currency);
         binding.tvTime.setText(orderStation.getOrder_date());
 //shop info
         //APIImageUtil.loadImage(getContext(), binding.pbWaitCoImage, testOrder.getShop().getLogo_url(), binding.ivCoImage);

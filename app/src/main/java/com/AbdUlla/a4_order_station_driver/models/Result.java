@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Result<T> extends Message implements Serializable {
 
-    @SerializedName(value = "data", alternate = {"app_settings", "wallets", "rate", "cities", "public_order"})
+    @SerializedName(value = "data", alternate = {"app_settings", "wallets", "cities", "public_order"})
     @Expose
     private T data;
 

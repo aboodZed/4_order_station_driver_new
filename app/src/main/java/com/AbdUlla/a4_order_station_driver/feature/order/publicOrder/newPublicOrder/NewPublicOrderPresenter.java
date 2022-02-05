@@ -28,8 +28,8 @@ class NewPublicOrderPresenter {
             @Override
             public void onSuccess(Message message, String msg) {
                 dialogView.hideDialog();
-                AppController.getInstance().getAppSettingsPreferences()
-                        .setTrackingPublicOrder(publicOrder);
+                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(publicOrder);
+                AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
                 OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
                 baseActivity.navigate(OrdersFragment.page);
             }

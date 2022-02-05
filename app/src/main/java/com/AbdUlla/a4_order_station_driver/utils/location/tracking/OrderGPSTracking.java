@@ -48,46 +48,48 @@ public class OrderGPSTracking {
             return;
         }
         Order order = AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation();
-        if (order == null){
+        if (order == null) {
             order = AppController.getInstance().getAppSettingsPreferences().getTrackingPublicOrder();
         }
-        if (order.getType().equals(AppContent.TYPE_ORDER_PUBLIC)) {
-            db = FirebaseDatabase.getInstance().getReference(AppContent.PUBLIC_TRACKING_INSTANCE).child(order.getId() + "");
-        } else {
-            db = FirebaseDatabase.getInstance().getReference(AppContent.TRACKING_INSTANCE).child(order.getId() + "");
-        }
-        GPSLocation gpsLocation = new GPSLocation();
+        if (order != null) {
+            if (order.getType().equals(AppContent.TYPE_ORDER_PUBLIC)) {
+                db = FirebaseDatabase.getInstance().getReference(AppContent.PUBLIC_TRACKING_INSTANCE).child(order.getId() + "");
+            } else {
+                db = FirebaseDatabase.getInstance().getReference(AppContent.TRACKING_INSTANCE).child(order.getId() + "");
+            }
+            GPSLocation gpsLocation = new GPSLocation();
 
-        locationListener = new LocationListener() {
-            @Override
-            public void onLocationChanged(Location location) {
-                // Got last known location. In some rare situations this can be null.
-                if (location != null) {
-                    gpsLocation.setLat(location.getLatitude());
-                    gpsLocation.setLng(location.getLongitude());
-                    db.setValue(gpsLocation);
-                    Log.e(getClass().getName() + " : tracking", gpsLocation.toString());
-                } else {
-                    lm.removeUpdates(locationListener);
+            locationListener = new LocationListener() {
+                @Override
+                public void onLocationChanged(Location location) {
+                    // Got last known location. In some rare situations this can be null.
+                    if (location != null) {
+                        gpsLocation.setLat(location.getLatitude());
+                        gpsLocation.setLng(location.getLongitude());
+                        db.setValue(gpsLocation);
+                        Log.e(getClass().getName() + " : tracking", gpsLocation.toString());
+                    } else {
+                        lm.removeUpdates(locationListener);
+                    }
                 }
-            }
 
-            @Override
-            public void onStatusChanged(String s, int i, Bundle bundle) {
+                @Override
+                public void onStatusChanged(String s, int i, Bundle bundle) {
 
-            }
+                }
 
-            @Override
-            public void onProviderEnabled(String s) {
+                @Override
+                public void onProviderEnabled(String s) {
 
-            }
+                }
 
-            @Override
-            public void onProviderDisabled(String s) {
+                @Override
+                public void onProviderDisabled(String s) {
 
-            }
-        };
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
+                }
+            };
+            lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0, locationListener);
+        }
     }
 
     public void removeUpdates() {

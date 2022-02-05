@@ -31,12 +31,14 @@ public class ProfilePresenter {
     private DialogView<String> dialogView;
     private PhotoTakerManager photoTakerManager;
     private int requestCode;
+    private ProfileFragment.Listener listener;
 
     public ProfilePresenter(BaseActivity baseActivity, DialogView<String> dialogView,
-                            PhotoTakerManager photoTakerManager) {
+                            PhotoTakerManager photoTakerManager, ProfileFragment.Listener listener) {
         this.baseActivity = baseActivity;
         this.dialogView = dialogView;
         this.photoTakerManager = photoTakerManager;
+        this.listener = listener;
     }
 
     public void validInput(FragmentProfileBinding binding, HashMap<String, String> map) {
@@ -80,16 +82,16 @@ public class ProfilePresenter {
 //                    @Override
 //                    public void onSuccess(Result<ArrayList<City>> result, String msg) {
 //                       dialogView.hideDialog();
-                        ArrayList<City> cities = AppController
-                                .getInstance().getAppSettingsPreferences().getCities().getCities();
-                        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(baseActivity, cities);
-                        binding.spNeighborhood.setAdapter(spinnerAdapter);
-                        for (int i = 0; i < cities.size(); i++) {
-                            if (cities.get(i).getId() == AppController.getInstance()
-                                    .getAppSettingsPreferences().getUser().getCity().getId()) {
-                                binding.spNeighborhood.setSelection(i);
-                            }
-                        }
+        ArrayList<City> cities = AppController
+                .getInstance().getAppSettingsPreferences().getCities().getCities();
+        SpinnerAdapter spinnerAdapter = new SpinnerAdapter(baseActivity, cities);
+        binding.spNeighborhood.setAdapter(spinnerAdapter);
+        for (int i = 0; i < cities.size(); i++) {
+            if (cities.get(i).getId() == AppController.getInstance()
+                    .getAppSettingsPreferences().getUser().getCity().getId()) {
+                binding.spNeighborhood.setSelection(i);
+            }
+        }
 //                    }
 //
 //                    @Override
@@ -114,7 +116,7 @@ public class ProfilePresenter {
             public void onSuccess(Result<User> result, String msg) {
                 AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
                 dialogView.hideDialog();
-                baseActivity.recreate();
+                listener.onProfileUpdate();
                 baseActivity.navigate(ProfileFragment.page);
             }
 

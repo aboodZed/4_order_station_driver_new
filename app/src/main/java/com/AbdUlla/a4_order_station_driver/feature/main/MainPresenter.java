@@ -8,6 +8,7 @@ import com.AbdUlla.a4_order_station_driver.models.OrderStation;
 import com.AbdUlla.a4_order_station_driver.models.PublicOrder;
 import com.AbdUlla.a4_order_station_driver.models.Result;
 import com.AbdUlla.a4_order_station_driver.models.User;
+import com.AbdUlla.a4_order_station_driver.utils.dialogs.SignOutDialog;
 import com.AbdUlla.a4_order_station_driver.utils.dialogs.WaitDialogFragment;
 import com.AbdUlla.a4_order_station_driver.utils.util.APIUtil;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
@@ -82,7 +83,7 @@ class MainPresenter {
         });
     }
 
-    public void logout() {
+    public void logout(SignOutDialog signOutDialog) {
         dialogView.showDialog("");
         new APIUtil<Message>(baseActivity).getData(AppController.getInstance()
                 .getApi().isOnline(false), new RequestListener<Message>() {
@@ -92,18 +93,21 @@ class MainPresenter {
                 GPSTracking.getInstance(baseActivity).removeMyUpdates();
                 new NavigateUtil().activityIntent(baseActivity, LoginActivity.class, false);
                 dialogView.hideDialog();
+                signOutDialog.dismiss();
             }
 
             @Override
             public void onError(String msg) {
                 ToolUtil.showLongToast(msg, baseActivity);
                 dialogView.hideDialog();
+                signOutDialog.dismiss();
             }
 
             @Override
             public void onFail(String msg) {
                 ToolUtil.showLongToast(msg, baseActivity);
                 dialogView.hideDialog();
+                signOutDialog.dismiss();
             }
         });
     }

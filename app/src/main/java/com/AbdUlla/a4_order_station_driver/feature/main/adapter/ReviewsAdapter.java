@@ -9,6 +9,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.AbdUlla.a4_order_station_driver.databinding.ItemRatingBinding;
 import com.AbdUlla.a4_order_station_driver.models.Rating;
+import com.AbdUlla.a4_order_station_driver.utils.AppContent;
+import com.AbdUlla.a4_order_station_driver.utils.util.APIImageUtil;
+import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
 
 import java.util.ArrayList;
 
@@ -60,13 +63,14 @@ public class ReviewsAdapter extends RecyclerView.Adapter<ReviewsAdapter.ReviewHo
         }
 
         public void setData(Rating.RatingData review) {
-            /*APIImageUtil.loadImage(activity, binding.pbWaitAvater, review.getUser().getAvatar_url(), binding.ivUserImage);
-            binding.tvUserName.setText(review.getUser().getName());
+            APIImageUtil.loadImage(activity, binding.pbWaitAvatar, AppContent.IMAGE_STORAGE_URL
+                    + review.getCustomer().getAvatar(), binding.ivUserImage);
+            binding.tvUserName.setText(review.getCustomer().getName());
             binding.tvReviewText.setText(review.getReview());
             float rate = Float.parseFloat(review.getRate());
             binding.rbReview.setRating(rate);
-            binding.tvDatetime.setText((ToolUtil.getTime(review.getCreated_timestamp()) + " "
-                    + ToolUtil.getDate(review.getCreated_timestamp())));*/
+//            binding.tvDatetime.setText((ToolUtil.getTime(review.getCreated_timestamp()) + " "
+//                    + ToolUtil.getDate(review.getCreated_timestamp())));
         }
     }
 }

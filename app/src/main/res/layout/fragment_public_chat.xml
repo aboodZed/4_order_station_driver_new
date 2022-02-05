@@ -211,7 +211,7 @@
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_weight="9"
                 android:background="@color/white"
-                android:hint="@string/type"
+                android:hint="@string/write"
                 android:padding="@dimen/small_padding"
                 tools:ignore="NestedWeights" />
 

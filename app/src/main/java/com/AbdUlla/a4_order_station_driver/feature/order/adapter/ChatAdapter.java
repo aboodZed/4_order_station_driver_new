@@ -87,13 +87,18 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         private void setData(ChatMessage data) {
             if (data.getImageUrl() != null) {
                 if (!data.getImageUrl().isEmpty()) {
-                    APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getImageUrl(), binding.image);
+                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.ivImage);
                     binding.progressBar.setVisibility(View.VISIBLE);
-                    binding.image.setVisibility(View.VISIBLE);
+                    binding.ivImage.setVisibility(View.VISIBLE);
+                } else {
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.ivImage.setVisibility(View.GONE);
+                    binding.tvMessageText.setVisibility(View.VISIBLE);
+                    binding.tvMessageText.setText(data.getText());
                 }
             } else {
                 binding.progressBar.setVisibility(View.GONE);
-                binding.image.setVisibility(View.GONE);
+                binding.ivImage.setVisibility(View.GONE);
                 binding.tvMessageText.setVisibility(View.VISIBLE);
                 binding.tvMessageText.setText(data.getText());
             }
@@ -115,21 +120,29 @@ public class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         private void setData(ChatMessage data) {
-            if (!data.getImageUrl().isEmpty()) {
-                APIImageUtil.loadImage(activity, binding.progressBar, IMAGE_STORAGE_URL + data.getImageUrl(), binding.image);
-                binding.progressBar.setVisibility(View.VISIBLE);
-                binding.image.setVisibility(View.VISIBLE);
+            if (data.getImageUrl() != null) {
+                if (!data.getImageUrl().isEmpty()) {
+                    APIImageUtil.loadImage(activity, binding.progressBar, data.getImageUrl(), binding.ivImage);
+                    binding.progressBar.setVisibility(View.VISIBLE);
+                    binding.ivImage.setVisibility(View.VISIBLE);
+                } else {
+                    binding.progressBar.setVisibility(View.GONE);
+                    binding.ivImage.setVisibility(View.GONE);
+                    binding.tvMessageText.setVisibility(View.VISIBLE);
+                    binding.tvMessageText.setText(data.getText());
+                }
             } else {
                 binding.progressBar.setVisibility(View.GONE);
-                binding.image.setVisibility(View.GONE);
+                binding.ivImage.setVisibility(View.GONE);
                 binding.tvMessageText.setVisibility(View.VISIBLE);
                 binding.tvMessageText.setText(data.getText());
             }
-            try {
-                binding.tvMessageTime.setText(dateFormat.format(data.getTime()));
-            } catch (Exception e) {
-                Log.e("error", "" + e.getMessage());
-            }
+
+//            try {
+            binding.tvMessageTime.setText(ToolUtil.getTime((long) data.getTime()));
+//            } catch (Exception e) {
+//                Log.e("error", "" + e.getMessage());
+//            }
             APIImageUtil.loadImage(activity, binding.pbWaitAvatar
                     , data.getSender_avatar_url(), binding.ivUserImage);
         }

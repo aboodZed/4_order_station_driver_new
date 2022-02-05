@@ -65,7 +65,7 @@ public class Order implements Serializable {
     @Expose
     private String type_of_receive;
 
-    @SerializedName("items_count")
+    @SerializedName(value = "items_count", alternate = {"extra_items_count"})
     @Expose
     private String items_count;
 

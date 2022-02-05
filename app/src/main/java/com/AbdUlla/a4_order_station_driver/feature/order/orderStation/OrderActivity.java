@@ -54,9 +54,10 @@ public class OrderActivity extends BaseActivity {
     @SuppressLint("SetTextI18n")
     @Override
     public void navigate(int page) {
-        binding.tvPageTitle.setText(getString(R.string.order) + AppController.getInstance().getAppSettingsPreferences()
-                .getTrackingOrderStation().getInvoice_number());
-
+        if (AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation() != null) {
+            binding.tvPageTitle.setText(getString(R.string.order) + AppController.getInstance().getAppSettingsPreferences()
+                    .getTrackingOrderStation().getInvoice_number());
+        }
         switch (page) {
             case NewOrderStationFragment.page://6 new order station
                 NewOrderStationFragment newOrderFragment = NewOrderStationFragment

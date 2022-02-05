@@ -3,6 +3,7 @@ package com.AbdUlla.a4_order_station_driver.feature.order.orderStation.orderStat
 import static com.AbdUlla.a4_order_station_driver.utils.AppContent.PHONE_CALL_CODE;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -98,6 +99,7 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void setData(OrderStation orderStation) {
         String currency = AppController.getInstance().getAppSettingsPreferences().getUser()
@@ -126,8 +128,9 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
             binding.ivReceiverChat.setVisibility(View.GONE);
         }
         //binding.tvOrderId.setText((getString(R.string.order) + "#" + this.orderStation.getInvoice_number()));
+        binding.tvTime.setText(this.orderStation.getOrder_date());
         if (!TextUtils.isEmpty(this.orderStation.getSub_total_1()))
-            binding.tvTime.setText(this.orderStation.getSub_total_1() + " " + currency);
+            binding.tvDelivery.setText(this.orderStation.getSub_total_1() + " " + currency);
         if (!TextUtils.isEmpty(this.orderStation.getDiscount()))
             if (Integer.parseInt(this.orderStation.getDiscount()) <= 0) {
                 binding.tvDeliveryFees.setText(this.orderStation.getDiscount() + " " + currency);
@@ -139,7 +142,7 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
         if (!TextUtils.isEmpty(this.orderStation.getTax()))
             binding.tvVat.setText(this.orderStation.getTax() + " " + currency);
         if (!TextUtils.isEmpty(this.orderStation.getDelivery()))
-            binding.tvDelivery.setText(this.orderStation.getDelivery() + " " + currency);
+            binding.tvDeliveryFees.setText(this.orderStation.getDelivery() + " " + currency);
         if (!TextUtils.isEmpty(this.orderStation.getTotal()))
             binding.tvTotal.setText(this.orderStation.getTotal() + " " + currency);
         if (!TextUtils.isEmpty(this.orderStation.getType_of_receive()))

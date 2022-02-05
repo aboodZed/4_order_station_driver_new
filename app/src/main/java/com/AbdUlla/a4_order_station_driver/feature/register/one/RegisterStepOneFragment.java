@@ -12,6 +12,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 
+import com.AbdUlla.a4_order_station_driver.R;
 import com.AbdUlla.a4_order_station_driver.databinding.FragmentRegisterStep1Binding;
 import com.AbdUlla.a4_order_station_driver.feature.register.adapter.SpinnerAdapter;
 import com.AbdUlla.a4_order_station_driver.models.AppSettings;
@@ -112,7 +113,7 @@ public class RegisterStepOneFragment extends Fragment implements RequestListener
 
     @Override
     public void setData(ArrayList<City> result) {
-        result.add(0, new City(0, ""));
+        result.add(0, new City(0, getString(R.string.select_city)));
         spinnerAdapter = new SpinnerAdapter(requireContext(), result);
         binding.spNeighborhood.setAdapter(spinnerAdapter);
     }

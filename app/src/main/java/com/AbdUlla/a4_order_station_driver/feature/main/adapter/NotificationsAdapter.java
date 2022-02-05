@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.AbdUlla.a4_order_station_driver.R;
 import com.AbdUlla.a4_order_station_driver.databinding.ItemNotificationBinding;
+import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
+import com.AbdUlla.a4_order_station_driver.feature.main.wallets.WalletFragment;
 import com.AbdUlla.a4_order_station_driver.feature.order.orderStation.newOrderStation.NewOrderStationFragment;
 import com.AbdUlla.a4_order_station_driver.feature.order.publicOrder.publicOrderView.PublicOrderViewFragment;
 import com.AbdUlla.a4_order_station_driver.models.Notification;
@@ -119,7 +121,13 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                 } else {
                     openPublicOrder();
                 }
+            } else if (type.equals(AppContent.WALLET)) {
+                openWallet();
             }
+        }
+
+        private void openWallet() {
+            new NavigateUtil().activityIntentWithPage(baseActivity, MainActivity2.class, true, WalletFragment.page);
         }
 
         private void openOrderStation() {

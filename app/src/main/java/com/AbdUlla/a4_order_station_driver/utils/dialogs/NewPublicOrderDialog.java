@@ -58,8 +58,12 @@ public class NewPublicOrderDialog extends DialogFragment {
                 .getDrawable(R.drawable.back_new_public_order));
         binding.btnView.setOnClickListener(view -> {
             dismiss();
-            new NavigateUtil().openPublicOrder(getContext(), publicOrder
-                    , NewPublicOrderFragment.page, true);
+            if (publicOrder.getStatus().equals(AppContent.PENDING_STATUS)) {
+                new NavigateUtil().openPublicOrder(getContext(), publicOrder
+                        , NewPublicOrderFragment.page, true);
+            } else {
+                ToolUtil.showLongToast(getString(R.string.this_order_taken), requireActivity());
+            }
             listener.allowLoadNewOrder();
         });
         binding.btnCancel.setOnClickListener(view ->

@@ -24,9 +24,9 @@ class RatingPresenter {
         new APIUtil<Rating>(activity).getData(AppController.getInstance()
                 .getApi().getRating(), new RequestListener<Rating>() {
             @Override
-            public void onSuccess(Rating testRating, String msg) {
+            public void onSuccess(Rating rating, String msg) {
                 dialogView.hideDialog();
-                dialogView.setData(testRating);
+                dialogView.setData(rating);
             }
 
             @Override

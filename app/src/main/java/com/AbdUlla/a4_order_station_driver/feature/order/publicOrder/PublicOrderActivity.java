@@ -15,6 +15,8 @@ import com.AbdUlla.a4_order_station_driver.utils.AppController;
 import com.AbdUlla.a4_order_station_driver.utils.language.BaseActivity;
 import com.AbdUlla.a4_order_station_driver.utils.util.NavigateUtil;
 
+import java.util.Objects;
+
 public class PublicOrderActivity extends BaseActivity {
 
     public final static int page = 700;
@@ -36,13 +38,7 @@ public class PublicOrderActivity extends BaseActivity {
     }
 
     private void setData() {
-        PublicOrder publicOrder = AppController.getInstance().getAppSettingsPreferences()
-                .getTrackingPublicOrder();
-        if (publicOrder.getStatus().equals(AppContent.PENDING_STATUS)) {
-            navigate(NewPublicOrderFragment.page);
-        } else {
-            navigate(PublicOrderViewFragment.page);
-        }
+        navigate(Objects.requireNonNull(getIntent().getExtras()).getInt(AppContent.PAGE));
     }
 
     @SuppressLint("SetTextI18n")

@@ -54,22 +54,22 @@ public class OrderItemsAdapter extends RecyclerView.Adapter<OrderItemsAdapter.Or
         }
 
         @SuppressLint("SetTextI18n")
-        public void setData(OrderStationItem testOrderItem) {
+        public void setData(OrderStationItem orderStationItem) {
             //OrderItemItem item = orderItem.getExtra_items();
-            if (AppController.getInstance().getAppSettingsPreferences().getAppLanguage().equals("en")) {
-                binding.tvItemName.setText(testOrderItem.getItem_name());
-                for (OrderStationItemExtra s : testOrderItem.getExtra_items()) {
+            binding.tvItemName.setText(orderStationItem.getName());
+            if (orderStationItem.getExtra_items() != null)
+                for (OrderStationItemExtra s : orderStationItem.getExtra_items()) {
                     binding.tvItemDescribe.append(s.getName() + "\n");
                 }
-            }
+
             /*} else {
                 binding.tvItemName.setText(item.getName_ar());
                 for (ExtraItems s : orderItem.getExtra_items()) {
                     binding.tvItemDescribe.append(s.getName_ar() + "\n");
                 }
             }*/
-            binding.tvItemQnt.setText(testOrderItem.getQty());
-            binding.tvItemPrice.setText(testOrderItem.getTotal() + " " + AppController.getInstance()
+            binding.tvItemQnt.setText(orderStationItem.getQty());
+            binding.tvItemPrice.setText(orderStationItem.getPrice() + " " + AppController.getInstance()
                     .getAppSettingsPreferences().getUser().getCountry().getCurrency_code());
         }
     }

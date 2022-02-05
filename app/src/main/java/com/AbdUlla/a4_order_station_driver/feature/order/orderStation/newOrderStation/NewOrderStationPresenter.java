@@ -30,8 +30,8 @@ public class NewOrderStationPresenter {
             public void onSuccess(Message message, String msg) {
                 dialogView.hideDialog();
 
-                AppController.getInstance().getAppSettingsPreferences()
-                        .setTrackingOrderStation(orderStation);
+                AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(orderStation);
+                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
                 OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
 
                 ToolUtil.showLongToast(baseActivity.getString(R.string.closeApp), baseActivity);

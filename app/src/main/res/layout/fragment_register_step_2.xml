@@ -101,6 +101,7 @@
                         android:id="@+id/iv_vehicle"
                         android:layout_width="@dimen/medium_avatar"
                         android:layout_height="@dimen/medium_avatar"
+                        android:scaleType="fitXY"
                         android:src="@drawable/photo_capture" />
 
                 </LinearLayout>
@@ -131,6 +132,7 @@
                         android:layout_width="@dimen/medium_avatar"
                         android:layout_height="@dimen/medium_avatar"
                         android:layout_weight="1"
+                        android:scaleType="fitXY"
                         android:src="@drawable/photo_capture" />
 
                 </LinearLayout>
@@ -153,6 +155,7 @@
                         android:layout_width="@dimen/medium_avatar"
                         android:layout_height="@dimen/medium_avatar"
                         android:layout_marginTop="@dimen/small_margin"
+                        android:scaleType="fitXY"
                         android:src="@drawable/photo_capture" />
                 </LinearLayout>
 
@@ -181,6 +184,7 @@
                         android:layout_width="@dimen/medium_avatar"
                         android:layout_height="@dimen/medium_avatar"
                         android:layout_marginTop="@dimen/small_margin"
+                        android:scaleType="fitXY"
                         android:src="@drawable/photo_capture" />
                 </LinearLayout>
 
@@ -202,6 +206,7 @@
                         android:layout_width="@dimen/medium_avatar"
                         android:layout_height="@dimen/medium_avatar"
                         android:layout_marginTop="@dimen/small_margin"
+                        android:scaleType="fitXY"
                         android:src="@drawable/photo_capture" />
                 </LinearLayout>
 

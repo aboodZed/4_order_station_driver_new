@@ -186,7 +186,7 @@ on the number</string>
     <string name="total_rate">Total Rate</string>
     <string name="contact_form">Contact Form</string>
     <string name="title">Message title</string>
-    <string name="type">type...</string>
+    <string name="type">type:</string>
     <string name="unread">Unread</string>
     <string name="read">Read</string>
     <string name="time">Time</string>
@@ -229,4 +229,7 @@ on the number</string>
     <string name="amount">Amount</string>
     <string name="select_city">Select city</string>
     <string name="register_successfully">You register in app successfully\nwaiting for you approval</string>
+    <string name="this_order_taken">This order already taken</string>
+    <string name="write">type...</string>
+    <string name="check_sign_out">Are you sure, you want to sign out</string>
 </resources>
