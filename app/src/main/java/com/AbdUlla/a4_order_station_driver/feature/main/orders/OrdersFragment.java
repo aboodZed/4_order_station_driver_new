@@ -29,6 +29,7 @@ public class OrdersFragment extends Fragment implements DialogView<Orders> {
     private PublicOrderAdapter publicOrderAdapter;
     private ProcessOrderAdapter processOrderAdapter;
     private static BaseActivity baseActivity;
+    public static boolean isOrderStation;
 
     public static OrdersFragment newInstance(BaseActivity baseActivity) {
         OrdersFragment.baseActivity = baseActivity;
@@ -45,12 +46,18 @@ public class OrdersFragment extends Fragment implements DialogView<Orders> {
     }
 
     private void click() {
-        binding.llOrderStation.setOnClickListener(v -> switchClick(true));
-        binding.llPublicOrder.setOnClickListener(v -> switchClick(false));
+        binding.llOrderStation.setOnClickListener(v -> {
+            isOrderStation = true;
+            switchClick();
+        });
+        binding.llPublicOrder.setOnClickListener(v -> {
+            isOrderStation = false;
+            switchClick();
+        });
     }
 
-    private void switchClick(boolean is_4order_station) {
-        if (is_4order_station) {
+    private void switchClick() {
+        if (isOrderStation) {
             binding.tvOrderStationText.setTextColor(baseActivity.getColor(R.color.red));
             binding.tvPublicOrderText.setTextColor(baseActivity.getColor(R.color.light_blue));
             binding.vOrderStationLine.setVisibility(View.VISIBLE);
@@ -98,15 +105,16 @@ public class OrdersFragment extends Fragment implements DialogView<Orders> {
 
         processOrderAdapter.setProcessListener(() -> WaitDialogFragment.newInstance()
                 .show(getParentFragmentManager(), ""));
+        switchClick();
     }
 
     @Override
     public void setData(Orders orders) {
         initRecycleView();
         processOrderAdapter.addAll(orders.getIn_progress_order());
-         ordersAdapter.addAll(orders.getDelivered_orders());
+        ordersAdapter.addAll(orders.getDelivered_orders());
         publicOrderAdapter.addAll(orders.getDelivered_public_orders());
-       if (!orders.getIn_progress_order().isEmpty()) {
+        if (!orders.getIn_progress_order().isEmpty()) {
             binding.tvInProgress.setVisibility(View.VISIBLE);
             binding.tvOther.setVisibility(View.VISIBLE);
         }

@@ -28,10 +28,18 @@ class NewPublicOrderPresenter {
             @Override
             public void onSuccess(Message message, String msg) {
                 dialogView.hideDialog();
-                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(publicOrder);
-                AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
-                OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
-                baseActivity.navigate(OrdersFragment.page);
+                if (message.isSuccess()) {
+                    AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(publicOrder);
+                    AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
+                    OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
+                    baseActivity.navigate(OrdersFragment.page);
+                } else {
+                    StringBuilder errors = new StringBuilder();
+                    for (String s : message.getErrors()) {
+                        errors.append(s).append("\n");
+                    }
+                    ToolUtil.showLongToast(errors.toString(), baseActivity);
+                }
             }
 
             @Override

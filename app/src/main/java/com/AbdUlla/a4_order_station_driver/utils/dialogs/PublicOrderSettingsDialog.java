@@ -56,12 +56,12 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
     private void data() {
         if (publicOrder.getStatus().equals(AppContent.TO_STORE_STATUS)) {
             binding.tvDelivery.setVisibility(View.GONE);
-            if (TextUtils.isEmpty(AppController.getInstance().getAppSettingsPreferences()
-                    .getTrackingPublicOrder().getPurchase_invoice_value())) {
+            if (!publicOrder.getClient_paid_invoice().equals(AppContent.ONE)) {
                 binding.tvOnTheWayToTheCustomer.setVisibility(View.GONE);
             } else {
                 binding.tvAddBill.setVisibility(View.GONE);
-                if (AppController.getInstance().getAppSettingsPreferences().isPayTheBill()) {
+                if (AppController.getInstance().getAppSettingsPreferences().isPayTheBill()
+                        || publicOrder.getClient_paid_invoice().equals(AppContent.ONE)) {
                     binding.tvCancelOrder.setVisibility(View.GONE);
                 }
             }

@@ -72,6 +72,31 @@ class SplashPresenter {
                     @Override
                     public void onSuccess(Result<ArrayList<City>> result, String msg) {
                         AppController.getInstance().getAppSettingsPreferences().setCities(new Cities(result.getData()));
+                        getUserData();
+                    }
+
+                    @Override
+                    public void onError(String msg) {
+                        ToolUtil.showLongToast(msg, baseActivity);
+                    }
+
+                    @Override
+                    public void onFail(String msg) {
+                        ToolUtil.showLongToast(msg, baseActivity);
+                    }
+                });
+    }
+
+    private void getUserData() {
+        try {
+            Log.e(getClass().getName() + "driver", AppController.getInstance().getAppSettingsPreferences()
+                    .getUser().toString());
+            new APIUtil<Result<User>>(baseActivity).getData(AppController.getInstance().getApi()
+                    .getUserData(), new RequestListener<Result<User>>() {
+                @Override
+                public void onSuccess(Result<User> userResult, String msg) {
+                    if (userResult.isSuccess()) {
+                        AppController.getInstance().getAppSettingsPreferences().setUser(userResult.getData());
                         if (!AppController.getInstance().getAppSettingsPreferences().getToken().trim().equals("Bearer")) {
                             if (AppController.getInstance().getAppSettingsPreferences().getUser() != null) {
                                 if (AppController.getInstance().getAppSettingsPreferences().getUser().isComplete()) {
@@ -89,17 +114,22 @@ class SplashPresenter {
                             baseActivity.navigate(LoginActivity.page);
                         }
                     }
+                }
 
-                    @Override
-                    public void onError(String msg) {
-                        ToolUtil.showLongToast(msg, baseActivity);
-                    }
+                @Override
+                public void onError(String msg) {
+                    baseActivity.navigate(LoginActivity.page);
+                }
 
-                    @Override
-                    public void onFail(String msg) {
-                        ToolUtil.showLongToast(msg, baseActivity);
-                    }
-                });
+                @Override
+                public void onFail(String msg) {
+                    baseActivity.navigate(LoginActivity.page);
+                }
+            });
+        } catch (Exception e) {
+            baseActivity.navigate(LoginActivity.page);
+        }
+
     }
 
     private void setLanguage() {

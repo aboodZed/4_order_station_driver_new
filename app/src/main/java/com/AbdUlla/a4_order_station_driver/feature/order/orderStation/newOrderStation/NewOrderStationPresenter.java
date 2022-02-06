@@ -29,15 +29,22 @@ public class NewOrderStationPresenter {
             @Override
             public void onSuccess(Message message, String msg) {
                 dialogView.hideDialog();
+                if (message.isSuccess()) {
+                    AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(orderStation);
+                    AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
+                    OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
 
-                AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(orderStation);
-                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
-                OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
-
-                ToolUtil.showLongToast(baseActivity.getString(R.string.closeApp), baseActivity);
-                //OrdersFragment.viewPagerPage = OrderStationFragment.viewPagerPage;
-                //WalletFragment.viewPagerPage = OrderStationWalletFragment.viewPagerPage;
-                baseActivity.navigate(OrdersFragment.page);
+                    ToolUtil.showLongToast(baseActivity.getString(R.string.closeApp), baseActivity);
+                    //OrdersFragment.viewPagerPage = OrderStationFragment.viewPagerPage;
+                    //WalletFragment.viewPagerPage = OrderStationWalletFragment.viewPagerPage;
+                    baseActivity.navigate(OrdersFragment.page);
+                } else {
+                    StringBuilder errors = new StringBuilder();
+                    for (String s : message.getErrors()) {
+                        errors.append(s).append("\n");
+                    }
+                    ToolUtil.showLongToast(errors.toString(), baseActivity);
+                }
             }
 
             @Override

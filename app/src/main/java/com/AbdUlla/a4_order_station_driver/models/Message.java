@@ -4,6 +4,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Message implements Serializable {
 
@@ -15,12 +16,20 @@ public class Message implements Serializable {
     @Expose
     private String message;
 
+    @SerializedName("errors")
+    @Expose
+    private ArrayList<String> errors;
+
     public boolean isSuccess() {
         return success;
     }
 
     public String getMessage() {
         return message;
+    }
+
+    public ArrayList<String> getErrors() {
+        return errors;
     }
 
     @Override

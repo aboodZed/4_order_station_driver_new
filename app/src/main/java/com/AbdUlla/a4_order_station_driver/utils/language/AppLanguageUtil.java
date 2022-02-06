@@ -46,7 +46,7 @@ public class AppLanguageUtil {
         Locale locale = new Locale(language);
         Locale.setDefault(locale);
         Configuration config = new Configuration();
-        config.locale = locale;
+        config.setLocale(locale);
         context.getResources().updateConfiguration(config,
                 context.getResources().getDisplayMetrics());
     }

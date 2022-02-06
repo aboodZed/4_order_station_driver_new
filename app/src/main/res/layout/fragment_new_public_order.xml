@@ -362,12 +362,14 @@
                 android:textSize="@dimen/text" />
 
             <View
+                android:id="@+id/v_attachments"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/rate"
                 android:layout_margin="@dimen/small_margin"
                 android:background="@drawable/dash_line" />
 
             <TextView
+                android:id="@+id/tv_attachments"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/small_margin"

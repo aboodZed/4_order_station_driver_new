@@ -81,7 +81,7 @@ public class OrderStationAdapter extends RecyclerView.Adapter<OrderStationAdapte
             binding.tvType.setText(order.getType());
             //binding.tvDate.setText();
             binding.tvNumItems.setText((order.getOrderItems().size() + " " + baseActivity.getString(R.string.items)));
-            //binding.tvPaymentWay.setText(order.getPayment_type());
+            binding.tvPaymentWay.setText(order.getPayment_type());
             binding.tvReceiverPoint.setText(order.getType_of_receive());
             if (order.getStatus().equals(AppContent.DELIVERED_STATUS)) {
                 binding.tvOrderState.setBackgroundResource(R.drawable.green_button);

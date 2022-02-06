@@ -161,23 +161,23 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
                 //tvItemsNum.setText(publicOrder.get);
                 if (order.getStatus().equals(AppContent.DELIVERED_STATUS)) {
                     binding.tvOrderState.setBackgroundResource(R.drawable.green_button);
-                } else if (order.getStatus().equals(AppContent.CANCEL_STATUS)) {
+                } else if (order.getStatus().equals(AppContent.CANCELLED_STATUS)) {
                     binding.tvOrderState.setBackgroundResource(R.drawable.red_button);
                 }
 
                 binding.tvPrice.setText((DecimalFormatterManager.getFormatterInstance()
                         .format(Double.parseDouble(order.getTotal())) + " " + AppController.
                         getInstance().getAppSettingsPreferences().getUser().getCountry().getCurrency_code()));
-                //binding.tvReceiverPoint.setText(publicOrder.get());
+                binding.tvReceiverPoint.setText(baseActivity.getString(R.string.home));
                 binding.tvOrderState.setText(order.getStatus_translation());
-                binding.tvPaymentWay.setText(AppContent.ON_DELIVERY_STATUS.replace("_", " "));
+                binding.tvPaymentWay.setText(order.getPayment_type());
                 binding.tvNumItems.setText("0 Items");
             } else {
                 order.setType(AppContent.TYPE_ORDER_4STATION);
                 binding.tvTime.setText(order.getOrder_date());
                 //binding.tvDate.setText();
                 binding.tvNumItems.setText((order.getItems_count() + " " + baseActivity.getString(R.string.items)));
-                //binding.tvPaymentWay.setText(order.getPayment_type());
+                binding.tvPaymentWay.setText(order.getPayment_type());
                 binding.tvReceiverPoint.setText(order.getType_of_receive());
                 if (order.getStatus().equals(AppContent.DELIVERED_STATUS)) {
                     binding.tvOrderState.setBackgroundResource(R.drawable.green_button);

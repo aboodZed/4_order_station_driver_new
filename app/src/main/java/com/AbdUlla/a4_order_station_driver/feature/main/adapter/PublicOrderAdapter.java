@@ -78,7 +78,7 @@ public class PublicOrderAdapter extends RecyclerView.Adapter<PublicOrderAdapter.
         public void setData(PublicOrder publicOrder) {
             this.publicOrder = publicOrder;
             publicOrder.setType(AppContent.TYPE_ORDER_PUBLIC);
-            binding.tvType.setText(publicOrder.getType());
+            binding.tvType.setText(publicOrder.getType() + " " + baseActivity.getString(R.string.order));
             //String[] s = publicOrder.getCreated_timestamp().split(" ");
             //binding.tvDate.setText((s[0] + "\n" + s[1]));
             binding.tvTime.setText(ToolUtil.getTime(publicOrder.getCreated_timestamp()) + " | " +
@@ -88,7 +88,7 @@ public class PublicOrderAdapter extends RecyclerView.Adapter<PublicOrderAdapter.
             //tvItemsNum.setText(publicOrder.get);
             if (publicOrder.getStatus().equals(AppContent.DELIVERED_STATUS)) {
                 binding.tvOrderState.setBackgroundResource(R.drawable.green_button);
-            } else if (publicOrder.getStatus().equals(AppContent.CANCEL_STATUS)) {
+            } else if (publicOrder.getStatus().equals(AppContent.CANCELLED_STATUS)) {
                 binding.tvOrderState.setBackgroundResource(R.drawable.red_button);
             }
             binding.tvReceiverName.setText(publicOrder.getCustomer().getName());
@@ -96,10 +96,10 @@ public class PublicOrderAdapter extends RecyclerView.Adapter<PublicOrderAdapter.
             binding.tvPrice.setText((DecimalFormatterManager.getFormatterInstance()
                     .format(Double.parseDouble(publicOrder.getTotal())) + " " + AppController.
                     getInstance().getAppSettingsPreferences().getUser().getCountry().getCurrency_code()));
-            //binding.tvReceiverPoint.setText(publicOrder.get());
+            binding.tvReceiverPoint.setText(baseActivity.getString(R.string.home));
             binding.tvOrderState.setText(publicOrder.getStatus_translation());
-            binding.tvPaymentWay.setText(AppContent.ON_DELIVERY_STATUS.replace("_", " "));
-            binding.tvNumItems.setText("0 Items");
+            binding.tvPaymentWay.setText(publicOrder.getPayment_type());
+            binding.tvNumItems.setText(publicOrder.getAttachments().size() + baseActivity.getString(R.string.items));
         }
     }
 }

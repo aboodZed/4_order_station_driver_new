@@ -66,7 +66,10 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
     private void click() {
         binding.btnAccept.setOnClickListener(view -> presenter.accept(publicOrder));
 
-        binding.btnReject.setOnClickListener(view -> baseActivity.onBackPressed());
+        binding.btnReject.setOnClickListener(view -> {
+            AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
+            baseActivity.onBackPressed();
+        });
     }
 
     @Override
@@ -152,8 +155,8 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 
         //binding.tvOrderDetails.setText(testOrder.getd());
         //binding..setText((getString(R.string.order) + "#" + publicOrder.getInvoice_number()));
-        binding.tvFrom.setText(publicOrder.getCustomer().getName());
-        binding.tvPickupLocation.setText(publicOrder.getCustomer().getAddress());
+        binding.tvFrom.setText(publicOrder.getCustomer_address().getName());
+        binding.tvPickupLocation.setText(publicOrder.getCustomer_address().getAddress());
 
         binding.tvTo.setText(publicOrder.getStore_name());
         binding.tvDestLocation.setText(publicOrder.getStore_address());
@@ -194,6 +197,11 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
                 , LinearLayoutManager.HORIZONTAL, false));
         binding.rvAttachments.setItemAnimator(new DefaultItemAnimator());
         binding.rvAttachments.setAdapter(adapter);
+        if (publicOrder.getAttachments().isEmpty()) {
+            binding.vAttachments.setVisibility(View.GONE);
+            binding.tvAttachments.setVisibility(View.GONE);
+            binding.rvAttachments.setVisibility(View.GONE);
+        }
     }
 
     @Override

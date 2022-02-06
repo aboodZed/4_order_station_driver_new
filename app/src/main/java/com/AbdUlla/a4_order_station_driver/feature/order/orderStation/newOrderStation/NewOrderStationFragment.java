@@ -58,7 +58,10 @@ public class NewOrderStationFragment extends Fragment implements DialogView<Mess
 
     private void click() {
         binding.btnAccept.setOnClickListener(view -> presenter.accept(orderStation));
-        binding.btnReject.setOnClickListener(view -> baseActivity.onBackPressed());
+        binding.btnReject.setOnClickListener(view -> {
+            AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
+            baseActivity.onBackPressed();
+        });
 
         /*binding.ivLocationShop.setOnClickListener(view -> new NavigateUtil().setLocation(getActivity()
                 , new LatLng(orderStation.getShop().getLat(), orderStation.getShop().getLng())));

@@ -77,6 +77,7 @@
                     android:layout_height="match_parent"
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold"
+                    android:layout_marginTop="@dimen/small_padding"
                     android:textSize="@dimen/small_text"
                     android:layout_marginStart="@dimen/rate"/>
 
@@ -87,8 +88,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_order_time"
+            android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginTop="24dp"
             android:layout_marginEnd="@dimen/small_margin"
             android:layout_marginBottom="@dimen/small_margin"
             android:orientation="horizontal">
@@ -109,8 +111,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="first location"
-                    android:textColor="@color/black"
-                     />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_co_address"

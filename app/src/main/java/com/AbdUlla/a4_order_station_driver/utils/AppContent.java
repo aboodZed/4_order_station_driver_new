@@ -83,5 +83,6 @@ public interface AppContent {
     String PUBLIC_TRACKING_INSTANCE = "PublicTracking";
     String TRACKING_INSTANCE = "Tracking";
 
+    String ONE = "1";
 }
 

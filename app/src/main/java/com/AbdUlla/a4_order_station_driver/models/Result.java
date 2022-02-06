@@ -12,23 +12,15 @@ public class Result<T> extends Message implements Serializable {
     @Expose
     private T data;
 
-    @SerializedName("errors")
-    @Expose
-    private ArrayList<String> errors;
-
     public T getData() {
         return data;
     }
 
-    public ArrayList<String> getErrors() {
-        return errors;
-    }
 
     @Override
     public String toString() {
         return "Result{" +
                 "data=" + data +
-                ", errors=" + errors +
                 '}';
     }
 }

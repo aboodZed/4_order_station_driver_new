@@ -28,6 +28,9 @@ public class PublicOrder extends Order implements Serializable {
     @Expose
     private String tax;
 
+    @SerializedName("client_paid_invoice")
+    @Expose
+    private String client_paid_invoice;
 //    @SerializedName("total")
 //    @Expose
 //    private String total;
@@ -196,7 +199,11 @@ public class PublicOrder extends Order implements Serializable {
         return note;
     }
 
-//    public String getStatus_label() {
+    public String getClient_paid_invoice() {
+        return client_paid_invoice;
+    }
+
+    //    public String getStatus_label() {
 //        return status_label;
 //    }
 

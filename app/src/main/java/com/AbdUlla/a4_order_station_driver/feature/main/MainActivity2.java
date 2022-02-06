@@ -25,6 +25,7 @@ import com.AbdUlla.a4_order_station_driver.feature.main.profile.ProfileFragment;
 import com.AbdUlla.a4_order_station_driver.feature.main.wallets.WalletFragment;
 import com.AbdUlla.a4_order_station_driver.models.User;
 import com.AbdUlla.a4_order_station_driver.utils.dialogs.SignOutDialog;
+import com.AbdUlla.a4_order_station_driver.utils.location.tracking.OrderGPSTracking;
 import com.AbdUlla.a4_order_station_driver.utils.util.APIImageUtil;
 import com.AbdUlla.a4_order_station_driver.utils.AppContent;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
@@ -98,6 +99,9 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 if (status.equals(AppContent.DRIVER_APPROVED)) {
                     new NavigateUtil().activityIntent(this, LoginActivity.class, false);
                     return;
+                } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))){
+                    AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
+                    OrderGPSTracking.newInstance(this).removeUpdates();
                 }
                 switch (type) {
                     case AppContent.TYPE_ORDER_4STATION:

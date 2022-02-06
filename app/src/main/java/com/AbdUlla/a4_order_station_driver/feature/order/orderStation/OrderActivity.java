@@ -2,6 +2,7 @@ package com.AbdUlla.a4_order_station_driver.feature.order.orderStation;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.AbdUlla.a4_order_station_driver.R;
 import com.AbdUlla.a4_order_station_driver.databinding.ActivityOrderBinding;
@@ -36,14 +37,8 @@ public class OrderActivity extends BaseActivity {
 
     private void click() {
         binding.ivBack.setOnClickListener(view -> {
-            OrderStation orderStation = AppController.getInstance()
-                    .getAppSettingsPreferences().getTrackingOrderStation();
-            if (orderStation.getStatus().equals(AppContent.CANCELLED_STATUS) ||
-                    orderStation.getStatus().equals(AppContent.DELIVERED_STATUS)) {
-                navigate(OrdersFragment.page);
-            } else {
-                onBackPressed();
-            }
+            OrdersFragment.isOrderStation = true;
+            navigate(OrdersFragment.page);
         });
     }
 
@@ -54,35 +49,41 @@ public class OrderActivity extends BaseActivity {
     @SuppressLint("SetTextI18n")
     @Override
     public void navigate(int page) {
-        if (AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation() != null) {
+        try {
+            Log.e(getClass().getName() + "4OrderStation", AppController.getInstance()
+                    .getAppSettingsPreferences().getTrackingOrderStation().toString());
+
             binding.tvPageTitle.setText(getString(R.string.order) + AppController.getInstance().getAppSettingsPreferences()
                     .getTrackingOrderStation().getInvoice_number());
-        }
-        switch (page) {
-            case NewOrderStationFragment.page://6 new order station
-                NewOrderStationFragment newOrderFragment = NewOrderStationFragment
-                        .newInstance(this);
+            switch (page) {
+                case NewOrderStationFragment.page://6 new order station
+                    NewOrderStationFragment newOrderFragment = NewOrderStationFragment
+                            .newInstance(this);
 
-                new NavigateUtil().replaceFragment(getSupportFragmentManager()
-                        , newOrderFragment, R.id.fragment_container);
-                break;
+                    new NavigateUtil().replaceFragment(getSupportFragmentManager()
+                            , newOrderFragment, R.id.fragment_container);
+                    break;
 
-            case OrderStationViewFragment.page://7 order station view
-                OrderStationViewFragment orderViewFragment = OrderStationViewFragment.newInstance(this);
+                case OrderStationViewFragment.page://7 order station view
+                    OrderStationViewFragment orderViewFragment = OrderStationViewFragment.newInstance(this);
 
-                new NavigateUtil().replaceFragment(getSupportFragmentManager()
-                        , orderViewFragment, R.id.fragment_container);
-                break;
+                    new NavigateUtil().replaceFragment(getSupportFragmentManager()
+                            , orderViewFragment, R.id.fragment_container);
+                    break;
 
-            case ChatFragment.page: //order station chat
-                ChatFragment chatFragment = ChatFragment.newInstance(this);
+                case ChatFragment.page: //order station chat
+                    ChatFragment chatFragment = ChatFragment.newInstance(this);
 
-                new NavigateUtil().replaceFragment(getSupportFragmentManager()
-                        , chatFragment, R.id.fragment_container);
-                break;
-            case OrdersFragment.page:
-                new NavigateUtil().activityIntentWithPage(this, MainActivity2.class, false, page);
-                break;
+                    new NavigateUtil().replaceFragment(getSupportFragmentManager()
+                            , chatFragment, R.id.fragment_container);
+                    break;
+                case OrdersFragment.page:
+                    new NavigateUtil().activityIntentWithPage(this, MainActivity2.class, false, page);
+                    break;
+            }
+        } catch (Exception e) {
+            Log.e(getClass().getName() + "4OrderStationError", e.getLocalizedMessage());
+            new NavigateUtil().activityIntentWithPage(this, MainActivity2.class, false, page);
         }
     }
 

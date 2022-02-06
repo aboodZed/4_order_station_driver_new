@@ -61,8 +61,6 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
         binding = FragmentOrderViewBinding.inflate(getLayoutInflater());
         presenter = new OrderStationViewPresenter(baseActivity, this);
         orderStation = AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation();
-//        if (order != null)
-//            presenter.getOrderData(order);
         setData(orderStation);
         click();
         return binding.getRoot();
@@ -106,7 +104,7 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
                 .getCountry().getCurrency_code();
         //this.orderStation = orderStation;
         APIImageUtil.loadImage(getContext(), binding.pbWaitReceiverImage, AppContent.IMAGE_STORAGE_URL
-                + this.orderStation.getCustomer_address().getAvatar(), binding.ivReceiverImage);
+                + this.orderStation.getCustomer().getAvatar(), binding.ivReceiverImage);
 
         APIImageUtil.loadImage(getContext(), binding.pbWaitCoImage, AppContent.IMAGE_STORAGE_URL
                 + this.orderStation.getStore().getLogo_url(), binding.ivCoImage);
@@ -126,6 +124,7 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
             binding.ivReceiveCall.setVisibility(View.GONE);
             binding.ivReceiveLocation.setVisibility(View.GONE);
             binding.ivReceiverChat.setVisibility(View.GONE);
+            AppController.getInstance().getAppSettingsPreferences().setTrackingOrderStation(null);
         }
         //binding.tvOrderId.setText((getString(R.string.order) + "#" + this.orderStation.getInvoice_number()));
         binding.tvTime.setText(this.orderStation.getOrder_date());

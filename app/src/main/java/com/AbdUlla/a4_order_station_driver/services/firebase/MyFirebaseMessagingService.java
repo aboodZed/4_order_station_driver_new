@@ -51,6 +51,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 AppController.getInstance().getAppSettingsPreferences().setIsPayTheBill(status);
 
             } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))){
+                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
                 OrderGPSTracking.newInstance(this).removeUpdates();
             } else if (status.equals(AppContent.NEW_ORDER) && !MainActivity2.isLoadingNewOrder) {
 

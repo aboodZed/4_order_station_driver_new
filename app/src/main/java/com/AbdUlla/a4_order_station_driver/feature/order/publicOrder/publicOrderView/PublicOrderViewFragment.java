@@ -161,6 +161,7 @@ public class PublicOrderViewFragment extends Fragment implements
                 || publicOrder.getStatus().equals(AppContent.CANCELLED_STATUS)) {
             binding.llBottom.setVisibility(View.GONE);
             binding.tvMore.setVisibility(View.GONE);
+            AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
             //OrderGPSTracking.newInstance(baseActivity).removeUpdates();
         } else if (publicOrder.getStatus().equals(AppContent.CUSTOMER_WAITING)) {
             binding.tvMore.setVisibility(View.GONE);

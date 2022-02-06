@@ -73,6 +73,10 @@ public class Order implements Serializable {
     @Expose
     private Customer store;
 
+    @SerializedName("payment_type")
+    @Expose
+    private String payment_type;
+
     private String type;
 
     public int getId() {
@@ -151,6 +155,9 @@ public class Order implements Serializable {
         return store;
     }
 
+    public String getPayment_type() {
+        return payment_type;
+    }
 
     @Override
     public String toString() {
@@ -165,11 +172,13 @@ public class Order implements Serializable {
                 ", store_address='" + store_address + '\'' +
                 ", created_timestamp=" + created_timestamp +
                 ", customer=" + customer +
+                ", customer_address=" + customer_address +
                 ", total='" + total + '\'' +
                 ", order_date='" + order_date + '\'' +
                 ", type_of_receive='" + type_of_receive + '\'' +
                 ", items_count='" + items_count + '\'' +
                 ", store=" + store +
+                ", payment_type='" + payment_type + '\'' +
                 ", type='" + type + '\'' +
                 '}';
     }

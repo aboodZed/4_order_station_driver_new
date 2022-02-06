@@ -89,7 +89,7 @@
     <string name="user_avatar">الصورة الشخية</string>
     <string name="ok">تمام</string>
     <string name="select">اختيار</string>
-    <string name="items">عناصر</string>
+    <string name="items">"عناصر "</string>
     <string name="save">حفظ</string>
     <string name="send_message">إرسال رسالة</string>
     <string name="subject">موضوع</string>
