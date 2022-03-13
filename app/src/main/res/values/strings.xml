@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">driver</string>
+    <string name="app_name">4OrderStation Driver</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <!--register step 1-->
@@ -109,15 +109,16 @@ on the number</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="order_station">Order Station</string>
-    <string name="public_order">Public Store</string>
+    <string name="public_order">Public Order</string>
+    <string name="public_stores">public Stores</string>
     <string name="total_orders_price">Total orders price</string>
     <string name="total_order_price">Total order price</string>
     <string name="delegate_dues_from_requests">Driver dues from requests</string>
     <string name="app_dues_from_requests">Application dues from requests</string>
     <string name="price_delivery_tax">price of delivery and tax</string>
     <string name="price_bill">bill price</string>
-    <string name="app_dues">Application dues</string>
-    <string name="delegate_dues">Driver dues</string>
+    <string name="app_dues">app ratio</string>
+    <string name="driver_dues">Driver ratio</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="order_details">Order details</string>
@@ -160,14 +161,6 @@ on the number</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
     <string name="re_write_code">The code is wrong, plesae, rewrite the code</string>
-    <string name="title_activity_order">OrderActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="unable_location">Unable to get location.</string>
     <string name="refresh">Refresh</string>
     <string name="error_in_process_the_photo">Error happened in the processing the photo</string>
@@ -206,7 +199,6 @@ on the number</string>
     <string name="change_password_text">When change password, you must enter your old password and then continue</string>
     <string name="new_password">New Password</string>
     <string name="old_password">Old Password</string>
-    <string name="title_activity_main2">MainActivity2</string>
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
 
@@ -232,4 +224,17 @@ on the number</string>
     <string name="this_order_taken">This order already taken</string>
     <string name="write">type...</string>
     <string name="check_sign_out">Are you sure, you want to sign out</string>
+    <string name="order_count">Orders count</string>
+    <string name="your_order_count">Your orders count</string>
+    <string name="order_balance">"Order Balance: "</string>
+    <string name="by">"By: "</string>
+    <string name="admin">Admin</string>
+    <string name="end_balance">\nYour balance orders is finish!\nyou cannot receive any order. <b>Contact us</b></string>
+    <string name="end_subscription">\nYour monthly subscription has expired!\nyou cannot receive any order. <b>Contact us</b></string>
+    <string name="new_subscription">New Subscription</string>
+    <string name="welcome_new">Welcome For Order Station</string>
+    <string name="to_receive_order"><b>To receive new requests,</b>\nplease subscribe to us</string>
+    <string name="for_subscribe">For Subscribe</string>
+    <string name="for_price">For</string>
+    <string name="hi">"Hi Mis "</string>
 </resources>

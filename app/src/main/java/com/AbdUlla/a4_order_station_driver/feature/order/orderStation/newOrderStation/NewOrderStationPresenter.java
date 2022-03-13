@@ -39,11 +39,7 @@ public class NewOrderStationPresenter {
                     //WalletFragment.viewPagerPage = OrderStationWalletFragment.viewPagerPage;
                     baseActivity.navigate(OrdersFragment.page);
                 } else {
-                    StringBuilder errors = new StringBuilder();
-                    for (String s : message.getErrors()) {
-                        errors.append(s).append("\n");
-                    }
-                    ToolUtil.showLongToast(errors.toString(), baseActivity);
+                    ToolUtil.showLongToast(message.getMessage(), baseActivity);
                 }
             }
 

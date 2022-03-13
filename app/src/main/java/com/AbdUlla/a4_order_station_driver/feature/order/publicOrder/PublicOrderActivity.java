@@ -36,8 +36,7 @@ public class PublicOrderActivity extends BaseActivity {
 
     private void click() {
         binding.ivBack.setOnClickListener(view -> {
-            OrdersFragment.isOrderStation = false;
-            navigate(OrdersFragment.page);
+           onBackPressed();
         });
     }
 

@@ -2,6 +2,7 @@ package com.AbdUlla.a4_order_station_driver.feature.main.home;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
@@ -14,6 +15,10 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import com.AbdUlla.a4_order_station_driver.R;
+import com.AbdUlla.a4_order_station_driver.feature.data.contact.ContactFragment;
+import com.AbdUlla.a4_order_station_driver.utils.AppController;
+import com.AbdUlla.a4_order_station_driver.utils.language.BaseActivity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -35,9 +40,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     private LocationManager locationManager;
     private boolean denialLock;
 
+    private static BaseActivity activity;
+
     private ActivityResultLauncher<Intent> launcher;
 
-    public static HomeFragment newInstance() {
+    public static HomeFragment newInstance(BaseActivity baseActivity) {
+        activity = baseActivity;
         HomeFragment fragment = new HomeFragment();
         return fragment;
     }
@@ -55,8 +63,22 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         binding.mapView.getMapAsync(this);
 
         locationManager = new LocationManager(this, getActivity(), this);
-
+        click();
         return binding.getRoot();
+    }
+
+    @SuppressLint("SetTextI18n")
+    private void click() {
+        if (AppController.getInstance().getAppSettingsPreferences().getUser().getBalance().getOrders_balance().equals("0")) {
+            binding.endSubscription.setText(getString(R.string.hi) + AppController.getInstance()
+                    .getAppSettingsPreferences().getUser().getName() + "," + getString(R.string.end_balance));
+            binding.endSubscription.setVisibility(View.VISIBLE);
+        } else if (!AppController.getInstance().getAppSettingsPreferences().getUser().getBalance().getEnd_date()) {
+            binding.endSubscription.setText(getString(R.string.hi) + AppController.getInstance()
+                    .getAppSettingsPreferences().getUser().getName() + "," + getString(R.string.end_subscription));
+            binding.endSubscription.setVisibility(View.VISIBLE);
+        }
+        binding.endSubscription.setOnClickListener(v -> activity.navigate(ContactFragment.page));
     }
 
     private void setOnActivityResult() {
@@ -115,13 +137,12 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
 //            locationManager.showLocationPermissionDialog();
 //        }
 //    }
-
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-    }
+//
+//
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//    }
 
     public void zoomToLocation(LatLng location) {
         googleMap.clear();

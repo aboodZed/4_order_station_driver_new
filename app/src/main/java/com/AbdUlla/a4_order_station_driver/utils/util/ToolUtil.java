@@ -3,8 +3,10 @@ package com.AbdUlla.a4_order_station_driver.utils.util;
 import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.text.format.DateFormat;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -64,5 +66,17 @@ public class ToolUtil {
         cal.setTimeInMillis(time * 1000);
         String date = DateFormat.format("hh:mm", cal).toString();
         return date;
+    }
+
+    public static void openWhatsAppContact(Context context, String number) {
+        Uri uri = Uri.parse("smsto:" + number);
+        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
+        i.setPackage("com.whatsapp");
+        context.startActivity(Intent.createChooser(i, ""));
+    }
+
+    public static void openTelegramContact(Context context, String url) {
+        Intent telegram = new Intent(Intent.ACTION_VIEW , Uri.parse(url));
+        context.startActivity(telegram);
     }
 }

@@ -1,5 +1,6 @@
 package com.AbdUlla.a4_order_station_driver.feature.register.two;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -46,7 +47,7 @@ public class RegisterStepTwoFragment extends Fragment implements DialogView<Stri
     private ActivityResultLauncher<Intent> launcher;
 
     public RegisterStepTwoFragment(BaseActivity baseActivity) {
-        photoTakerManager = new PhotoTakerManager(this);
+        photoTakerManager = new PhotoTakerManager(this, permission);
         presenter = new RegisterStepTwoPresenter(baseActivity, this, photoTakerManager);
     }
 
@@ -186,4 +187,12 @@ public class RegisterStepTwoFragment extends Fragment implements DialogView<Stri
     public void onFail(String msg) {
         ToolUtil.showLongToast(msg, getActivity());
     }
+
+    ActivityResultLauncher<String[]> permission = registerForActivityResult(
+            new ActivityResultContracts.RequestMultiplePermissions(),
+            result -> {
+                if (Boolean.TRUE.equals(result.get(Manifest.permission.CAMERA))) {
+                    photoTakerManager.cameraRequestLauncher(getActivity(), launcher);
+                }
+            });
 }

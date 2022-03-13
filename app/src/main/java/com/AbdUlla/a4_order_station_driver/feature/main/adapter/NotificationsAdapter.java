@@ -12,6 +12,8 @@ import com.AbdUlla.a4_order_station_driver.databinding.ItemNotificationBinding;
 import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
 import com.AbdUlla.a4_order_station_driver.feature.main.wallets.WalletFragment;
 import com.AbdUlla.a4_order_station_driver.feature.order.orderStation.newOrderStation.NewOrderStationFragment;
+import com.AbdUlla.a4_order_station_driver.feature.order.orderStation.orderStationView.OrderStationViewFragment;
+import com.AbdUlla.a4_order_station_driver.feature.order.publicOrder.newPublicOrder.NewPublicOrderFragment;
 import com.AbdUlla.a4_order_station_driver.feature.order.publicOrder.publicOrderView.PublicOrderViewFragment;
 import com.AbdUlla.a4_order_station_driver.models.Notification;
 import com.AbdUlla.a4_order_station_driver.models.OrderStation;
@@ -104,11 +106,11 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                 }
             }
 
-            if (id == 0) {
-                binding.tvCoName.setText(baseActivity.getString(R.string.admin_message));
-            } else {
-                binding.tvCoName.setText(String.valueOf(id));
-            }
+//            if (id == 0) {
+//                binding.tvCoName.setText(baseActivity.getString(R.string.admin_message));
+//            } else {
+            binding.tvCoName.setText(notification.getData().getTitle());
+            //}
             binding.tvDatetime.setText(ToolUtil.getTime(notification.getCreated_at())
                     + " " + ToolUtil.getDate(notification.getCreated_at()));
             binding.tvMessage.setText(notification.getData().getMsg());
@@ -138,24 +140,22 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                         @Override
                         public void onSuccess(Result<OrderStation> result, String msg) {
                             dialogView.hideDialog();
-                            //MainActivity.setId(result);
-                            if (result.getData().getStatus().equals(AppContent.READY_STATUS)) {
+                            if (result.getData().getDriver() != null) {
+                                if (result.getData().getDriver().getId() == AppController.getInstance()
+                                        .getAppSettingsPreferences().getUser().getId()) {
+                                    new NavigateUtil().openOrderStation(baseActivity, result.getData()
+                                            , OrderStationViewFragment.page, true);
+                                } else {
+                                    ToolUtil.showLongToast(baseActivity.getString(R.string.can_not_open), baseActivity);
+                                }
 
-                                new NavigateUtil().openOrderStation(baseActivity, result.getData()
-                                        , NewOrderStationFragment.page, true);
-                                //baseActivity.navigate(6);
-//                            } else if (result.getData().getDriver() != null) {
-//                                if (result.getData().getDriver().getId() == AppController.getInstance()
-//                                        .getAppSettingsPreferences().getUser().getId()) {
-//
-//                                    new NavigateUtil().openOrderStation(baseActivity, result.getData()
-//                                            , OrderStationViewFragment.page, true);
-//                                    //baseActivity.navigate(7);
-//                                } else {
-//                                    ToolUtil.showLongToast(baseActivity.getString(R.string.can_not_open), baseActivity);
-//                                }
                             } else {
-                                ToolUtil.showLongToast(baseActivity.getString(R.string.can_not_open), baseActivity);
+                                if (result.getData().getStatus().equals(AppContent.READY_STATUS)) {
+                                    new NavigateUtil().openOrderStation(baseActivity, result.getData()
+                                            , NewOrderStationFragment.page, true);
+                                } else {
+                                    ToolUtil.showLongToast(baseActivity.getString(R.string.can_not_open), baseActivity);
+                                }
                             }
                         }
 
@@ -180,23 +180,23 @@ public class NotificationsAdapter extends RecyclerView.Adapter<NotificationsAdap
                     .getApi().getPublicOrder(id), new RequestListener<Result<PublicOrder>>() {
                 @Override
                 public void onSuccess(Result<PublicOrder> result, String msg) {
-//                                    if (publicOrderObject.getData().getId() == 0) {
-//
-//                                        new NavigateUtil().openOrder(baseActivity, publicOrderObject.getData()
-//                                                , NewPublicOrderFragment.page, true);
-//
-//                                    } else if (publicOrderObject.getData().getType()
-//                                            .equals(String.valueOf(AppController.getInstance()
-//                                                    .getAppSettingsPreferences().getUser().getId()))) {
-//
-//                                        new NavigateUtil().openOrder(baseActivity, publicOrderObject.getData()
-//                                                , PublicOrderViewFragment.page, true);
-//                                    } else {
-//                                        ToolUtil.showLongToast(baseActivity.getString(R.string.can_not_open), baseActivity);
-//                                    }
-                    new NavigateUtil().openPublicOrder(baseActivity, result.getData()
-                            , PublicOrderViewFragment.page, true);
                     dialogView.hideDialog();
+                    if (result.getData().getDriver() != null) {
+                        if (result.getData().getDriver().getId() == AppController
+                                .getInstance().getAppSettingsPreferences().getUser().getId()) {
+                            new NavigateUtil().openPublicOrder(baseActivity, result.getData()
+                                    , PublicOrderViewFragment.page, true);
+                        } else {
+                            ToolUtil.showLongToast(baseActivity.getString(R.string.can_not_open), baseActivity);
+                        }
+                    } else {
+                        if (result.getData().getStatus().equals(AppContent.PENDING_STATUS)) {
+                            new NavigateUtil().openPublicOrder(baseActivity, result.getData()
+                                    , NewPublicOrderFragment.page, true);
+                        } else {
+                            ToolUtil.showLongToast(baseActivity.getString(R.string.can_not_open), baseActivity);
+                        }
+                    }
                 }
 
                 @Override

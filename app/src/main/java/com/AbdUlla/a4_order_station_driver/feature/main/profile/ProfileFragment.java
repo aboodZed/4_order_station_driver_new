@@ -2,6 +2,7 @@ package com.AbdUlla.a4_order_station_driver.feature.main.profile;
 
 import static com.AbdUlla.a4_order_station_driver.utils.AppContent.IMAGE_STORAGE_URL;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -79,7 +80,7 @@ public class ProfileFragment extends Fragment implements DialogView<String>, Req
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(getLayoutInflater());
-        photoTakerManager = new PhotoTakerManager(this);
+        photoTakerManager = new PhotoTakerManager(this, permission);
         presenter = new ProfilePresenter(baseActivity, this, photoTakerManager, listener);
         data();
         click();
@@ -251,4 +252,12 @@ public class ProfileFragment extends Fragment implements DialogView<String>, Req
     public void onFail(String msg) {
         ToolUtil.showLongToast(msg, baseActivity);
     }
+
+    ActivityResultLauncher<String[]> permission = registerForActivityResult(
+            new ActivityResultContracts.RequestMultiplePermissions(),
+            result -> {
+                if (Boolean.TRUE.equals(result.get(Manifest.permission.CAMERA))) {
+                    photoTakerManager.cameraRequestLauncher(getActivity(), launcher);
+                }
+            });
 }

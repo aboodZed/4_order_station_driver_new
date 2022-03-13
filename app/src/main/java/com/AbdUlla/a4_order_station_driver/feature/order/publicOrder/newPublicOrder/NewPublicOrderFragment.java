@@ -1,5 +1,6 @@
 package com.AbdUlla.a4_order_station_driver.feature.order.publicOrder.newPublicOrder;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -147,6 +148,7 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 //        googleMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
 
+    @SuppressLint("SetTextI18n")
     public void data() {
         String currency = AppController.getInstance().getAppSettingsPreferences()
                 .getUser().getCountry().getCurrency_code();
@@ -155,8 +157,8 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 
         //binding.tvOrderDetails.setText(testOrder.getd());
         //binding..setText((getString(R.string.order) + "#" + publicOrder.getInvoice_number()));
-        binding.tvFrom.setText(publicOrder.getCustomer_address().getName());
-        binding.tvPickupLocation.setText(publicOrder.getCustomer_address().getAddress());
+        binding.tvFrom.setText(publicOrder.getReceiver_name());
+        binding.tvPickupLocation.setText(publicOrder.getReceiver_address());
 
         binding.tvTo.setText(publicOrder.getStore_name());
         binding.tvDestLocation.setText(publicOrder.getStore_address());
@@ -167,6 +169,9 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
         binding.tvVat.setText(publicOrder.getTax() + " " + currency);
         //binding.tvSubTotalAfter.setText(publicOrder.getNote() + " " + currency);
         binding.tvTotal.setText(publicOrder.getTotal() + " " + currency);
+//        binding.tvAppDues.setText(publicOrder.getApp_delivery_commission() + " " + currency);
+//        binding.tvDriverDues.setText(publicOrder.getDriver_revenue() + " " + currency);
+
 //        binding.tvDriverDues.setText((DecimalFormatterManager.getFormatterInstance()
 //                .format(Double.parseDouble(testOrder.getDriver_revenue())) + " " + currency));
 //        points.add(new LatLng(Double.parseDouble(this.testOrder.getStore_lat())
@@ -181,14 +186,14 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
         setAttachment();
     }
 
-    public void setLine() {
-        lineOptions = new PolylineOptions();
-        //lineOptions.addAll(points);
-        lineOptions.width(12);
-        lineOptions.color(Color.BLUE);
-        lineOptions.geodesic(true);
-        //  googleMap.addPolyline(lineOptions);
-    }
+//    public void setLine() {
+//        lineOptions = new PolylineOptions();
+//        lineOptions.addAll(points);
+//        lineOptions.width(12);
+//        lineOptions.color(Color.BLUE);
+//        lineOptions.geodesic(true);
+//        googleMap.addPolyline(lineOptions);
+//    }
 
     private void setAttachment() {
         AttachmentAdapter adapter = new AttachmentAdapter(getActivity()

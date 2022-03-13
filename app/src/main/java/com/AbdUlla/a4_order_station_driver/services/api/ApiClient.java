@@ -52,7 +52,7 @@ public class ApiClient {
             //builder.header("Content-Type", "application/json");
             builder.header("Accept", "application/json");
             builder.header("Connection", "close");
-            builder.header("Authorization", AppController.getInstance()
+            builder.header("Authorization", "Bearer " + AppController.getInstance()
                     .getAppSettingsPreferences().getToken());
             /*if (AppController.getInstance().getAppSettingsPreferences().getUser() != null) {
                 builder.header("Authorization", AppController.getInstance()

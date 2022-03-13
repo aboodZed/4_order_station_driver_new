@@ -10,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -31,6 +34,7 @@ import com.AbdUlla.a4_order_station_driver.utils.language.BaseActivity;
 import com.AbdUlla.a4_order_station_driver.utils.listeners.DialogView;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class OrderStationViewFragment extends Fragment implements DialogView<OrderStation> {
 
@@ -77,23 +81,25 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
                         , orderStation.getStore().getLng())));
 
         binding.ivReceiveLocation.setOnClickListener(view -> new NavigateUtil()
-                .setLocation(requireActivity(), new LatLng(orderStation.getCustomer_address().getLat()
-                        , orderStation.getCustomer_address().getLng())));
+                .setLocation(requireActivity(), new LatLng(Double.parseDouble(orderStation.getLat())
+                        , Double.parseDouble(orderStation.getLng()))));
     }
 
     public void coCall() {
         if (PermissionUtil.isPermissionGranted(Manifest.permission.CALL_PHONE, getActivity())) {
             new NavigateUtil().makeCall(requireActivity(), orderStation.getStore().getMobile());
         } else {
-            PermissionUtil.requestPermission(getActivity(), Manifest.permission.CALL_PHONE, PHONE_CALL_CODE);
+            permission.launch(new String[]{Manifest.permission.CALL_PHONE});
+            //PermissionUtil.requestPermission(getActivity(), Manifest.permission.CALL_PHONE, PHONE_CALL_CODE);
         }
     }
 
     public void receiverCall() {
         if (PermissionUtil.isPermissionGranted(Manifest.permission.CALL_PHONE, getActivity())) {
-            new NavigateUtil().makeCall(requireActivity(), orderStation.getCustomer_address().getMobile());
+            new NavigateUtil().makeCall(requireActivity(), orderStation.getReceiver_phone());
         } else {
-            PermissionUtil.requestPermission(getActivity(), Manifest.permission.CALL_PHONE, PHONE_CALL_CODE);
+            permission.launch(new String[]{Manifest.permission.CALL_PHONE});
+            //PermissionUtil.requestPermission(getActivity(), Manifest.permission.CALL_PHONE, PHONE_CALL_CODE);
         }
     }
 
@@ -110,7 +116,7 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
                 + this.orderStation.getStore().getLogo_url(), binding.ivCoImage);
 
 
-        binding.tvReceiverName.setText(this.orderStation.getCustomer_address().getName());
+        binding.tvReceiverName.setText(this.orderStation.getReceiver_name());
         binding.tvCoName.setText(this.orderStation.getStore().getName());
         binding.tvOrderCoName.setText(this.orderStation.getStore().getName());
         binding.tvOrderCoAddress.setText(this.orderStation.getStore().getAddress());
@@ -174,4 +180,15 @@ public class OrderStationViewFragment extends Fragment implements DialogView<Ord
         binding.rvOrderItem.setItemAnimator(new DefaultItemAnimator());
         binding.rvOrderItem.setAdapter(orderItemsAdapter);
     }
+
+    ActivityResultLauncher<String[]> permission = registerForActivityResult(
+            new ActivityResultContracts.RequestMultiplePermissions(),
+            new ActivityResultCallback<Map<String, Boolean>>() {
+                @Override
+                public void onActivityResult(Map<String, Boolean> result) {
+                    if (Boolean.TRUE.equals(result.get(Manifest.permission.CALL_PHONE))) {
+                        new NavigateUtil().makeCall(requireActivity(), orderStation.getReceiver_phone());
+                    }
+                }
+            });
 }

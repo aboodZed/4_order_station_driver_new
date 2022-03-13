@@ -85,7 +85,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/public_order"
+                android:text="@string/public_stores"
                 android:textColor="@color/light_blue"
                 android:textSize="@dimen/large_text"
                 android:textStyle="bold"

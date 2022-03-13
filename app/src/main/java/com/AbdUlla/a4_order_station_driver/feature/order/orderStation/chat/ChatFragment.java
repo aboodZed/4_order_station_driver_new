@@ -1,5 +1,6 @@
 package com.AbdUlla.a4_order_station_driver.feature.order.orderStation.chat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -64,7 +65,7 @@ public class ChatFragment extends Fragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        photoTakerManager = new PhotoTakerManager(this);
+        photoTakerManager = new PhotoTakerManager(this, permission);
     }
 
     @Override
@@ -194,4 +195,12 @@ public class ChatFragment extends Fragment implements
     public void hideDialog() {
         WaitDialogFragment.newInstance().dismiss();
     }
+
+    ActivityResultLauncher<String[]> permission = registerForActivityResult(
+            new ActivityResultContracts.RequestMultiplePermissions(),
+            result -> {
+                if (Boolean.TRUE.equals(result.get(Manifest.permission.CAMERA))) {
+                    photoTakerManager.cameraRequestLauncher(getActivity(), launcher);
+                }
+            });
 }

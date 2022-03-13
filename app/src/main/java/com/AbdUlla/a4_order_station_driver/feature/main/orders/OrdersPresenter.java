@@ -20,7 +20,7 @@ public class OrdersPresenter {
         getData();
     }
 
-    private void getData() {
+    public void getData() {
         dialogView.showDialog("");
         new APIUtil<Result<Orders>>(baseActivity).getData(AppController.getInstance()
                 .getApi().getOrders(), new RequestListener<Result<Orders>>() {

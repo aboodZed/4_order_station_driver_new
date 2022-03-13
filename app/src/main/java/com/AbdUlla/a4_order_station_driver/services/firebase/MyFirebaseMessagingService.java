@@ -25,10 +25,6 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         super.onMessageReceived(remoteMessage);
         Log.e("remoteMessage", "remote" + remoteMessage.getData());
         remote(remoteMessage);
-        /*
-        2022-02-02 12:26:33.474 6598-17351/com.AbdUlla.a4_order_station_driver E/remoteMessage: remote{moredata=dd, message={"data":{"msg":"new order ##00000151","destination_address":"لاخاهلهللعلعبعبعبعببع","pickup_address":"test","title":"4orderstation","type":"4orderstation","order_id":152,"status":"neworder"},"sound":"mySound","icon":"myIcon","title":"4orderstation","body":"new order ##00000151","click_action":"com.webapp.a4_order_station_driver.feture.home.MainActivity"}}
-
-         */
     }
 
     private void remote(RemoteMessage remoteMessage) {
@@ -45,18 +41,21 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 //            if (status.equals(AppContent.NEW_MESSAGE) && PublicOrderViewFragment.isOpenPublicChat) {
 //            } else if (status.equals(AppContent.NEW_MESSAGE) && ChatFragment.isOpenChat) {
 //            } else
-            if (status.equals(AppContent.PAYMENT_CONFIRM)) {
-                //send notification
-                new NotificationUtil().sendNotification(this, msg, message);
-                AppController.getInstance().getAppSettingsPreferences().setIsPayTheBill(status);
+            if (status != null || type.equals(AppContent.ADMIN)) {
+                if (status.equals(AppContent.PAYMENT_CONFIRM)) {
+                    //send notification
+                    new NotificationUtil().sendNotification(this, msg, message);
+                    AppController.getInstance().getAppSettingsPreferences().setIsPayTheBill(status);
 
-            } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))){
-                AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
-                OrderGPSTracking.newInstance(this).removeUpdates();
-            } else if (status.equals(AppContent.NEW_ORDER) && !MainActivity2.isLoadingNewOrder) {
-
-                new NotificationUtil().sendNotification(this, msg, message);
-                new NavigateUtil().openNotification(this, message);
+                } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))) {
+                    AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
+                    OrderGPSTracking.newInstance(this).removeUpdates();
+                } else if (status.equals(AppContent.NEW_ORDER) && !MainActivity2.isLoadingNewOrder) {
+                    new NotificationUtil().sendNotification(this, msg, message);
+                    new NavigateUtil().openNotification(this, message);
+                } else {
+                    new NotificationUtil().sendNotification(this, msg, message);
+                }
             } else {
                 new NotificationUtil().sendNotification(this, msg, message);
             }

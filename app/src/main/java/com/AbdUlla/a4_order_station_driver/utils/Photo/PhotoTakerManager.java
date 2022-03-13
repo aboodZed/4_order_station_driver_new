@@ -37,9 +37,11 @@ public class PhotoTakerManager {
     private Handler backgroundHandler;
     private Uri currentPhotoUri;
     private File currentPhotoFile;
+    private ActivityResultLauncher<String[]> permission;
 
-    public PhotoTakerManager(RequestListener<Bitmap> listener) {
+    public PhotoTakerManager(RequestListener<Bitmap> listener, ActivityResultLauncher<String[]> permission) {
         this.listener = listener;
+        this.permission = permission;
         HandlerThread handlerThread = new HandlerThread("Photos Processor");
         handlerThread.start();
         backgroundHandler = new Handler(handlerThread.getLooper());
@@ -160,10 +162,10 @@ public class PhotoTakerManager {
         launcher.launch(getPhotoGalleryIntent(activity));
     }
 
-    public void cameraRequestLauncher(FragmentActivity activity, ActivityResultLauncher<Intent> launcher) {
+    public void cameraRequestLauncher(FragmentActivity activity
+            , ActivityResultLauncher<Intent> launcher) {
         if (!PermissionUtil.isPermissionGranted(Manifest.permission.CAMERA, activity)) {
-            PermissionUtil.requestPermission(activity, Manifest.permission.CAMERA
-                    , AppContent.REQUEST_PERMISSIONS_R_W_STORAGE_CAMERA);
+            permission.launch(new String[]{Manifest.permission.CAMERA});
         } else {
             launcher.launch(getPhotoCameraIntent(activity));
         }

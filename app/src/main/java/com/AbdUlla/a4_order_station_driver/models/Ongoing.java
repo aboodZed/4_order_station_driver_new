@@ -17,17 +17,21 @@ public class Ongoing {
     @Expose
     private int order_id;
 
-    @SerializedName("order_cost")
+    @SerializedName("order_number")
     @Expose
-    private double order_cost;
+    private int order_number;
 
-    @SerializedName("delivery_cost")
-    @Expose
-    private double delivery_cost;
-
-    @SerializedName("total")
-    @Expose
-    private double total;
+//    @SerializedName("order_cost")
+//    @Expose
+//    private double order_cost;
+//
+//    @SerializedName("delivery_cost")
+//    @Expose
+//    private double delivery_cost;
+//
+//    @SerializedName("total")
+//    @Expose
+//    private double total;
 
     @SerializedName("created_at")
     @Expose
@@ -36,14 +40,30 @@ public class Ongoing {
     @SerializedName("updated_at")
     @Expose
     private String updated_at;
+//
+//    @SerializedName("payment_type")
+//    @Expose
+//    private String payment_type;
+//
+//    @SerializedName("invoice_number")
+//    @Expose
+//    private String invoice_number;
+//
+//    @SerializedName("order_type")
+//    @Expose
+//    private String order_type;
 
-    @SerializedName("payment_type")
+    @SerializedName("type")
     @Expose
-    private String payment_type;
+    private String type;
 
-    @SerializedName("invoice_number")
+    @SerializedName("order_type")
     @Expose
-    private String invoice_number;
+    private String order_type;
+
+    @SerializedName("end_at")
+    @Expose
+    private String end_at;
 
     public int getId() {
         return id;
@@ -69,29 +89,33 @@ public class Ongoing {
         this.order_id = order_id;
     }
 
-    public double getOrder_cost() {
-        return order_cost;
+    public int getOrder_number() {
+        return order_number;
     }
 
-    public void setOrder_cost(double order_cost) {
-        this.order_cost = order_cost;
-    }
-
-    public double getDelivery_cost() {
-        return delivery_cost;
-    }
-
-    public void setDelivery_cost(double delivery_cost) {
-        this.delivery_cost = delivery_cost;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
+    //    public double getOrder_cost() {
+//        return order_cost;
+//    }
+//
+//    public void setOrder_cost(double order_cost) {
+//        this.order_cost = order_cost;
+//    }
+//
+//    public double getDelivery_cost() {
+//        return delivery_cost;
+//    }
+//
+//    public void setDelivery_cost(double delivery_cost) {
+//        this.delivery_cost = delivery_cost;
+//    }
+//
+//    public double getTotal() {
+//        return total;
+//    }
+//
+//    public void setTotal(double total) {
+//        this.total = total;
+//    }
 
     public String getCreated_at() {
         return created_at;
@@ -109,20 +133,37 @@ public class Ongoing {
         this.updated_at = updated_at;
     }
 
-    public String getPayment_type() {
-        return payment_type;
+    public String getType() {
+        return type;
     }
 
-    public void setPayment_type(String payment_type) {
-        this.payment_type = payment_type;
+    //    public String getPayment_type() {
+//        return payment_type;
+//    }
+//
+//    public void setPayment_type(String payment_type) {
+//        this.payment_type = payment_type;
+//    }
+//
+//    public String getInvoice_number() {
+//        return invoice_number;
+//    }
+//
+//    public void setInvoice_number(String invoice_number) {
+//        this.invoice_number = invoice_number;
+//    }
+//
+//    public String getOrder_type() {
+//        return order_type;
+//    }
+
+
+    public String getOrder_type() {
+        return order_type;
     }
 
-    public String getInvoice_number() {
-        return invoice_number;
-    }
-
-    public void setInvoice_number(String invoice_number) {
-        this.invoice_number = invoice_number;
+    public String getEnd_at() {
+        return end_at;
     }
 
     @Override
@@ -131,13 +172,14 @@ public class Ongoing {
                 "id=" + id +
                 ", driver_id=" + driver_id +
                 ", order_id=" + order_id +
-                ", order_cost=" + order_cost +
-                ", delivery_cost=" + delivery_cost +
-                ", total=" + total +
+//                ", order_cost=" + order_cost +
+//                ", delivery_cost=" + delivery_cost +
+//                ", total=" + total +
                 ", created_at='" + created_at + '\'' +
                 ", updated_at='" + updated_at + '\'' +
-                ", payment_type='" + payment_type + '\'' +
-                ", invoice_number='" + invoice_number + '\'' +
+//                ", payment_type='" + payment_type + '\'' +
+//                ", invoice_number='" + invoice_number + '\'' +
+//                ", order_type='" + order_type + '\'' +
                 '}';
     }
 }

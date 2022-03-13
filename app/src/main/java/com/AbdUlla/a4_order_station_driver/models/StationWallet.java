@@ -5,21 +5,21 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class StationWallet extends Message{
+public class StationWallet extends Message {
 
-    @SerializedName("wallets")
+    @SerializedName("details")
     @Expose
-    private ArrayList<Ongoing> ongoings;
+    private ArrayList<Ongoing> details;
 
-    @SerializedName("total_wallet")
+    @SerializedName("orders_number")
     @Expose
-    private double wallet;
+    private String orders_number;
 
-    public ArrayList<Ongoing> getOngoings() {
-        return ongoings;
+    public ArrayList<Ongoing> getDetails() {
+        return details;
     }
 
-    public double getWallet() {
-        return wallet;
+    public String getOrdersNumber() {
+        return orders_number;
     }
 }

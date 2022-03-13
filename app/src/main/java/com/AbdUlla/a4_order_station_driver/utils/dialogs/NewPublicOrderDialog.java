@@ -141,8 +141,8 @@ public class NewPublicOrderDialog extends DialogFragment {
     private void data() {
         binding.tvPickupLocation.setText(publicOrder.getStore_address());
         binding.tvFrom.setText(publicOrder.getStore_name());
-        binding.tvDestLocation.setText(publicOrder.getCustomer_address().getAddress());
-        binding.tvTo.setText(publicOrder.getCustomer_address().getName());
+        binding.tvDestLocation.setText(publicOrder.getReceiver_address());
+        binding.tvTo.setText(publicOrder.getReceiver_name());
 
     }
 

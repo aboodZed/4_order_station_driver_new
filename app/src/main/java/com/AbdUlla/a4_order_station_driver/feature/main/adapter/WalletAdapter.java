@@ -1,5 +1,6 @@
 package com.AbdUlla.a4_order_station_driver.feature.main.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -60,17 +61,27 @@ public class WalletAdapter extends RecyclerView.Adapter<WalletAdapter.WalletHold
             this.binding = binding;
         }
 
+        @SuppressLint("SetTextI18n")
         public void setData(Ongoing ongoing) {
-            binding.tvOrderId.setText(("#" + ongoing.getInvoice_number()));
-            binding.tvPaymentWay.setText(ongoing.getPayment_type());
-            binding.tvPrice.setText((DecimalFormatterManager
-                    .getFormatterInstance().format(ongoing.getTotal())));
-            binding.tvCurrency.setText(AppController.getInstance()
-                    .getAppSettingsPreferences().getUser().getCountry().getCurrency_code());
-            if (ongoing.getTotal() < 0) {
-                binding.tvPrice.setTextColor(baseActivity.getColor(R.color.red));
-                binding.tvCurrency.setTextColor(baseActivity.getColor(R.color.red));
+            binding.tvOrderId.setText((baseActivity.getString(R.string.order_balance) + ongoing.getOrder_number()));
+            binding.tvType.setText(ongoing.getType());
+            if (ongoing.getEnd_at() != null)
+                binding.tvDatetime.setText(ongoing.getEnd_at());
+            if (ongoing.getOrder_type() != null) {
+                binding.tvBy.setText(baseActivity.getString(R.string.by) + ongoing.getOrder_type());
+            } else {
+                binding.tvBy.setText(baseActivity.getString(R.string.by) + baseActivity.getString(R.string.admin));
             }
+            //binding.tvType.setText(ongoing.get);
+//            binding.tvPaymentWay.setText(ongoing.getPayment_type());
+//            binding.tvPrice.setText((DecimalFormatterManager
+//                    .getFormatterInstance().format(ongoing.getTotal())));
+//            binding.tvCurrency.setText(AppController.getInstance()
+//                    .getAppSettingsPreferences().getUser().getCountry().getCurrency_code());
+//            if (ongoing.getTotal() < 0) {
+//                binding.tvPrice.setTextColor(baseActivity.getColor(R.color.red));
+//                binding.tvCurrency.setTextColor(baseActivity.getColor(R.color.red));
+//            }
         }
     }
 }

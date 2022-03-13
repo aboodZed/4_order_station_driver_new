@@ -1,5 +1,6 @@
 package com.AbdUlla.a4_order_station_driver.feature.order.publicOrder.publicOrderView;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -68,13 +69,12 @@ public class PublicOrderViewFragment extends Fragment implements
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        photoTakerManager = new PhotoTakerManager(this);
     }
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentPublicChatBinding.inflate(getLayoutInflater());
-        photoTakerManager = new PhotoTakerManager(this);
+        photoTakerManager = new PhotoTakerManager(this, permission);
         //if (getArguments() != null) {
         presenter = new PublicOrderViewPresenter(baseActivity, binding, this, photoTakerManager);
 
@@ -183,7 +183,9 @@ public class PublicOrderViewFragment extends Fragment implements
 
     private void setPrice() {
         if (publicOrder.getPurchase_invoice_value() != null) {
-            billPrice = Double.parseDouble(publicOrder.getPurchase_invoice_value());
+            if (!publicOrder.getPurchase_invoice_value().isEmpty()) {
+                billPrice = Double.parseDouble(publicOrder.getPurchase_invoice_value());
+            }
         } else {
             billPrice = 0;
         }
@@ -243,5 +245,13 @@ public class PublicOrderViewFragment extends Fragment implements
     public void onFail(String msg) {
         ToolUtil.showLongToast(msg, requireActivity());
     }
+
+    ActivityResultLauncher<String[]> permission = registerForActivityResult(
+            new ActivityResultContracts.RequestMultiplePermissions(),
+            result -> {
+                if (Boolean.TRUE.equals(result.get(Manifest.permission.CAMERA))) {
+                    photoTakerManager.cameraRequestLauncher(getActivity(), launcher);
+                }
+            });
 
 }

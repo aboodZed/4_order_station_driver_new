@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">المندوب</string>
+    <string name="app_name">4OrderStation المندوب</string>
     <string name="upload_image">تحميل الصورة</string>
     <string name="user_name">الاسم المستخدم</string>
     <string name="type_full_name">ادخل اسمك الكامل</string>
@@ -39,7 +39,7 @@
     <string name="home">الرئيسية</string>
     <string name="wallet">المحفظة</string>
     <string name="orders">طلباتي</string>
-    <string name="profile">الشخصية</string>
+    <string name="profile">الملف الشخصي</string>
     <string name="rating">تقيمات</string>
     <string name="pickup_location">تحديد الموقع</string>
     <string name="new_order">طلب جديد</string>
@@ -77,7 +77,7 @@
     <string name="un_match_pattern">هذا الإميل غير صالح</string>
     <string name="match_error">كلمة المرور غير مطابقة لتأكيد كلمة المرور</string>
     <string name="no_connection">تحقق من اتصالك بالأنترنت</string>
-    <string name="chose_image">أختر مصدر الصورة:-</string>
+    <string name="chose_image">-:أختر مصدر الصورة</string>
     <string name="select_camera">من الكاميرة</string>
     <string name="select_album">من الالبوم</string>
     <string name="permission_garnted">الصلاحية تحققت</string>
@@ -98,16 +98,17 @@
     <string name="type_message">أكتب رسالة</string>
     <string name="send_email">إرسال إميل</string>
     <string name="closeApp">لا تغلق التطبيق حتى تنتهي من الطلب</string>
-    <string name="order_station">Order Station</string>
-    <string name="public_order">Public Store</string>
+    <string name="order_station">4 اوردر ستيشن</string>
+    <string name="public_order">طلب عام</string>
+    <string name="public_stores">متاجر عامة</string>
     <string name="total_orders_price">اجمالي سعر الطلبات</string>
     <string name="total_order_price">اجمالي سعر الطلب</string>
     <string name="delegate_dues_from_requests">مستحقات المندوب من الطلبات</string>
     <string name="app_dues_from_requests">مستحقات التطبيق من الطلبات</string>
     <string name="price_delivery_tax">سعر التوصيل و الضريبة</string>
     <string name="price_bill">سعر الفاتورة</string>
-    <string name="app_dues">مستحقات التطبيق</string>
-    <string name="delegate_dues">مستحقات المندوب</string>
+    <string name="app_dues">نسبة التطبيق</string>
+    <string name="driver_dues">نسبة المندوب</string>
     <string name="order_details">تفاصيل الطلب</string>
     <string name="delivery_price">سعر التوصيل</string>
     <string name="tax_price">سعر الضريبة</string>
@@ -160,7 +161,7 @@
     <string name="total_rate">التقيم الكلي</string>
     <string name="contact_form">نموذج التواصل</string>
     <string name="title">عنوان الرسالة</string>
-    <string name="type">النوع:</string>
+    <string name="type">"النوع: "</string>
     <string name="unread">غير مقروء</string>
     <string name="read">مقروء</string>
     <string name="time">الوقت</string>
@@ -183,8 +184,8 @@
     <string name="status">الحالة</string>
     <string name="your_balance">السعر الكلي</string>
     <string name="history">السجل</string>
-    <string name="order_type">نوع:</string>
-    <string name="order_payment">الدفع بطريقة:</string>
+    <string name="order_type">:نوع</string>
+    <string name="order_payment">:الدفع بطريقة</string>
     <string name="in_progress">العمليات الفعالة</string>
     <string name="others">أخرى</string>
     <string name="change_password">تغير كلمة المرور</string>
@@ -201,5 +202,18 @@
     <string name="register_successfully">تم تسجيل في التطبيق بنجاح\n أنتظر عملية التوثيق</string>
     <string name="this_order_taken">هذا طلب تم أخذه</string>
     <string name="write">أكتب...</string>
-    <string name="check_sign_out">Are you sure, you want to sign out</string>
+    <string name="check_sign_out">هل أنت متأكد من أنك تريد تسجيل الخروج</string>
+    <string name="order_count">عدد الطلبات</string>
+    <string name="your_order_count">عدد طلباتك</string>
+    <string name="order_balance">"رصيد الطلب: "</string>
+    <string name="by">"بواسطة: "</string>
+    <string name="admin">أدمن</string>
+    <string name="end_balance">\nرصيدك لطلبات قد أنتها!\nالان لا يمكنك أستلام أي طلب.<b>تواصل معنا</b></string>
+    <string name="end_subscription">\nأشتراكك الشهري أنتها!\nالان لا يمكنك أستلام أي طلب.<b>تواصل معنا</b></string>
+    <string name="new_subscription">أشتراك جديد</string>
+    <string name="welcome_new">Welcome For Order Station</string>
+    <string name="to_receive_order">To receive new requests,</string>
+    <string name="for_subscribe">For Subscribe</string>
+    <string name="for_price">For</string>
+    <string name="hi">"مرحبا سيد "</string>
 </resources>

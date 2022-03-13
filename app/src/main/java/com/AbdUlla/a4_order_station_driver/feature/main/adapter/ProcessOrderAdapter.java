@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapter.PubicOrderHolder> {
 
-    private ArrayList<Order> publicOrders = new ArrayList<>();
+    private ArrayList<Order> orders = new ArrayList<>();
     private Activity baseActivity;
     private ProcessListener processListener;
 
@@ -50,19 +50,24 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
 
     @Override
     public void onBindViewHolder(@NonNull PubicOrderHolder holder, int position) {
-        holder.setData(publicOrders.get(position));
+        holder.setData(orders.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return publicOrders.size();
+        return orders.size();
     }
 
     public void addAll(ArrayList<Order> arrayList) {
         if (arrayList != null) {
-            publicOrders.addAll(arrayList);
+            orders.addAll(arrayList);
             notifyDataSetChanged();
         }
+    }
+
+    public void clear() {
+        orders.clear();
+        notifyDataSetChanged();
     }
 
     class PubicOrderHolder extends RecyclerView.ViewHolder {
@@ -147,8 +152,8 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
                 binding.tvReceiverName.setText(order.getCustomer().getName());
                 binding.tvReceiverAddress.setText(order.getCustomer().getAddress());
             } else if (order.getStore_address() != null) {
-                binding.tvReceiverName.setText(order.getCustomer_address().getName());
-                binding.tvReceiverAddress.setText(order.getCustomer_address().getAddress());
+                binding.tvReceiverName.setText(order.getReceiver_name());
+                binding.tvReceiverAddress.setText(order.getReceiver_address());
             }
             if (order.getStore() == null) {
                 order.setType(AppContent.TYPE_ORDER_PUBLIC);
@@ -166,12 +171,11 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
                 }
 
                 binding.tvPrice.setText((DecimalFormatterManager.getFormatterInstance()
-                        .format(Double.parseDouble(order.getTotal())) + " " + AppController.
-                        getInstance().getAppSettingsPreferences().getUser().getCountry().getCurrency_code()));
+                        .format(Double.parseDouble(order.getTotal()))));
                 binding.tvReceiverPoint.setText(baseActivity.getString(R.string.home));
                 binding.tvOrderState.setText(order.getStatus_translation());
                 binding.tvPaymentWay.setText(order.getPayment_type());
-                binding.tvNumItems.setText("0 Items");
+                binding.tvNumItems.setText("0 " + baseActivity.getString(R.string.items));
             } else {
                 order.setType(AppContent.TYPE_ORDER_4STATION);
                 binding.tvTime.setText(order.getOrder_date());
@@ -186,13 +190,13 @@ public class ProcessOrderAdapter extends RecyclerView.Adapter<ProcessOrderAdapte
                 }
                 binding.tvOrderState.setText(order.getStatus_translation());
                 binding.tvPrice.setText(order.getTotal());
-                binding.tvCurrency.setText(AppController.getInstance().getAppSettingsPreferences()
-                        .getUser().getCountry().getCurrency_code());
 
                 binding.tvCoName.setText(order.getStore().getName());
                 binding.tvCoAddress.setText(order.getStore().getAddress());
             }
             binding.tvType.setText(order.getType());
+            binding.tvCurrency.setText(AppController.getInstance().getAppSettingsPreferences()
+                    .getUser().getCountry().getCurrency_code());
         }
     }
 

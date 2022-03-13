@@ -99,7 +99,6 @@ public class NavigateUtil {
         activity.startActivity(Intent.createChooser(i, activity.getString(R.string.send_email)));
     }
 
-    @SuppressLint("MissingPermission")
     public void makeCall(Activity activity, String phone) {
         Intent intent = new Intent(Intent.ACTION_CALL);
         intent.setData(Uri.parse("tel:" + phone));

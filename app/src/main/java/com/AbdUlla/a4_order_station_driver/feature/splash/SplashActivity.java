@@ -6,6 +6,7 @@ import android.view.WindowManager;
 import com.AbdUlla.a4_order_station_driver.databinding.ActivitySplachBinding;
 import com.AbdUlla.a4_order_station_driver.feature.login.LoginActivity;
 import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
+import com.AbdUlla.a4_order_station_driver.feature.subscribe.SubscribeActivity;
 import com.AbdUlla.a4_order_station_driver.utils.util.NavigateUtil;
 import com.AbdUlla.a4_order_station_driver.utils.language.BaseActivity;
 
@@ -42,6 +43,10 @@ public class SplashActivity extends BaseActivity {
             case LoginActivity.page:
                 new NavigateUtil().activityIntent(this
                         , LoginActivity.class, false);
+                break;
+            case SubscribeActivity.page:
+                new NavigateUtil().activityIntent(this
+                        , SubscribeActivity.class, false);
                 break;
         }
     }

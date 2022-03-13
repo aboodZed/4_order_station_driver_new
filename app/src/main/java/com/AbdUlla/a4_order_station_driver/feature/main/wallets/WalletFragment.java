@@ -72,10 +72,8 @@ public class WalletFragment extends Fragment implements DialogView<StationWallet
 
     @Override
     public void setData(StationWallet stationWallet) {
-        binding.tvTotalBalance.setText(String.valueOf(stationWallet.getWallet()));
-        binding.tvCurrency.setText(AppController.getInstance().getAppSettingsPreferences()
-                .getUser().getCountry().getCurrency_code());
-        initRecycleView(stationWallet.getOngoings());
+        binding.tvTotalBalance.setText(String.valueOf(stationWallet.getOrdersNumber()));
+        initRecycleView(stationWallet.getDetails());
     }
 
     @Override

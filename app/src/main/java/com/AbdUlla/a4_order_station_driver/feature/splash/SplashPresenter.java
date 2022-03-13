@@ -2,8 +2,10 @@ package com.AbdUlla.a4_order_station_driver.feature.splash;
 
 import android.util.Log;
 
+import com.AbdUlla.a4_order_station_driver.feature.subscribe.SubscribeActivity;
 import com.AbdUlla.a4_order_station_driver.models.Cities;
 import com.AbdUlla.a4_order_station_driver.models.City;
+import com.AbdUlla.a4_order_station_driver.utils.location.tracking.GPSTracking;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.AbdUlla.a4_order_station_driver.feature.login.LoginActivity;
 import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
@@ -97,13 +99,17 @@ class SplashPresenter {
                 public void onSuccess(Result<User> userResult, String msg) {
                     if (userResult.isSuccess()) {
                         AppController.getInstance().getAppSettingsPreferences().setUser(userResult.getData());
-                        if (!AppController.getInstance().getAppSettingsPreferences().getToken().trim().equals("Bearer")) {
-                            if (AppController.getInstance().getAppSettingsPreferences().getUser() != null) {
-                                if (AppController.getInstance().getAppSettingsPreferences().getUser().isComplete()) {
+                        if (!AppController.getInstance().getAppSettingsPreferences().getToken().isEmpty()) {
+                            if (AppController.getInstance().getAppSettingsPreferences().getUser().isComplete()) {
+                                //check orders
+                                if (AppController.getInstance().getAppSettingsPreferences().getTrackingPublicOrder() != null
+                                        || AppController.getInstance().getAppSettingsPreferences().getTrackingOrderStation() != null) {
                                     OrderGPSTracking.newInstance(baseActivity).startGPSTracking();
+                                }
+                                if (userResult.getData().getBalance().getIsSubscribe()){
                                     baseActivity.navigate(MainActivity2.page);
-                                } else {
-                                    baseActivity.navigate(LoginActivity.page);
+                                }else {
+                                    baseActivity.navigate(SubscribeActivity.page);
                                 }
                             } else {
                                 baseActivity.navigate(LoginActivity.page);
@@ -111,6 +117,7 @@ class SplashPresenter {
                             Log.e(getClass().getName() + ": userToken", AppController.getInstance()
                                     .getAppSettingsPreferences().getToken());
                         } else {
+                            Log.e(getClass().getName() + ": empty_token","you have no token");
                             baseActivity.navigate(LoginActivity.page);
                         }
                     }

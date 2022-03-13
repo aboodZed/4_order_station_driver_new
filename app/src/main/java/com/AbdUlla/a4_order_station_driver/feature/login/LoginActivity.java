@@ -9,6 +9,7 @@ import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
 import com.AbdUlla.a4_order_station_driver.feature.register.RegisterActivity;
 import com.AbdUlla.a4_order_station_driver.feature.register.two.RegisterStepTwoFragment;
 import com.AbdUlla.a4_order_station_driver.feature.reset.ResetPasswordActivity;
+import com.AbdUlla.a4_order_station_driver.feature.subscribe.SubscribeActivity;
 import com.AbdUlla.a4_order_station_driver.models.AppSettings;
 import com.AbdUlla.a4_order_station_driver.models.Result;
 import com.AbdUlla.a4_order_station_driver.models.User;
@@ -106,6 +107,9 @@ public class LoginActivity extends BaseActivity implements DialogView<Result<Use
                 break;
             case ResetPasswordActivity.page:
                 new NavigateUtil().activityIntent(this, ResetPasswordActivity.class, false);
+                break;
+            case SubscribeActivity.page:
+                new NavigateUtil().activityIntent(this, SubscribeActivity.class, false);
                 break;
         }
     }

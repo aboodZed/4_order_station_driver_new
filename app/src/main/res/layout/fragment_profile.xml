@@ -305,8 +305,7 @@
 
                     <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
+                        android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/small_margin"
                         android:text="@string/your_vehicle" />
 
@@ -423,7 +422,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:text="@string/your_license" />
 
                     <FrameLayout
@@ -465,7 +463,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
                         android:text="@string/vehicle_Inc" />
 
                     <FrameLayout
@@ -499,7 +496,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_gravity="center_vertical"
                         android:text="@string/your_id" />
 
                     <FrameLayout

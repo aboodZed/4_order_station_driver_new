@@ -75,12 +75,12 @@ public class RegisterStepTwoPresenter {
         FirebaseApp.initializeApp(context);
         FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
             if (!task.isSuccessful()) {
-                Log.e("Main", "getInstanceId failed", task.getException());
+                Log.e("failed_fcm_token", "getInstanceId failed", task.getException());
                 return;
             }
             // Get new Instance ID token
             String token = task.getResult();
-            Log.e("fcm token", "" + token);
+            Log.e("fcm_token", "" + token);
             map.put("fcm_token", token);
             finishStepTwo(map);
         });

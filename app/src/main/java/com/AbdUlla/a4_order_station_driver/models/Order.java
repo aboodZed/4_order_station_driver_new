@@ -48,13 +48,16 @@ public class Order implements Serializable {
     @Expose
     private Customer customer;
 
-    @SerializedName("customer_address")
-    @Expose
-    private Customer customer_address;
+//    @SerializedName("customer_address")
+//    @Expose
+//    private Customer customer_address;
 
     @SerializedName("total")
     @Expose
     private String total;
+
+    @SerializedName("driver")
+    private User driver;
 
     //4orderstation
     @SerializedName("order_date")
@@ -76,6 +79,35 @@ public class Order implements Serializable {
     @SerializedName("payment_type")
     @Expose
     private String payment_type;
+
+    //customer address
+    @SerializedName("location_name")
+    @Expose
+    private String location_name;
+
+    @SerializedName("receiver_name")
+    @Expose
+    private String receiver_name;
+
+    @SerializedName("receiver_address")
+    @Expose
+    private String receiver_address;
+
+    @SerializedName("receiver_phone")
+    @Expose
+    private String receiver_phone;
+
+    @SerializedName("lat")
+    @Expose
+    private String lat;
+
+    @SerializedName("lng")
+    @Expose
+    private String lng;
+
+    @SerializedName("order_type")
+    @Expose
+    private String order_type;
 
     private String type;
 
@@ -107,6 +139,10 @@ public class Order implements Serializable {
         this.type = type;
     }
 
+    public String getOrder_type() {
+        return order_type;
+    }
+
     public String getStore_name() {
         return store_name;
     }
@@ -131,9 +167,9 @@ public class Order implements Serializable {
         return customer;
     }
 
-    public Customer getCustomer_address() {
-        return customer_address;
-    }
+//    public Customer getCustomer_address() {
+//        return customer_address;
+//    }
 
     public String getTotal() {
         return total;
@@ -159,6 +195,34 @@ public class Order implements Serializable {
         return payment_type;
     }
 
+    public User getDriver() {
+        return driver;
+    }
+
+    public String getLocation_name() {
+        return location_name;
+    }
+
+    public String getReceiver_address() {
+        return receiver_address;
+    }
+
+    public String getReceiver_name() {
+        return receiver_name;
+    }
+
+    public String getReceiver_phone() {
+        return receiver_phone;
+    }
+
+    public String getLat() {
+        return lat;
+    }
+
+    public String getLng() {
+        return lng;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
@@ -172,7 +236,7 @@ public class Order implements Serializable {
                 ", store_address='" + store_address + '\'' +
                 ", created_timestamp=" + created_timestamp +
                 ", customer=" + customer +
-                ", customer_address=" + customer_address +
+                //", customer_address=" + customer_address +
                 ", total='" + total + '\'' +
                 ", order_date='" + order_date + '\'' +
                 ", type_of_receive='" + type_of_receive + '\'' +
@@ -180,6 +244,8 @@ public class Order implements Serializable {
                 ", store=" + store +
                 ", payment_type='" + payment_type + '\'' +
                 ", type='" + type + '\'' +
+                ", order_type='" + order_type + '\'' +
+                ", driver='" + driver + '\'' +
                 '}';
     }
 }

@@ -1,6 +1,7 @@
 package com.AbdUlla.a4_order_station_driver.feature.main;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,6 +24,7 @@ import com.AbdUlla.a4_order_station_driver.feature.main.home.HomeFragment;
 import com.AbdUlla.a4_order_station_driver.feature.main.orders.OrdersFragment;
 import com.AbdUlla.a4_order_station_driver.feature.main.profile.ProfileFragment;
 import com.AbdUlla.a4_order_station_driver.feature.main.wallets.WalletFragment;
+import com.AbdUlla.a4_order_station_driver.feature.splash.SplashActivity;
 import com.AbdUlla.a4_order_station_driver.models.User;
 import com.AbdUlla.a4_order_station_driver.utils.dialogs.SignOutDialog;
 import com.AbdUlla.a4_order_station_driver.utils.location.tracking.OrderGPSTracking;
@@ -56,6 +58,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
     private TextView tv_user_name;
     private RatingBar rb_user_rating;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         binding = ActivityMain2Binding.inflate(getLayoutInflater());
@@ -66,7 +69,6 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout
                 , binding.appBarMain.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.setDrawerIndicatorEnabled(false);
-        binding.appBarMain.toolbar.setNavigationIcon(R.drawable.ic_menu);
         toggle.setToolbarNavigationClickListener(view -> binding.drawerLayout.openDrawer(GravityCompat.START));
         binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
@@ -81,12 +83,14 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
 
     private void data() {
         //dialog
+        if (AppController.getInstance().getAppSettingsPreferences().getToken().isEmpty()) {
+            navigate(LoginActivity.page);
+        }
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             try {
                 String message = (String) bundle.get(AppContent.FIREBASE_MESSAGE);
                 JSONObject body = new JSONObject(message).getJSONObject(AppContent.FIREBASE_DATA);
-
                 int id;
                 /*
                 2022-02-04 21:20:46.618 31794-4639/com.AbdUlla.a4_order_station_driver E/remoteMessage: remote{moredata=dd, message={"data":{"msg":"Wow! you account has been accepted","title":"4orderstation","type":"admin","country_id":"5","status":"driver_approved"},"sound":"mySound","icon":"myIcon","title":"4orderstation","body":"Wow! you account has been accepted","click_action":"com.webapp.a4_order_station_driver.feture.home.MainActivity"}}
@@ -99,9 +103,12 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 if (status.equals(AppContent.DRIVER_APPROVED)) {
                     new NavigateUtil().activityIntent(this, LoginActivity.class, false);
                     return;
-                } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))){
+                } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))) {
                     AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
                     OrderGPSTracking.newInstance(this).removeUpdates();
+                    checkNavigate(bundle);
+                } else if (status.equals(AppContent.SUBSCRIBE_STATUS)) {
+                    new NavigateUtil().activityIntent(this, SplashActivity.class, false);
                 }
                 switch (type) {
                     case AppContent.TYPE_ORDER_4STATION:
@@ -121,14 +128,13 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 } else if (type.equals(AppContent.TYPE_ORDER_PUBLIC)
                         || type.equals(AppContent.TYPE_ORDER_4STATION)) {
                     navigate(OrdersFragment.page);
-                        if (status.equals(AppContent.NEW_MESSAGE)) {
-                            if (type.equals(AppContent.TYPE_ORDER_PUBLIC)) {
-                                presenter.getPublicOrder(id, type);
-                            } else {
-                                presenter.getOrderStation(id, type);
-                            }
+                    if (status.equals(AppContent.NEW_MESSAGE)) {
+                        if (type.equals(AppContent.TYPE_ORDER_PUBLIC)) {
+                            presenter.getPublicOrder(id, type);
+                        } else {
+                            presenter.getOrderStation(id, type);
                         }
-
+                    }
                 } else if (type.contains(AppContent.WALLET)) {
                     navigate(WalletFragment.page);
                 } else if (type.equals(AppContent.RATE)) {
@@ -169,6 +175,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                     @Override
                     public void cancel() {
                         allowLoadNewOrder();
+                        HomeFragment.isOpen = false;
                         navigate(HomeFragment.page);
                     }
                 });
@@ -184,6 +191,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                     @Override
                     public void cancel() {
                         allowLoadNewOrder();
+                        HomeFragment.isOpen = false;
                         navigate(HomeFragment.page);
                     }
                 });
@@ -291,38 +299,31 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
 
     public void navigate(int page) {
         binding.drawerLayout.closeDrawer(GravityCompat.START);
-
-        binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_inactive);
-        binding.appBarMain.ivIcWallet.setBackgroundResource(R.drawable.ic_wallet_inactive);
-        binding.appBarMain.ivIcOrders.setBackgroundResource(R.drawable.ic_order_inactive);
-        binding.appBarMain.ivIcProfile.setBackgroundResource(R.drawable.ic_profile_inactive);
-        binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.hint));
-        binding.appBarMain.tvTextWallet.setTextColor(getColor(R.color.hint));
-        binding.appBarMain.tvTextOrders.setTextColor(getColor(R.color.hint));
-        binding.appBarMain.tvTextProfile.setTextColor(getColor(R.color.hint));
-
         switch (page) {
             case HomeFragment.page://1
+                refreshBottomBar();
+                binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_active);
+                binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.colorPrimary));
                 if (!HomeFragment.isOpen) {
-                    HomeFragment homeFragment = HomeFragment.newInstance();
+                    HomeFragment homeFragment = HomeFragment.newInstance(this);
                     new NavigateUtil().replaceFragment(getSupportFragmentManager()
                             , homeFragment, R.id.nav_host_fragment_content_main);
-                    binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_active);
-                    binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.colorPrimary));
                     binding.appBarMain.tvPageTitle.setText(R.string.home);
                 }
                 break;
 
             case WalletFragment.page://2
+                refreshBottomBar();
                 WalletFragment walletFragment = WalletFragment.newInstance(this);
                 new NavigateUtil().replaceFragment(getSupportFragmentManager()
                         , walletFragment, R.id.nav_host_fragment_content_main);
                 binding.appBarMain.ivIcWallet.setBackgroundResource(R.drawable.ic_wallet_active);
                 binding.appBarMain.tvTextWallet.setTextColor(getColor(R.color.colorPrimary));
-                binding.appBarMain.tvPageTitle.setText(R.string.wallet);
+                binding.appBarMain.tvPageTitle.setText(R.string.order_count);
                 break;
 
             case OrdersFragment.page://3
+                refreshBottomBar();
                 OrdersFragment ordersFragment = OrdersFragment.newInstance(this);
                 new NavigateUtil().replaceFragment(getSupportFragmentManager()
                         , ordersFragment, R.id.nav_host_fragment_content_main);
@@ -332,6 +333,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 break;
 
             case ProfileFragment.page://4
+                refreshBottomBar();
                 ProfileFragment profileFragment = ProfileFragment.newInstance(this);
                 new NavigateUtil().replaceFragment(getSupportFragmentManager()
                         , profileFragment, R.id.nav_host_fragment_content_main);
@@ -360,7 +362,34 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 new NavigateUtil().activityIntentWithPage(MainActivity2.this, DataActivity.class
                         , true, NotificationFragment.page);
                 break;
+            case LoginActivity.page:
+                new NavigateUtil().activityIntentWithPage(MainActivity2.this, LoginActivity.class
+                        , false, LoginActivity.page);
+                break;
         }
+
+        if (HomeFragment.isOpen) {
+            binding.appBarMain.flTop.setBackgroundResource(R.color.transparent);
+            binding.appBarMain.toolbar.setNavigationIcon(R.drawable.ic_menu_home);
+            binding.appBarMain.ivNotification.setImageResource(R.drawable.ic_bill_home);
+            binding.appBarMain.tvPageTitle.setTextColor(getColor(R.color.colorPrimary));
+        } else {
+            binding.appBarMain.flTop.setBackgroundResource(R.drawable.top_bar);
+            binding.appBarMain.toolbar.setNavigationIcon(R.drawable.ic_menu);
+            binding.appBarMain.ivNotification.setImageResource(R.drawable.ic_bill);
+            binding.appBarMain.tvPageTitle.setTextColor(getColor(R.color.white));
+        }
+    }
+
+    private void refreshBottomBar() {
+        binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_inactive);
+        binding.appBarMain.ivIcWallet.setBackgroundResource(R.drawable.ic_wallet_inactive);
+        binding.appBarMain.ivIcOrders.setBackgroundResource(R.drawable.ic_order_inactive);
+        binding.appBarMain.ivIcProfile.setBackgroundResource(R.drawable.ic_profile_inactive);
+        binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.hint));
+        binding.appBarMain.tvTextWallet.setTextColor(getColor(R.color.hint));
+        binding.appBarMain.tvTextOrders.setTextColor(getColor(R.color.hint));
+        binding.appBarMain.tvTextProfile.setTextColor(getColor(R.color.hint));
     }
 
     @Override
@@ -391,5 +420,14 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
     @Override
     public void hideDialog() {
         WaitDialogFragment.newInstance().dismiss();
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (HomeFragment.isOpen) {
+            super.onBackPressed();
+        } else {
+            navigate(HomeFragment.page);
+        }
     }
 }

@@ -31,6 +31,17 @@ public class PublicOrder extends Order implements Serializable {
     @SerializedName("client_paid_invoice")
     @Expose
     private String client_paid_invoice;
+
+    @SerializedName("app_delivery_commission")
+    @Expose
+    private String app_delivery_commission;
+
+    @SerializedName("driver_revenue")
+    @Expose
+    private String driver_revenue;
+
+
+
 //    @SerializedName("total")
 //    @Expose
 //    private String total;
@@ -159,7 +170,15 @@ public class PublicOrder extends Order implements Serializable {
         return tax;
     }
 
-//    public String getTotal() {
+    public String getApp_delivery_commission() {
+        return app_delivery_commission;
+    }
+
+    public String getDriver_revenue() {
+        return driver_revenue;
+    }
+
+    //    public String getTotal() {
 //        return total;
 //    }
 //
@@ -289,7 +308,7 @@ public class PublicOrder extends Order implements Serializable {
 //                ", driver_revenue='" + driver_revenue + '\'' +
 //                ", client_paid_invoice='" + client_paid_invoice + '\'' +
                 //", client=" + user +
-                ", attachmentArrays=" + attachments +
+                //", attachmentArrays=" + attachments +
                 '}';
     }
 }

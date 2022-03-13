@@ -51,6 +51,11 @@ public class OrderStationAdapter extends RecyclerView.Adapter<OrderStationAdapte
         }
     }
 
+    public void clear(){
+        orders.clear();
+        notifyDataSetChanged();
+    }
+
     public class OrdersHolder extends RecyclerView.ViewHolder {
 
         private ItemOrderBinding binding;
@@ -92,8 +97,8 @@ public class OrderStationAdapter extends RecyclerView.Adapter<OrderStationAdapte
             binding.tvPrice.setText(order.getTotal());
             binding.tvCurrency.setText(AppController.getInstance().getAppSettingsPreferences()
                     .getUser().getCountry().getCurrency_code());
-            binding.tvReceiverName.setText(order.getCustomer_address().getName());
-            binding.tvReceiverAddress.setText(order.getCustomer_address().getAddress());
+            binding.tvReceiverName.setText(order.getReceiver_name());
+            binding.tvReceiverAddress.setText(order.getReceiver_address());
 
             /*if (AppController.getInstance().getAppSettingsPreferences()
                     .getAppLanguage().equals(AppLanguageUtil.English)) {*/

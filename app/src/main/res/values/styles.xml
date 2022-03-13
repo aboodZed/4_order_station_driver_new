@@ -70,4 +70,9 @@
     <style name="AppModalStyle" parent="Widget.Design.BottomSheet.Modal">
         <item name="android:background">@drawable/dark_button</item>
     </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/hint</item>
+        <item name="colorControlActivated">@color/gold</item>
+    </style>
 </resources>

@@ -48,6 +48,7 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container
             , Bundle savedInstanceState) {
         binding = FragmentBillDailogBinding.inflate(getLayoutInflater());
+        getDialog().getWindow().setBackgroundDrawable(null);
         data();
         click();
         return binding.getRoot();
@@ -97,7 +98,7 @@ public class PublicOrderSettingsDialog extends BottomSheetDialogFragment {
                 , new LatLng(publicOrder.getStore_lat(), publicOrder.getStore_lng())));
 
         binding.clCustomerLocation.setOnClickListener(v -> new NavigateUtil().setLocation(requireActivity()
-                , new LatLng(publicOrder.getCustomer_address().getLat(), publicOrder.getCustomer_address().getLng())));
+                , new LatLng(Double.parseDouble(publicOrder.getLat()), Double.parseDouble(publicOrder.getLng()))));
 
         binding.tvAddBill.setOnClickListener(view -> {
             dismiss();

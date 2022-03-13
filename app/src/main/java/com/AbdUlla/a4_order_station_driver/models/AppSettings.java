@@ -59,6 +59,10 @@ public class AppSettings extends Result<AppSettings.SettingsData> {
         @Expose
         private String twitter_link;
 
+        @SerializedName("telegram_link")
+        @Expose
+        private String telegram_link;
+
         @SerializedName("mobile")
         @Expose
         private String mobile;
@@ -66,6 +70,14 @@ public class AppSettings extends Result<AppSettings.SettingsData> {
         @SerializedName("email")
         @Expose
         private String email;
+
+        @SerializedName("number_of_orders")
+        @Expose
+        private String number_of_orders;
+
+        @SerializedName("price_of_orders")
+        @Expose
+        private String price_of_orders;
 
         @SerializedName("currency_code")
         @Expose
@@ -99,12 +111,24 @@ public class AppSettings extends Result<AppSettings.SettingsData> {
             return twitter_link;
         }
 
+        public String getTelegram_link() {
+            return telegram_link;
+        }
+
         public String getMobile() {
             return mobile;
         }
 
         public String getEmail() {
             return email;
+        }
+
+        public String getNumber_of_orders() {
+            return number_of_orders;
+        }
+
+        public String getPrice_of_orders() {
+            return price_of_orders;
         }
 
         public String getCurrency_code() {
@@ -130,8 +154,11 @@ public class AppSettings extends Result<AppSettings.SettingsData> {
                     ", instagram_link='" + instagram_link + '\'' +
                     ", linkedin_link='" + linkedin_link + '\'' +
                     ", twitter_link='" + twitter_link + '\'' +
+                    ", telegram_link='" + telegram_link + '\'' +
                     ", mobile='" + mobile + '\'' +
                     ", email='" + email + '\'' +
+                    ", number_of_orders='" + number_of_orders + '\'' +
+                    ", price_of_orders='" + price_of_orders + '\'' +
                     ", currency_code='" + currency_code + '\'' +
                     ", phone_code='" + phone_code + '\'' +
                     ", phone_length=" + phone_length +

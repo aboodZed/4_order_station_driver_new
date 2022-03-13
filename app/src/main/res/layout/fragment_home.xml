@@ -11,4 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/end_subscription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/logo_width"
+        android:textColor="@color/white"
+        android:background="@color/red"
+        android:text="@string/end_subscription"
+        android:paddingTop="@dimen/medium_padding"
+        android:paddingEnd="@dimen/medium_padding"
+        android:paddingBottom="@dimen/medium_padding"
+        android:paddingStart="@dimen/xlarge_padding"
+        android:visibility="gone"/>
+
 </FrameLayout>

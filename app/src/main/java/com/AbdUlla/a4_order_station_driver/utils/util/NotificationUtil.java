@@ -74,10 +74,12 @@ public class NotificationUtil {
             }
         }
         Notification notification = builder.build();
-        notification.defaults = Notification.FLAG_ONLY_ALERT_ONCE;
+        //notification.defaults = Notification.FLAG_ONLY_ALERT_ONCE;
         notification.defaults = Notification.FLAG_INSISTENT | Notification.FLAG_AUTO_CANCEL;
         //notification.defaults = Notification.FLAG_AUTO_CANCEL;
         notification.sound = alarmSound;
+
+        int iUniqueId = (int) (System.currentTimeMillis() & 0xfffffff);
 
         Intent intent;
         intent = new Intent(context, MainActivity2.class);
@@ -85,7 +87,6 @@ public class NotificationUtil {
         intent.putExtra(AppContent.FIREBASE_MESSAGE, message);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
-        int iUniqueId = (int) (System.currentTimeMillis() & 0xfffffff);
         notification.contentIntent = PendingIntent.getActivity(context
                 , iUniqueId, intent, PendingIntent.FLAG_ONE_SHOT);
         notificationManager.notify(iUniqueId, notification);

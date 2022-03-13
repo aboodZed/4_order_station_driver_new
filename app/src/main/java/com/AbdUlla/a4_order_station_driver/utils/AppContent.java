@@ -5,13 +5,16 @@ public interface AppContent {
     String INPUT_SETTINGS = "setting";
     String CODE_DETAILS = "codeDetails";
 
-    String BASE_URL = "https://satco.vip/api/v3/";
+    String BASE_URL = "https://www.4orderstation.net/api/v3/";
+    //sixth String BASE_URL = "https://satco.vip/api/v3/";
     //fifth String BASE_URL = "http://www.4order.net/api/v3/";
     //forth String BASE_URL = "http://4orderstation.com/api/v2/";
     //third String BASE_URL = "https://live.4orderstation.net/api/v2/";
     //second url String BASE_URL = "https://stationsback.4orderstation.net/api/v2/";
     //first url String BASE_URL = https://control.4orderstation.net/api/v2/
-    String IMAGE_STORAGE_URL = "https://satco.vip/";
+
+    //first String IMAGE_STORAGE_URL = "https://satco.vip/";
+    String IMAGE_STORAGE_URL = "https://www.4orderstation.net/";
     //navigation
     String PAGE = "page";
     String ORDER_Id = "order_id";
@@ -58,6 +61,7 @@ public interface AppContent {
     //order type
     String TYPE_ORDER_PUBLIC = "public";
     String TYPE_ORDER_4STATION = "4orderstation";
+    String ADMIN = "admin";
     String WALLET = "wallet";
 
     //FIREBASE
@@ -84,5 +88,6 @@ public interface AppContent {
     String TRACKING_INSTANCE = "Tracking";
 
     String ONE = "1";
+    String SUBSCRIBE_STATUS = "withdraw";
 }
 

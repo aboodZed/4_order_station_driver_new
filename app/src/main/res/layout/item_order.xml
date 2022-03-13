@@ -60,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginTop="@dimen/margin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
@@ -78,7 +79,7 @@
                     android:textColor="@color/colorAccent"
                     android:textStyle="bold"
                     android:layout_marginTop="@dimen/small_padding"
-                    android:textSize="@dimen/small_text"
+                    android:textSize="@dimen/text"
                     android:layout_marginStart="@dimen/rate"/>
 
             </LinearLayout>
@@ -90,14 +91,14 @@
             android:layout_below="@id/ll_order_time"
             android:layout_alignParentTop="true"
             android:layout_marginStart="@dimen/small_margin"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/large_margin"
             android:layout_marginEnd="@dimen/small_margin"
             android:layout_marginBottom="@dimen/small_margin"
             android:orientation="horizontal">
 
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/alpha"
+                android:layout_height="@dimen/alpha_size"
                 android:background="@drawable/ic_distance" />
 
             <LinearLayout
@@ -117,7 +118,7 @@
                     android:id="@+id/tv_co_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/small_margin"
+                    android:layout_marginBottom="@dimen/margin"
                     android:textSize="@dimen/small_text" />
 
                 <TextView

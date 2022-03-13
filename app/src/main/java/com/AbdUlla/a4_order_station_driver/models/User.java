@@ -60,7 +60,7 @@ public class User implements Serializable {
     @Expose
     private String id_pic_url;
 
-    @SerializedName("driver_license")
+    @SerializedName("drive_license")
     @Expose
     private String driver_license_url;
 
@@ -75,6 +75,10 @@ public class User implements Serializable {
     @SerializedName("insurance_license")
     @Expose
     private String Insurance_license_url;
+
+    @SerializedName("balance")
+    @Expose
+    private Balance balance;
 
     public int getId() {
         return id;
@@ -144,9 +148,14 @@ public class User implements Serializable {
         return token;
     }
 
-    public boolean isComplete(){
+    public boolean isComplete() {
         return complete;
     }
+
+    public Balance getBalance() {
+        return balance;
+    }
+
     /*
     @Override
     public String toString() {
@@ -232,5 +241,31 @@ public class User implements Serializable {
         map.put("city_id", String.valueOf(city_id));
         map.put("avatar", avatar);
         return map;
+    }
+
+    public class Balance {
+        @SerializedName("is_subscribe")
+        @Expose
+        private boolean is_subscribe;
+
+        @SerializedName("orders_balance")
+        @Expose
+        private String orders_balance;
+
+        @SerializedName("end_date")
+        @Expose
+        private boolean end_date;
+
+        public boolean getIsSubscribe() {
+            return is_subscribe;
+        }
+
+        public String getOrders_balance() {
+            return orders_balance;
+        }
+
+        public boolean getEnd_date() {
+            return end_date;
+        }
     }
 }

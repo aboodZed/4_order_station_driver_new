@@ -75,7 +75,7 @@ public class AppSettingsPreferences {
 
 
     public void setToken(String token) {
-        editor.putString(USER_TOKEN, "Bearer " + token);
+        editor.putString(USER_TOKEN, token);
         editor.apply();
     }
 

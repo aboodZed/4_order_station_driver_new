@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.EditText;
 
+import com.AbdUlla.a4_order_station_driver.feature.subscribe.SubscribeActivity;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.AbdUlla.a4_order_station_driver.R;
@@ -83,7 +84,11 @@ public class LoginPresenter {
                             AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
                             AppController.getInstance().getAppSettingsPreferences().setToken(result.getData().getToken());
                             //navigation
-                            baseActivity.navigate(MainActivity2.page);
+                            if (result.getData().getBalance().getIsSubscribe()) {
+                                baseActivity.navigate(MainActivity2.page);
+                            } else {
+                                baseActivity.navigate(SubscribeActivity.page);
+                            }
                         } else {
                             if (result.getData() != null) {
                                 if (!result.getData().isComplete()) {

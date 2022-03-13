@@ -1,5 +1,6 @@
 package com.AbdUlla.a4_order_station_driver.feature.register.one;
 
+import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -20,6 +21,7 @@ import com.AbdUlla.a4_order_station_driver.models.City;
 import com.AbdUlla.a4_order_station_driver.utils.AppContent;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
 import com.AbdUlla.a4_order_station_driver.utils.Photo.PhotoTakerManager;
+import com.AbdUlla.a4_order_station_driver.utils.util.NavigateUtil;
 import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
 import com.AbdUlla.a4_order_station_driver.utils.dialogs.ItemSelectImageDialogFragment;
 import com.AbdUlla.a4_order_station_driver.utils.dialogs.WaitDialogFragment;
@@ -48,7 +50,7 @@ public class RegisterStepOneFragment extends Fragment implements RequestListener
     }
 
     public RegisterStepOneFragment(BaseActivity baseActivity) {
-        photoTakerManager = new PhotoTakerManager(this);
+        photoTakerManager = new PhotoTakerManager(this, permission);
         presenter = new RegisterStepOnePresenter(baseActivity, this, photoTakerManager);
     }
 
@@ -142,4 +144,12 @@ public class RegisterStepOneFragment extends Fragment implements RequestListener
     public void onFail(String msg) {
         ToolUtil.showLongToast(msg, requireActivity());
     }
+
+    ActivityResultLauncher<String[]> permission = registerForActivityResult(
+            new ActivityResultContracts.RequestMultiplePermissions(),
+            result -> {
+                if (Boolean.TRUE.equals(result.get(Manifest.permission.CAMERA))) {
+                    photoTakerManager.cameraRequestLauncher(getActivity(), launcher);
+                }
+            });
 }

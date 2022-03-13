@@ -29,7 +29,9 @@ public class OrdersFragment extends Fragment implements DialogView<Orders> {
     private PublicOrderAdapter publicOrderAdapter;
     private ProcessOrderAdapter processOrderAdapter;
     private static BaseActivity baseActivity;
-    public static boolean isOrderStation;
+    public static boolean isOrderStation = true;
+
+    private OrdersPresenter presenter;
 
     public static OrdersFragment newInstance(BaseActivity baseActivity) {
         OrdersFragment.baseActivity = baseActivity;
@@ -39,7 +41,7 @@ public class OrdersFragment extends Fragment implements DialogView<Orders> {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         binding = FragmentOrdersBinding.inflate(getLayoutInflater());
-        new OrdersPresenter(baseActivity, this);
+        presenter = new OrdersPresenter(baseActivity, this);
         click();
         //setupViewPager();
         return binding.getRoot();
@@ -128,6 +130,17 @@ public class OrdersFragment extends Fragment implements DialogView<Orders> {
     @Override
     public void hideDialog() {
         binding.avi.setVisibility(View.GONE);
+    }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (ordersAdapter != null)
+            ordersAdapter.clear();
+        if (publicOrderAdapter != null)
+            publicOrderAdapter.clear();
+        if (processOrderAdapter != null)
+            processOrderAdapter.clear();
+        presenter.getData();
     }
 }
