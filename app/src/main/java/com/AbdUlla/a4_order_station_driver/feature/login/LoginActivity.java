@@ -3,7 +3,9 @@ package com.AbdUlla.a4_order_station_driver.feature.login;
 import android.os.Bundle;
 import android.text.InputFilter;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 
+import com.AbdUlla.a4_order_station_driver.R;
 import com.AbdUlla.a4_order_station_driver.databinding.ActivityLoginBinding;
 import com.AbdUlla.a4_order_station_driver.feature.main.MainActivity2;
 import com.AbdUlla.a4_order_station_driver.feature.register.RegisterActivity;
@@ -47,6 +49,12 @@ public class LoginActivity extends BaseActivity implements DialogView<Result<Use
         InputFilter[] filters = new InputFilter[1];
         filters[0] = new InputFilter.LengthFilter(settings.getData().getPhone_length());
         binding.etEnterPhone.setFilters(filters);
+//
+//        if (AppController.getInstance().getAppSettingsPreferences().getAppLanguage().equals(AppLanguageUtil.ARABIC)) {
+//            binding.tvCode.setBackground();
+//            //binding.tvCode.startAnimation(AnimationUtils.loadAnimation(this, R.anim.flip_the_view));
+//            //binding.etEnterPhone.setRotation(180);
+//        }
     }
 
     private void click() {

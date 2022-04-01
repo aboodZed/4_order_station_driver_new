@@ -21,6 +21,7 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:supportsRtl"
         tools:targetApi="m">
+
         <activity
             android:name="com.AbdUlla.a4_order_station_driver.feature.subscribe.SubscribeActivity"
             android:exported="false" />

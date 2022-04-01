@@ -138,10 +138,11 @@ public class NewPublicOrderDialog extends DialogFragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void data() {
         binding.tvPickupLocation.setText(publicOrder.getStore_address());
         binding.tvFrom.setText(publicOrder.getStore_name());
-        binding.tvDestLocation.setText(publicOrder.getReceiver_address());
+        binding.tvDestLocation.setText(publicOrder.getLocation_name() + "\n" + publicOrder.getReceiver_address());
         binding.tvTo.setText(publicOrder.getReceiver_name());
 
     }

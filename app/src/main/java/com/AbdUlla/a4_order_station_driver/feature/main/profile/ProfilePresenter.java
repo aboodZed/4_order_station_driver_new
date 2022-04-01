@@ -2,8 +2,10 @@ package com.AbdUlla.a4_order_station_driver.feature.main.profile;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.content.Context;
 import android.content.Intent;
 import android.text.TextUtils;
+import android.util.Log;
 import android.util.Patterns;
 
 import com.AbdUlla.a4_order_station_driver.R;
@@ -21,6 +23,8 @@ import com.AbdUlla.a4_order_station_driver.utils.listeners.DialogView;
 import com.AbdUlla.a4_order_station_driver.utils.listeners.RequestListener;
 import com.AbdUlla.a4_order_station_driver.utils.util.APIUtil;
 import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.messaging.FirebaseMessaging;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -70,7 +74,48 @@ public class ProfilePresenter {
         City city = (City) binding.spNeighborhood.getSelectedItem();
         map.put("city_id", String.valueOf(city.getId()));
 
-        updateProfile(map);
+        generateFCMToken(baseActivity, map);
+    }
+
+    public void generateFCMToken(Context context, HashMap<String, String> map) {
+        dialogView.showDialog("");
+        FirebaseApp.initializeApp(context);
+        FirebaseMessaging.getInstance().getToken().addOnCompleteListener(task -> {
+            if (!task.isSuccessful()) {
+                Log.e("failed_fcm_token", "getInstanceId failed", task.getException());
+                return;
+            }
+            // Get new Instance ID token
+            String token = task.getResult();
+            Log.e("fcm_token", "" + token);
+            map.put("fcm_token", token);
+            updateProfile(map);
+        });
+    }
+
+    private void updateProfile(HashMap<String, String> params) {
+        new APIUtil<Result<User>>(baseActivity).getData(AppController.getInstance().getApi()
+                .updateProfile(params), new RequestListener<Result<User>>() {
+            @Override
+            public void onSuccess(Result<User> result, String msg) {
+                AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
+                dialogView.hideDialog();
+                listener.onProfileUpdate();
+                baseActivity.navigate(ProfileFragment.page);
+            }
+
+            @Override
+            public void onError(String msg) {
+                ToolUtil.showLongToast(msg, baseActivity);
+                dialogView.hideDialog();
+            }
+
+            @Override
+            public void onFail(String msg) {
+                ToolUtil.showLongToast(msg, baseActivity);
+                dialogView.hideDialog();
+            }
+        });
     }
 
     public void getCities(FragmentProfileBinding binding) {
@@ -106,32 +151,6 @@ public class ProfilePresenter {
 //                        ToolUtil.showLongToast(msg, baseActivity);
 //                    }
 //                });
-    }
-
-    private void updateProfile(HashMap<String, String> params) {
-        dialogView.showDialog("");
-        new APIUtil<Result<User>>(baseActivity).getData(AppController.getInstance().getApi()
-                .updateProfile(params), new RequestListener<Result<User>>() {
-            @Override
-            public void onSuccess(Result<User> result, String msg) {
-                AppController.getInstance().getAppSettingsPreferences().setUser(result.getData());
-                dialogView.hideDialog();
-                listener.onProfileUpdate();
-                baseActivity.navigate(ProfileFragment.page);
-            }
-
-            @Override
-            public void onError(String msg) {
-                ToolUtil.showLongToast(msg, baseActivity);
-                dialogView.hideDialog();
-            }
-
-            @Override
-            public void onFail(String msg) {
-                ToolUtil.showLongToast(msg, baseActivity);
-                dialogView.hideDialog();
-            }
-        });
     }
 
     public void setRequestCode(int requestCode) {

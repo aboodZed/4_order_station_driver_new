@@ -73,7 +73,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
             binding.endSubscription.setText(getString(R.string.hi) + AppController.getInstance()
                     .getAppSettingsPreferences().getUser().getName() + "," + getString(R.string.end_balance));
             binding.endSubscription.setVisibility(View.VISIBLE);
-        } else if (!AppController.getInstance().getAppSettingsPreferences().getUser().getBalance().getEnd_date()) {
+        } else if (AppController.getInstance().getAppSettingsPreferences().getUser().getBalance().getEnd_date()) {
             binding.endSubscription.setText(getString(R.string.hi) + AppController.getInstance()
                     .getAppSettingsPreferences().getUser().getName() + "," + getString(R.string.end_subscription));
             binding.endSubscription.setVisibility(View.VISIBLE);
@@ -171,7 +171,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onStart() {
         super.onStart();
         binding.mapView.onStart();
-        isOpen = true;
     }
 
     @Override
@@ -184,7 +183,6 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
     public void onStop() {
         super.onStop();
         binding.mapView.onStop();
-        isOpen = false;
     }
 
     @Override

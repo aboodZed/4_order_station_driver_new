@@ -132,10 +132,11 @@ public class NewOrderStationDialog extends DialogFragment {
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private void data() {
         binding.tvPickupLocation.setText(orderStation.getStore().getAddress());
         binding.tvFrom.setText(orderStation.getStore().getName());
-        binding.tvDestLocation.setText(orderStation.getReceiver_address());
+        binding.tvDestLocation.setText(orderStation.getLocation_name() + "\n" + orderStation.getReceiver_address());
         binding.tvTo.setText(orderStation.getReceiver_name());
     }
 

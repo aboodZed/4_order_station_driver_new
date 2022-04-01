@@ -54,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_marginBottom="@dimen/medium_margin">
+            android:layout_marginBottom="@dimen/medium_margin"
+            android:layoutDirection="ltr">
 
             <TextView
                 android:id="@+id/tv_code"
@@ -155,8 +156,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:layout_gravity="center"
-            android:padding="@dimen/small_padding">
+            android:layout_gravity="center">
 
             <TextView
                 android:layout_width="wrap_content"

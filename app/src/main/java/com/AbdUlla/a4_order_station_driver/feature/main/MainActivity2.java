@@ -309,6 +309,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                     new NavigateUtil().replaceFragment(getSupportFragmentManager()
                             , homeFragment, R.id.nav_host_fragment_content_main);
                     binding.appBarMain.tvPageTitle.setText(R.string.home);
+                    HomeFragment.isOpen = true;
                 }
                 break;
 
@@ -320,6 +321,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 binding.appBarMain.ivIcWallet.setBackgroundResource(R.drawable.ic_wallet_active);
                 binding.appBarMain.tvTextWallet.setTextColor(getColor(R.color.colorPrimary));
                 binding.appBarMain.tvPageTitle.setText(R.string.order_count);
+                HomeFragment.isOpen = false;
                 break;
 
             case OrdersFragment.page://3
@@ -330,6 +332,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 binding.appBarMain.ivIcOrders.setBackgroundResource(R.drawable.ic_order_active);
                 binding.appBarMain.tvTextOrders.setTextColor(getColor(R.color.colorPrimary));
                 binding.appBarMain.tvPageTitle.setText(R.string.orders);
+                HomeFragment.isOpen = false;
                 break;
 
             case ProfileFragment.page://4
@@ -341,6 +344,7 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 binding.appBarMain.ivIcProfile.setBackgroundResource(R.drawable.ic_profile_active);
                 binding.appBarMain.tvTextProfile.setTextColor(getColor(R.color.colorPrimary));
                 binding.appBarMain.tvPageTitle.setText(R.string.profile);
+                HomeFragment.isOpen = false;
                 break;
 
             case RatingFragment.page:
