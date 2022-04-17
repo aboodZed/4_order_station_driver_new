@@ -2,6 +2,7 @@ package com.AbdUlla.a4_order_station_driver.services.firebase;
 
 import android.util.Log;
 
+import com.AbdUlla.a4_order_station_driver.feature.main.home.HomeFragment;
 import com.AbdUlla.a4_order_station_driver.utils.location.tracking.OrderGPSTracking;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
@@ -36,12 +37,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             //data
             String msg = body.getString(AppContent.FIREBASE_MSG);
             String type = body.getString(AppContent.FIREBASE_TYPE);
-            String status = body.getString(AppContent.FIREBASE_STATUS);
-
+            if (type.equals(AppContent.ADMIN)){
+                new NotificationUtil().sendNotification(this, msg, message);
+            }
 //            if (status.equals(AppContent.NEW_MESSAGE) && PublicOrderViewFragment.isOpenPublicChat) {
 //            } else if (status.equals(AppContent.NEW_MESSAGE) && ChatFragment.isOpenChat) {
 //            } else
-            if (status != null || type.equals(AppContent.ADMIN)) {
+            String status = body.getString(AppContent.FIREBASE_STATUS);
+            if (status != null) {
                 if (status.equals(AppContent.PAYMENT_CONFIRM)) {
                     //send notification
                     new NotificationUtil().sendNotification(this, msg, message);

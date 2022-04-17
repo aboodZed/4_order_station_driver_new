@@ -50,7 +50,7 @@ public class LocationManager {
 
     private Listener listener;
     private Activity activity;
-    private Fragment fragment;
+   // private Fragment fragment;
 
     private FusedLocationProviderClient locationFetcher;
     private LocationRequest locationRequest;
@@ -60,10 +60,9 @@ public class LocationManager {
     private MaterialDialog locationDenialDialog;
     private MaterialDialog locationPermissionDialog;
 
-    public LocationManager(@NonNull Listener listener, @NonNull Activity activity, @NonNull Fragment fragment) {
+    public LocationManager(@NonNull Listener listener, @NonNull Activity activity) {
         this.listener = listener;
         this.activity = activity;
-        this.fragment = fragment;
         initNonContext();
     }
 

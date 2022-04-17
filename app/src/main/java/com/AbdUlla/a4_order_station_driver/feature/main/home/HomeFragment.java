@@ -62,7 +62,7 @@ public class HomeFragment extends Fragment implements OnMapReadyCallback, Locati
         binding.mapView.onCreate(savedInstanceState);
         binding.mapView.getMapAsync(this);
 
-        locationManager = new LocationManager(this, getActivity(), this);
+        locationManager = new LocationManager(this, getActivity());
         click();
         return binding.getRoot();
     }

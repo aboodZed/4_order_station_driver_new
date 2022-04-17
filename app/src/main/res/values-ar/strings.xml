@@ -211,9 +211,9 @@
     <string name="end_balance">\nرصيدك لطلبات قد أنتها!\nالان لا يمكنك أستلام أي طلب.<b>تواصل معنا</b></string>
     <string name="end_subscription">\nأشتراكك الشهري أنتها!\nالان لا يمكنك أستلام أي طلب.<b>تواصل معنا</b></string>
     <string name="new_subscription">أشتراك جديد</string>
-    <string name="welcome_new">Welcome For Order Station</string>
-    <string name="to_receive_order">To receive new requests,</string>
-    <string name="for_subscribe">For Subscribe</string>
-    <string name="for_price">For</string>
+    <string name="welcome_new"> مرحبا بك في Order Station</string>
+    <string name="to_receive_order"><b>للحصول على طلبات جديدة,</b>\nمن فضلك أشترك معنا</string>
+    <string name="for_subscribe">للأشتراك</string>
+    <string name="for_price">لكل</string>
     <string name="hi">"مرحبا سيد "</string>
 </resources>

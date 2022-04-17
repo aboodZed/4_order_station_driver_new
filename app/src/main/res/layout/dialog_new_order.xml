@@ -11,8 +11,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/large_margin"
-        android:layout_marginTop="@dimen/large_margin"
+        android:layout_marginBottom="@dimen/large_text"
+        android:layout_marginTop="@dimen/margin"
         android:text="@string/new_order"
         android:textColor="@color/black"
         android:textAllCaps="true"
@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginBottom="@dimen/large_margin">
+        android:layout_marginBottom="@dimen/large_text">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -53,8 +53,8 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
-                android:layout_marginTop="@dimen/medium_margin"
-                android:layout_marginBottom="@dimen/medium_margin"
+                android:layout_marginTop="@dimen/text"
+                android:layout_marginBottom="@dimen/text"
                 android:background="@drawable/dash_line" />
 
             <TextView

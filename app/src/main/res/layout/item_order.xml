@@ -56,33 +56,6 @@
                 android:textColor="@color/white"
                 android:textSize="@dimen/medium_text" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="@dimen/margin"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <TextView
-                    android:id="@+id/tv_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/colorAccent"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/medium_text" />
-
-                <TextView
-                    android:id="@+id/tv_currency"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:textColor="@color/colorAccent"
-                    android:textStyle="bold"
-                    android:layout_marginTop="@dimen/small_padding"
-                    android:textSize="@dimen/text"
-                    android:layout_marginStart="@dimen/rate"/>
-
-            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -118,8 +91,30 @@
                     android:id="@+id/tv_co_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/margin"
-                    android:textSize="@dimen/small_text" />
+                    android:textSize="@dimen/text" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold"
+                        android:layout_marginEnd="@dimen/rate"/>
+
+                    <TextView
+                        android:id="@+id/tv_currency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:textColor="@color/colorAccent"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/tv_receiver_name"
@@ -132,7 +127,7 @@
                     android:id="@+id/tv_receiver_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/small_text" />
+                    android:textSize="@dimen/text" />
 
             </LinearLayout>
         </LinearLayout>

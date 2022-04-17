@@ -7,6 +7,7 @@ public class ChatMessage {
     private String sender_avatar_url;
     private double time;
     private String imageUrl;
+    private boolean isDriver;
 
     public ChatMessage() {
     }
@@ -57,6 +58,14 @@ public class ChatMessage {
 
     public void setTime(long time) {
         this.time = time;
+    }
+
+    public boolean getIsDriver() {
+        return isDriver;
+    }
+
+    public void setIsDriver(boolean driver) {
+        isDriver = driver;
     }
 
     @Override

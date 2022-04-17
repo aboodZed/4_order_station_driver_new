@@ -474,20 +474,18 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/pickup_location"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/medium_text" />
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:id="@+id/tv_pickupLocation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/medium_text" />
+                            android:textSize="@dimen/text"/>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="0.5dp"
-                            android:layout_marginTop="@dimen/small_margin"
-                            android:layout_marginBottom="@dimen/small_margin"
+                            android:layout_marginVertical="@dimen/medium_margin"
                             android:background="@drawable/divider" />
 
                         <TextView
@@ -495,14 +493,13 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/destination_location"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/medium_text" />
+                            android:textColor="@color/black" />
 
                         <TextView
                             android:id="@+id/tv_destLocation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="@dimen/medium_text" />
+                            android:textSize="@dimen/text"/>
 
                     </LinearLayout>
 
@@ -573,7 +570,8 @@
                             android:id="@+id/rv_order_item"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            tools:listitem="@layout/item_order_items"/>
+                            tools:listitem="@layout/item_order_items"
+                            tools:itemCount="4"/>
 
                         <View
                             android:layout_width="match_parent"
@@ -624,6 +622,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
+                                android:textSize="@dimen/text"
                                 android:textColor="@color/black" />
 
                         </LinearLayout>

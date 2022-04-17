@@ -304,19 +304,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pickup_location"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/large_text" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_pickupLocation"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/medium_text" />
+                    android:layout_height="wrap_content" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="0.5dp"
-                    android:layout_marginBottom="@dimen/medium_margin"
+                    android:layout_marginVertical="@dimen/text"
                     android:background="@drawable/dash_line" />
 
                 <TextView
@@ -324,14 +322,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/destination_location"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/large_text" />
+                    android:textColor="@color/black" />
 
                 <TextView
                     android:id="@+id/tv_destLocation"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="@dimen/medium_text" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 
@@ -350,7 +346,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/order_details"
                 android:textColor="@color/black"
-                android:textSize="@dimen/medium_text"
+                android:textSize="@dimen/large_text"
                 android:textStyle="bold" />
 
             <TextView
@@ -358,8 +354,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/small_margin"
-                android:text="@string/order_details"
-                android:textSize="@dimen/text" />
+                android:textSize="@dimen/medium_text"
+                android:text="@string/order_details" />
 
             <View
                 android:id="@+id/v_attachments"
@@ -381,7 +377,9 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_attachments"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/item_order_items"
+                tools:itemCount="4"/>
 
         </LinearLayout>
 

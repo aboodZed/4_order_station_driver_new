@@ -4,8 +4,9 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/afeca0576ed79ed17f160dead3ee24f5/transformed/jetified-transport-runtime-3.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/a77a662d302282feec15f1bae2cb578a/transformed/jetified-transport-runtime-3.0.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5268dce71ad44d069e0aabf761edd03f/transformed/jetified-transport-runtime-3.0.0/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5268dce71ad44d069e0aabf761edd03f/transformed/jetified-transport-runtime-3.0.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5268dce71ad44d069e0aabf761edd03f/transformed/jetified-transport-runtime-3.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5020cb00a065dc62dffd13294cce088f/transformed/jetified-transport-runtime-3.0.0/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/5020cb00a065dc62dffd13294cce088f/transformed/jetified-transport-runtime-3.0.0/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/5020cb00a065dc62dffd13294cce088f/transformed/jetified-transport-runtime-3.0.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.google.android.datatransport/transport-runtime/3.0.0/7f506fe3498cda976d1b350c218464a0f1974982/transport-runtime-3.0.0-javadoc.jar!/" />

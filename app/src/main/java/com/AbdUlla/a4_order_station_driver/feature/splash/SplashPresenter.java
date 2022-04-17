@@ -91,8 +91,9 @@ class SplashPresenter {
 
     private void getUserData() {
         try {
-            Log.e(getClass().getName() + "driver", AppController.getInstance().getAppSettingsPreferences()
-                    .getUser().toString());
+            Log.e(getClass().getName() + "driver", AppController.getInstance()
+                    .getAppSettingsPreferences().getUser().toString());
+
             new APIUtil<Result<User>>(baseActivity).getData(AppController.getInstance().getApi()
                     .getUserData(), new RequestListener<Result<User>>() {
                 @Override

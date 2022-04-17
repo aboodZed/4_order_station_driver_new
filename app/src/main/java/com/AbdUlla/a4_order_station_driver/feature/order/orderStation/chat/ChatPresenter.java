@@ -139,6 +139,7 @@ public class ChatPresenter {
                 chatMessage.setImageUrl(image);
                 chatMessage.setSender_avatar_url(AppController.getInstance().getAppSettingsPreferences().getUser().getAvatar_url());
                 chatMessage.setTime(System.currentTimeMillis() / 1000);
+                chatMessage.setIsDriver(true);
                 String key = db.push().getKey();
                 db.child(orderStation.getId() + "").child(key).setValue(chatMessage);
                 ToolUtil.hideSoftKeyboard(baseActivity, binding.etMessage);

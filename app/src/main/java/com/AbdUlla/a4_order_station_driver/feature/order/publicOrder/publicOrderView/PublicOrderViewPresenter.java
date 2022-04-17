@@ -124,6 +124,7 @@ public class PublicOrderViewPresenter {
                 publicStoreMessage.setSender_id(AppController.getInstance().getAppSettingsPreferences().getUser().getId());
                 publicStoreMessage.setSender_avatar_url(AppController.getInstance().getAppSettingsPreferences().getUser().getAvatar_url());
                 publicStoreMessage.setTime(System.currentTimeMillis() / 1000);
+                publicStoreMessage.setIsDriver(true);
                 String key = db.push().getKey();
                 db.child(publicOrder.getId() + "").child(key).setValue(publicStoreMessage);
                 NotificationUtil.sendMessageNotification(baseActivity, publicOrder.getInvoice_number()

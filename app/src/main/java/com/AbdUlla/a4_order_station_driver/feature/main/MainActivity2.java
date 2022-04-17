@@ -74,7 +74,8 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
         toggle.syncState();
         //presenter
         presenter = new MainPresenter(this, this);
-        //navigate(HomeFragment.page);
+        HomeFragment.isOpen = false;
+        navigate(HomeFragment.page);
         data();
         //define clicking
         click();
@@ -83,7 +84,8 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
 
     private void data() {
         //dialog
-        if (AppController.getInstance().getAppSettingsPreferences().getToken().isEmpty()) {
+        if (AppController.getInstance().getAppSettingsPreferences().getToken().isEmpty() ||
+                AppController.getInstance().getAppSettingsPreferences().getUser().getBalance().getIsSubscribe()) {
             navigate(LoginActivity.page);
         }
         Bundle bundle = getIntent().getExtras();
@@ -92,11 +94,6 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 String message = (String) bundle.get(AppContent.FIREBASE_MESSAGE);
                 JSONObject body = new JSONObject(message).getJSONObject(AppContent.FIREBASE_DATA);
                 int id;
-                /*
-                2022-02-04 21:20:46.618 31794-4639/com.AbdUlla.a4_order_station_driver E/remoteMessage: remote{moredata=dd, message={"data":{"msg":"Wow! you account has been accepted","title":"4orderstation","type":"admin","country_id":"5","status":"driver_approved"},"sound":"mySound","icon":"myIcon","title":"4orderstation","body":"Wow! you account has been accepted","click_action":"com.webapp.a4_order_station_driver.feture.home.MainActivity"}}
-2022-02-04 21:20:46.787 31794-4639/com.AbdUlla.a4_order_station_driver E/remoteMessage: remote{moredata=dd, message={"data":{"msg":"You must contact with management to get order balance ","title":"4orderstation","type":"admin","country_id":"5","status":"driver_approved"},"sound":"mySound","icon":"myIcon","title":"4orderstation","body":"You must contact with management to get order balance ","click_action":"com.webapp.a4_order_station_driver.feture.home.MainActivity"}}
-
-                 */
                 //String msg = body.getString(AppContent.FIREBASE_MSG);
                 String type = body.getString(AppContent.FIREBASE_TYPE);
                 String status = body.getString(AppContent.FIREBASE_STATUS);
@@ -106,7 +103,6 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                 } else if ((status.equals(AppContent.CONFIRM_DELIVIERY))) {
                     AppController.getInstance().getAppSettingsPreferences().setTrackingPublicOrder(null);
                     OrderGPSTracking.newInstance(this).removeUpdates();
-                    checkNavigate(bundle);
                 } else if (status.equals(AppContent.SUBSCRIBE_STATUS)) {
                     new NavigateUtil().activityIntent(this, SplashActivity.class, false);
                 }
@@ -119,7 +115,6 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                         id = -1;
                 }
 
-                checkNavigate(bundle);
 
                 if (status.contains(AppContent.NEW_ORDER)) {
                     if (!isLoadingNewOrder) {
@@ -139,26 +134,14 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
                     navigate(WalletFragment.page);
                 } else if (type.equals(AppContent.RATE)) {
                     navigate(RatingFragment.page);
-                } else {
-                    checkNavigate(bundle);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
                 isLoadingNewOrder = false;
-                checkNavigate(bundle);
             }
-        } else {
-            checkNavigate(bundle);
         }
     }
 
-    private void checkNavigate(Bundle bundle) {
-        if (bundle != null && bundle.containsKey(AppContent.PAGE)) {
-            navigate(bundle.getInt(AppContent.PAGE));
-        } else {
-            navigate(HomeFragment.page);
-        }
-    }
 
     private void createNewOrder(int id, String type) {
         isLoadingNewOrder = true;
@@ -300,19 +283,6 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
     public void navigate(int page) {
         binding.drawerLayout.closeDrawer(GravityCompat.START);
         switch (page) {
-            case HomeFragment.page://1
-                refreshBottomBar();
-                binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_active);
-                binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.colorPrimary));
-                if (!HomeFragment.isOpen) {
-                    HomeFragment homeFragment = HomeFragment.newInstance(this);
-                    new NavigateUtil().replaceFragment(getSupportFragmentManager()
-                            , homeFragment, R.id.nav_host_fragment_content_main);
-                    binding.appBarMain.tvPageTitle.setText(R.string.home);
-                    HomeFragment.isOpen = true;
-                }
-                break;
-
             case WalletFragment.page://2
                 refreshBottomBar();
                 WalletFragment walletFragment = WalletFragment.newInstance(this);
@@ -369,6 +339,18 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
             case LoginActivity.page:
                 new NavigateUtil().activityIntentWithPage(MainActivity2.this, LoginActivity.class
                         , false, LoginActivity.page);
+                break;
+            default:
+                refreshBottomBar();
+                binding.appBarMain.ivIcHome.setBackgroundResource(R.drawable.ic_home_active);
+                binding.appBarMain.tvTextHome.setTextColor(getColor(R.color.colorPrimary));
+                if (!HomeFragment.isOpen) {
+                    HomeFragment homeFragment = HomeFragment.newInstance(this);
+                    new NavigateUtil().replaceFragment(getSupportFragmentManager()
+                            , homeFragment, R.id.nav_host_fragment_content_main);
+                    binding.appBarMain.tvPageTitle.setText(R.string.home);
+                    HomeFragment.isOpen = true;
+                }
                 break;
         }
 

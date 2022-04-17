@@ -59,8 +59,8 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
         //locationManager = new LocationManager(this, getActivity(), this);
         //presenter
         presenter = new NewPublicOrderPresenter(baseActivity, this);
-        click();
         data();
+        click();
         return binding.getRoot();
     }
 
@@ -157,13 +157,16 @@ public class NewPublicOrderFragment extends Fragment implements OnMapReadyCallba
 
         //binding.tvOrderDetails.setText(testOrder.getd());
         //binding..setText((getString(R.string.order) + "#" + publicOrder.getInvoice_number()));
-        binding.tvFrom.setText(publicOrder.getReceiver_name());
-        binding.tvPickupLocation.setText(publicOrder.getReceiver_address());
 
-        binding.tvTo.setText(publicOrder.getStore_name());
-        binding.tvDestLocation.setText(publicOrder.getStore_address());
+        binding.tvFrom.setText(publicOrder.getStore_name());
+        binding.tvPickupLocation.setText(publicOrder.getStore_address());
+
+        binding.tvTo.setText(publicOrder.getReceiver_name());
+        binding.tvDestLocation.setText(publicOrder.getReceiver_address());
 
         binding.tvOrderDetails.setText(publicOrder.getNote());
+
+        binding.tvOrderCoName.setText(publicOrder.getStore_name());
 
         binding.tvDelivery.setText(publicOrder.getDelivery_cost() + " " + currency);
         binding.tvVat.setText(publicOrder.getTax() + " " + currency);
