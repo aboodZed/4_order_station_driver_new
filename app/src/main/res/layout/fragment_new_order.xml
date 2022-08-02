@@ -593,11 +593,15 @@
                                 android:gravity="end"
                                 android:text="@string/delivery" />
 
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"/>
+
                             <TextView
                                 android:id="@+id/tv_delivery"
-                                android:layout_width="@dimen/logo_height"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
                                 android:textColor="@color/black" />
 
@@ -616,11 +620,15 @@
                                 android:gravity="end"
                                 android:text="@string/time" />
 
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"/>
+
                             <TextView
                                 android:id="@+id/tv_time"
-                                android:layout_width="@dimen/logo_height"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
                                 android:textSize="@dimen/text"
                                 android:textColor="@color/black" />
@@ -640,11 +648,15 @@
                                 android:gravity="end"
                                 android:text="@string/sub_total" />
 
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"/>
+
                             <TextView
                                 android:id="@+id/tv_sub_total_after"
-                                android:layout_width="@dimen/logo_height"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
                                 android:textColor="@color/black" />
 
@@ -663,11 +675,15 @@
                                 android:gravity="end"
                                 android:text="@string/vat" />
 
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"/>
+
                             <TextView
                                 android:id="@+id/tv_vat"
-                                android:layout_width="@dimen/logo_height"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
                                 android:textColor="@color/black" />
 
@@ -686,11 +702,15 @@
                                 android:gravity="end"
                                 android:text="@string/delivery_fees" />
 
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"/>
+
                             <TextView
                                 android:id="@+id/tv_delivery_fees"
-                                android:layout_width="@dimen/logo_height"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
                                 android:textColor="@color/black" />
 
@@ -711,11 +731,15 @@
                                 android:text="@string/total"
                                 android:textColor="@color/colorAccent" />
 
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"/>
+
                             <TextView
                                 android:id="@+id/tv_total"
-                                android:layout_width="@dimen/logo_height"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
                                 android:textSize="@dimen/fab_margin"
                                 android:textColor="@color/colorAccent" />
@@ -734,11 +758,15 @@
                                 android:gravity="end"
                                 android:text="@string/receive" />
 
+                            <View
+                                android:layout_width="0dp"
+                                android:layout_height="1dp"
+                                android:layout_weight="1"/>
+
                             <TextView
                                 android:id="@+id/tv_receive"
-                                android:layout_width="@dimen/logo_height"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/large_text"
                                 android:gravity="end"
                                 android:textColor="@color/black" />
 

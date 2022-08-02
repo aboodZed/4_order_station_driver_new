@@ -43,6 +43,4 @@ public class SpinnerAdapter extends BaseAdapter implements android.widget.Spinne
         textView.setText(items.get(position).getName());
         return view;
     }
-
-
 }

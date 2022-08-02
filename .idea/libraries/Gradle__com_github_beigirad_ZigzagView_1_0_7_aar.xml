@@ -10,10 +10,26 @@
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9ba955d13e14686c929ce219a95c6351/transformed/jetified-ZigzagView-1.0.7/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/9ba955d13e14686c929ce219a95c6351/transformed/jetified-ZigzagView-1.0.7/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/9ba955d13e14686c929ce219a95c6351/transformed/jetified-ZigzagView-1.0.7/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0498bcfeae50fb120745f83b02497981/transformed/jetified-ZigzagView-1.0.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/0498bcfeae50fb120745f83b02497981/transformed/jetified-ZigzagView-1.0.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/0498bcfeae50fb120745f83b02497981/transformed/jetified-ZigzagView-1.0.7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2677ee812efc374d84870fc66b6cd9ee/transformed/jetified-ZigzagView-1.0.7/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2677ee812efc374d84870fc66b6cd9ee/transformed/jetified-ZigzagView-1.0.7/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2677ee812efc374d84870fc66b6cd9ee/transformed/jetified-ZigzagView-1.0.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/adb39195c7d048e38d218aaf6dd49299/transformed/jetified-ZigzagView-1.0.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/adb39195c7d048e38d218aaf6dd49299/transformed/jetified-ZigzagView-1.0.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/adb39195c7d048e38d218aaf6dd49299/transformed/jetified-ZigzagView-1.0.7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf95995cc62344c4dfc83341826165d8/transformed/jetified-ZigzagView-1.0.7/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/bf95995cc62344c4dfc83341826165d8/transformed/jetified-ZigzagView-1.0.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/bf95995cc62344c4dfc83341826165d8/transformed/jetified-ZigzagView-1.0.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/45432d93a343b07974c959c663276dab/transformed/jetified-ZigzagView-1.0.7/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/45432d93a343b07974c959c663276dab/transformed/jetified-ZigzagView-1.0.7/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/45432d93a343b07974c959c663276dab/transformed/jetified-ZigzagView-1.0.7/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.beigirad/ZigzagView/1.0.7/cf89831f197bfbd4ca6e2fe99560489e96ae2a48/ZigzagView-1.0.7-sources.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.beigirad/ZigzagView/1.0.7/dfe7ba563b2fdd9cb238a7150e1fe2a33bb5a020/ZigzagView-1.0.7-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

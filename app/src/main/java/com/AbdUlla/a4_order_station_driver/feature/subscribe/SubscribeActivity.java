@@ -1,14 +1,17 @@
 package com.AbdUlla.a4_order_station_driver.feature.subscribe;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.AbdUlla.a4_order_station_driver.R;
 import com.AbdUlla.a4_order_station_driver.databinding.ActivitySubscribeBinding;
+import com.AbdUlla.a4_order_station_driver.feature.login.LoginActivity;
 import com.AbdUlla.a4_order_station_driver.models.AppSettings;
 import com.AbdUlla.a4_order_station_driver.utils.AppController;
 import com.AbdUlla.a4_order_station_driver.utils.language.BaseActivity;
+import com.AbdUlla.a4_order_station_driver.utils.util.NavigateUtil;
 import com.AbdUlla.a4_order_station_driver.utils.util.ToolUtil;
 
 public class SubscribeActivity extends BaseActivity {
@@ -41,7 +44,12 @@ public class SubscribeActivity extends BaseActivity {
     }
 
     @Override
-    public void navigate(int page) {
+    public void onBackPressed() {
+        navigate(0);
+    }
 
+    @Override
+    public void navigate(int page) {
+        new NavigateUtil().activityIntent(this,LoginActivity.class,false);
     }
 }

@@ -85,8 +85,8 @@ public class MainActivity2 extends BaseActivity implements DialogView<Boolean> {
     private void data() {
         //dialog
         if (AppController.getInstance().getAppSettingsPreferences().getToken().isEmpty() ||
-                AppController.getInstance().getAppSettingsPreferences().getUser().getBalance().getIsSubscribe()) {
-            navigate(LoginActivity.page);
+                !AppController.getInstance().getAppSettingsPreferences().getUser().getBalance().getIsSubscribe()) {
+            new NavigateUtil().activityIntent(this, SplashActivity.class, false);
         }
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
