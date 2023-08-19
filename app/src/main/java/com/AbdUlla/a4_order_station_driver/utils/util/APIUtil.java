@@ -30,12 +30,15 @@ public class APIUtil<T> {
                     if (context != null) {
                         if (response.isSuccessful() && response.body() != null) {
                             Log.e(getClass().getName() + " : apiRequest", response.body().toString());
-                            listener.onSuccess(response.body(), response.message());
+                            try {
+                                listener.onSuccess(response.body(), response.message());
+                            } catch (Exception e){
+                                listener.onError(e.getLocalizedMessage());
+                            }
                         } else {
                             Log.e(getClass().getName() + " : errorRequest",
                                     ToolUtil.showError(context, response.errorBody()));
                             listener.onError(ToolUtil.showError(context, response.errorBody()));
-
                         }
                     }
                 }

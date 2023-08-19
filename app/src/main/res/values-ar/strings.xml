@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">4OrderStation المندوب</string>
+    <string name="app_name">سفير - مندوب</string>
     <string name="upload_image">تحميل الصورة</string>
     <string name="user_name">الاسم المستخدم</string>
     <string name="type_full_name">ادخل اسمك الكامل</string>
@@ -98,7 +98,7 @@
     <string name="type_message">أكتب رسالة</string>
     <string name="send_email">إرسال إميل</string>
     <string name="closeApp">لا تغلق التطبيق حتى تنتهي من الطلب</string>
-    <string name="order_station">4 اوردر ستيشن</string>
+    <string name="safeer">سفير</string>
     <string name="public_order">طلب عام</string>
     <string name="public_stores">متاجر عامة</string>
     <string name="total_orders_price">اجمالي سعر الطلبات</string>
@@ -148,7 +148,7 @@
     <string name="error_in_process_the_photo">حدث خطأ في معالجة الصورة</string>
     <string name="error_in_input">خطأ في عملية الإدخال, حاول مرة أخرى</string>
     <string name="neighborhood">الحي</string>
-    <string name="welcome">مرحبا بك في 4Order Station</string>
+    <string name="welcome">مرحبا بك في سفير</string>
     <string name="sign_in">تسجيل دخول</string>
     <string name="create">إنشاء</string>
     <string name="register">تسجيل جديد</string>
@@ -211,7 +211,7 @@
     <string name="end_balance">\nرصيدك لطلبات قد أنتها!\nالان لا يمكنك أستلام أي طلب.<b>تواصل معنا</b></string>
     <string name="end_subscription">\nأشتراكك الشهري أنتها!\nالان لا يمكنك أستلام أي طلب.<b>تواصل معنا</b></string>
     <string name="new_subscription">أشتراك جديد</string>
-    <string name="welcome_new"> مرحبا بك في Order Station</string>
+    <string name="welcome_new"> مرحبا بك في Safeer</string>
     <string name="to_receive_order"><b>للحصول على طلبات جديدة,</b>\nمن فضلك أشترك معنا</string>
     <string name="for_subscribe">للأشتراك</string>
     <string name="for_price">لكل</string>

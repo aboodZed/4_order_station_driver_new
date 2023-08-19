@@ -5,7 +5,8 @@ public interface AppContent {
     String INPUT_SETTINGS = "setting";
     String CODE_DETAILS = "codeDetails";
 
-    String BASE_URL = "https://www.4orderstation.net/api/v3/";
+    String BASE_URL = "http://safeersa.com/api/v3/";
+    //seventh String BASE_URL = "https://www.4orderstation.net/api/v3/";
     //sixth String BASE_URL = "https://satco.vip/api/v3/";
     //fifth String BASE_URL = "http://www.4order.net/api/v3/";
     //forth String BASE_URL = "http://4orderstation.com/api/v2/";
@@ -14,7 +15,7 @@ public interface AppContent {
     //first url String BASE_URL = https://control.4orderstation.net/api/v2/
 
     //first String IMAGE_STORAGE_URL = "https://satco.vip/";
-    String IMAGE_STORAGE_URL = "https://www.4orderstation.net/";
+    String IMAGE_STORAGE_URL = "http://safeersa.com/";
     //navigation
     String PAGE = "page";
     String ORDER_Id = "order_id";

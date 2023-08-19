@@ -45,6 +45,9 @@ public class LoginActivity extends BaseActivity implements DialogView<Result<Use
 
     private void data() {
         AppSettings settings = AppController.getInstance().getAppSettingsPreferences().getSettings();
+        if (settings == null) {
+            return;
+        }
         binding.tvCode.setText(settings.getData().getPhone_code());
         InputFilter[] filters = new InputFilter[1];
         filters[0] = new InputFilter.LengthFilter(settings.getData().getPhone_length());

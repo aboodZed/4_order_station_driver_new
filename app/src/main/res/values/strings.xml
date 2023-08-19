@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">4OrderStation Driver</string>
+    <string name="app_name">Safeer-Driver</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <!--register step 1-->
@@ -37,8 +37,7 @@
     <string name="forget_string">Please enter your Phone number. To receive a code to create a new password</string>
     <string name="send">Send</string>
     <string name="phone_verification">Phone verification</string>
-    <string name="verify_string">Please enter the code sent to you via sms
-on the number</string>
+    <string name="verify_string">Please enter the code sent to you via sms on the number</string>
     <string name="resend">Resend a new code in </string>
     <string name="password_reset">Reset password</string>
     <string name="confirm">Confirm</string>
@@ -108,7 +107,7 @@ on the number</string>
     <string name="closeApp">Don\'t close app until done the order</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="order_station">Order Station</string>
+    <string name="safeer">Safeer</string>
     <string name="public_order">Public Order</string>
     <string name="public_stores">public Stores</string>
     <string name="total_orders_price">Total orders price</string>
@@ -167,7 +166,7 @@ on the number</string>
     <string name="error_in_input">Error in the input, try again</string>
     <string name="neighborhood">Neighborhood</string>
     <string name="sign_in">Sign In</string>
-    <string name="welcome">Welcome to 4 Order Station</string>
+    <string name="welcome">Welcome to Safeer</string>
     <string name="create">Create</string>
     <string name="register">Register</string>
     <string name="personal_information">Personal Information</string>
@@ -232,7 +231,7 @@ on the number</string>
     <string name="end_balance">\nYour balance orders is finish!\nyou cannot receive any order. <b>Contact us</b></string>
     <string name="end_subscription">\nYour monthly subscription has expired!\nyou cannot receive any order. <b>Contact us</b></string>
     <string name="new_subscription">New Subscription</string>
-    <string name="welcome_new">Welcome For Order Station</string>
+    <string name="welcome_new">Welcome For Safeer</string>
     <string name="to_receive_order"><b>To receive new requests,</b>\nplease subscribe to us</string>
     <string name="for_subscribe">For Subscribe</string>
     <string name="for_price">For</string>
